@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arab Community Services</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="https://use.typekit.net/dnn1lvq.css">
+<style>
+  @font-face {
+    font-family: "Moshref Naskh";
+    src: url("assets/moshref-naskh.woff2") format("woff2");
+    font-display: swap;
+  }
+  :root {
+    --bg: #FFFFFF;
+    --cloth: #4F5F30;
+    --paper: #D2CDC5;
+    --parchment: #FAF6EB; /* ivory cover type */
+    --ink: #7C1E35; /* sumac */
+    --rule: rgba(124, 30, 53, 0.32);
+    --serif: "anziano", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --arabic: "Moshref Naskh", "Geeza Pro", "Noto Naskh Arabic", serif;
+    --dings: "itc-zapf-dingbats-std", "Zapf Dingbats", "ZapfDingbatsITC", "Apple Symbols", "Segoe UI Symbol", sans-serif;
+    /* 1 design px on the 1440 x 900 comp, scaled to fit the window */
+    --u: min(calc(100vw / 1440), calc(100vh / 900));
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); }
+  body { font-family: var(--serif); font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; transition: background .2s; }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: 2px; }
+
+  /* ---------- Desktop: two fixed-height cards, right card scrolls ---------- */
+  .page {
+    height: 100vh; height: 100svh;
+    display: grid;
+    grid-template-columns: 571fr 805fr;
+    gap: calc(16 * var(--u));
+    padding: calc(24 * var(--u));
+  }
+  .card { border-radius: calc(16 * var(--u)); min-height: 0; }
+
+  .cover {
+    background: var(--cloth) url("assets/cloth.webp") center / 100% 100% no-repeat;
+    color: var(--parchment);
+    text-align: center;
+    display: flex; flex-direction: column;
+    padding: calc(64 * var(--u)) calc(40 * var(--u)) calc(48 * var(--u));
+    overflow: hidden;
+  }
+  .logo {
+    /* Matched to measured comp: cap height 28, baseline-to-baseline 48, COMMUNITY 419 wide (of 571) */
+    font-size: calc(42 * var(--u)); line-height: calc(48 * var(--u));
+    letter-spacing: var(--logo-track, 0.45em); /* balance trailing tracking */
+    font-weight: 700; text-transform: uppercase;
+    filter: url(#deboss);
+  }
+  .logo .ll { display: inline-block; margin-right: calc(-1 * var(--logo-track, 0.45em)); }
+  /* Arabic name: Moshref Naskh 30 / 48, tracking 0 */
+  .arname { font-family: var(--arabic); font-size: calc(30 * var(--u)); line-height: calc(48 * var(--u)); letter-spacing: 0; margin-top: calc(29 * var(--u)); }
+  /* Tagline under the Arabic name: imprint style (20pt small caps, tracking 100) */
+  .tagline { font-size: calc(20 * var(--u)); letter-spacing: 0.1em; line-height: calc(21 * var(--u)); font-variant-caps: all-small-caps; margin-top: calc(29 * var(--u)); }
+
+  /* Contents box: 236 x 236 square, 4px ivory stroke, stamped. Centred on the card.
+     Gaps above it (logo > Arabic name > tagline > box) are set by spaceCover() below from the real letter shapes. */
+  .contents {
+    position: relative; align-self: center; flex: none;
+    width: calc(236 * var(--u)); height: calc(236 * var(--u));
+    margin-top: calc(30 * var(--u));
+    display: grid; place-items: center;
+  }
+  .contents::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    border: max(2px, calc(4 * var(--u))) solid var(--parchment);
+    filter: url(#deboss);
+  }
+  .contents ol { list-style: none; text-align: left; display: grid; }
+  .contents li { line-height: calc(40 * var(--u)); } /* 5 items, baselines 40 apart */
+  .contents a { display: flex; align-items: baseline; gap: calc(12 * var(--u)); font-size: calc(26 * var(--u)); letter-spacing: 0; font-weight: 400; }
+  .num { font-family: var(--dings); font-weight: 500; font-size: .943em; width: 1.2em; display: inline-grid; }
+  .num > span, .contents .label > .t, .contents .label::after { grid-area: 1 / 1; }
+  .num .on, .contents .label::after { opacity: 0; }
+  .contents a[aria-current="true"] .num .on, .contents a[aria-current="true"] .label::after { opacity: 1; }
+  .contents a[aria-current="true"] .num .off, .contents a[aria-current="true"] .label > .t { opacity: 0; }
+  .contents .label { display: inline-grid; justify-items: start; }
+  .contents .label::after { content: attr(data-label); font-weight: 700; } /* bold copy, also reserves the bold width */
+  .contents a:hover .label { text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+
+  /* "Call us" in Arabic: Moshref Naskh 36, tracking 0 */
+  .talk { margin-top: auto; font-family: var(--arabic); font-size: calc(36 * var(--u)); line-height: calc(36 * var(--u)); letter-spacing: 0; font-weight: 400; }
+  .contact { margin-top: calc(6 * var(--u)); font-size: calc(26 * var(--u)); letter-spacing: -0.05em; font-weight: 400; line-height: calc(30 * var(--u)); display: grid; }
+  .contact a:hover { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
+  .contact a[href^="mailto"] { letter-spacing: 0; }
+  /* Imprint: 20pt, small caps, tracking 100, no stamp */
+  .imprint { margin-top: calc(40 * var(--u)); font-size: calc(20 * var(--u)); letter-spacing: 0.1em; line-height: calc(18 * var(--u)); font-variant-caps: all-small-caps; }
+
+  /* Imprint separators: Zapf ✺ */
+  .imprint .sep { font-family: var(--dings); font-weight: 500; font-variant-caps: normal; letter-spacing: 0; margin: 0 .5em; }
+
+  /* ---------- Right card ----------
+     Type is straight from the Photoshop paragraph styles: size pt = px, leading pt = line height px,
+     tracking /1000 = em. No adjustments.
+     Vertical gaps are baseline-to-baseline distances measured on the comps. Where a block's top or bottom
+     sits relative to its baseline depends on the font, so the page measures that once in the browser
+     (--kr regular, --kb bold, set by script below) and the gaps below use it. */
+  :root { --kr: 0.33; --kb: 0.33; }
+  /* tracking -25 is set on each style (em must be per element, or it inherits as a fixed px value) */
+  .pages {
+    background: var(--paper) url("assets/paper.webp") center / 100% 100% no-repeat;
+    background-attachment: local, scroll;
+    color: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroller {
+    height: 100%; overflow-y: auto; overscroll-behavior: contain;
+    scroll-behavior: smooth;
+    padding: 0 calc(40 * var(--u));
+    scrollbar-width: thin; scrollbar-color: rgba(124,30,53,.25) transparent;
+  }
+  /* card top -> section label baseline 90 */
+  .section { min-height: 100%; padding: calc((81 - 28 * var(--kr)) * var(--u)) 0 calc(64 * var(--u)); scroll-margin-top: 0; }
+  /* Section label: Regular 28 / 18, tracking 200, small caps */
+  .eyebrow { font-size: calc(28 * var(--u)); line-height: calc(18 * var(--u)); letter-spacing: 0.2em; font-variant-caps: all-small-caps; }
+  /* Section headline: Bold 60 / 60, tracking -50. Label baseline -> headline baseline 61 */
+  .h2 { font-weight: 700; font-size: calc(60 * var(--u)); line-height: calc(60 * var(--u)); letter-spacing: -0.05em; filter: url(#ink-h);
+        margin-top: calc((22 + 28 * var(--kr) - 60 * var(--kb)) * var(--u)); }
+  /* Section subheadline: Regular 37 / 42, tracking -25. Headline last baseline -> subheadline baseline 52 */
+  .intro { font-size: calc(37 * var(--u)); line-height: calc(42 * var(--u)); letter-spacing: -0.025em;
+           margin-top: calc((1 + 60 * var(--kb) - 37 * var(--kr)) * var(--u)); }
+
+  /* Rows. Subheadline last baseline -> first body baseline 78; label baseline = body baseline */
+  .rows { margin-top: calc((40.5 + 7 * var(--kr)) * var(--u)); }
+  .row { display: grid; grid-template-columns: calc(251 * var(--u)) 1fr;
+         padding-bottom: calc((11.5 + 30 * var(--kr)) * var(--u)); }            /* last body baseline -> rule 28 */
+  .row + .row { border-top: 1px solid var(--rule); padding-top: calc((24.5 - 30 * var(--kr)) * var(--u)); } /* rule -> body baseline 42 */
+  .row:last-child { padding-bottom: 0; }
+  /* Row label: Bold 30 / 28, tracking -25 */
+  .row h3 { font-weight: 700; font-size: calc(30 * var(--u)); line-height: calc(28 * var(--u)); letter-spacing: -0.025em;
+            margin-top: calc((2.5 + 30 * var(--kr) - 30 * var(--kb)) * var(--u)); }
+  /* Row body: Regular 30 / 33, tracking -25 */
+  .row p, .bullets li { font-size: calc(30 * var(--u)); line-height: calc(33 * var(--u)); letter-spacing: -0.025em; }
+
+  /* Starburst bullets: Zapf 30, text hangs 44 in; one empty line (33) between bullets */
+  .bullets { list-style: none; display: grid; gap: calc(33 * var(--u)); }
+  .bullets li { padding-left: calc(44 * var(--u)); text-indent: calc(-44 * var(--u)); }
+  .bullets .star { display: inline-block; width: calc(44 * var(--u)); text-indent: 0; line-height: 0;
+                   font-family: var(--dings); font-weight: 500; font-size: calc(30 * var(--u)); letter-spacing: 0; }
+  .row p.note { padding-left: calc(44 * var(--u)); }
+  .bullets a:hover { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
+
+  em { font-style: italic; }
+  /* No one-word last lines (all screens) */
+  .pages p, .pages li { text-wrap: pretty; }
+  .pages .ar-line, .pages .colophon, .pages .ar-cap { text-wrap: wrap; }
+  .keep { white-space: nowrap; }
+  .nw { white-space: nowrap; }
+  br.m { display: none; }
+  strong.u { font-weight: 700; text-decoration: underline; text-decoration-thickness: .06em; text-underline-offset: .18em; } /* italic = Regular body set in italic */
+  .row a:not(.btn):hover { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
+
+  /* Buttons: Anziano Bold 30, tracking -25. Box 139 x 50, 2px stroke, square corners. Arrow: Zapf Dingbats ➞
+     last body baseline -> box top 24; box bottom -> rule 30 */
+  .btn { display: inline-flex; height: calc(52 * var(--u)); padding: 0 calc(8 * var(--u));
+         border: max(1px, calc(2 * var(--u))) solid currentColor;
+         font-weight: 700; font-size: calc(30 * var(--u)); line-height: calc(48 * var(--u)); letter-spacing: -0.025em;
+         white-space: nowrap; margin-top: calc((7.5 + 30 * var(--kr)) * var(--u)); transition: background .15s, color .15s; }
+  .btn > span { position: relative; top: calc((8 - 30 * var(--kb)) * var(--u)); }
+  .btn .arr { font-family: var(--dings); font-weight: 500; letter-spacing: 0; }
+  .btn:hover, .btn:focus-visible { background: var(--ink); color: var(--parchment); }
+  .row.has-btn { padding-bottom: calc(30 * var(--u)); }
+
+  /* Footnote: Regular 20 / 23, tracking +25; Zapf ✺ 20 hanging in the label column. Last body baseline -> footnote baseline 44 */
+  .footnote { margin-top: calc((16 + 10 * var(--kr)) * var(--u)); padding-left: calc(32 * var(--u)); text-indent: calc(-32 * var(--u));
+              font-size: calc(20 * var(--u)); line-height: calc(23 * var(--u)); letter-spacing: 0.025em; }
+  .footnote .star { display: inline-block; width: calc(32 * var(--u)); text-indent: 0; line-height: 0;
+                    font-family: var(--dings); font-weight: 500; font-size: calc(20 * var(--u)); letter-spacing: 0; }
+
+  /* Small caps labels on the landing and closing cards: 30pt small caps, tracking 100 */
+  .caps30 { font-size: calc(30 * var(--u)); letter-spacing: 0.1em; line-height: calc(14 * var(--u)); font-variant-caps: all-small-caps; }
+
+  /* Landing: framed team photo (photo corners), caption, scroll cue */
+  .section.landing { display: flex; flex-direction: column; align-items: center; height: 100%; padding: 0; }
+  .print { position: relative; margin-top: auto; width: min(calc(553 * var(--u)), 100%); padding: calc(14 * var(--u));
+           background: var(--parchment); box-shadow: 0 calc(2 * var(--u)) calc(6 * var(--u)) rgba(43, 26, 20, .25);
+           transform: rotate(.5deg); }
+  .print img, .plate img { display: block; width: 100%; height: auto; aspect-ratio: 858 / 642; object-fit: cover; }
+  .pc { position: absolute; width: calc(28 * var(--u)); height: calc(28 * var(--u));
+        filter: drop-shadow(0 calc(2 * var(--u)) calc(2 * var(--u)) rgba(43, 26, 20, .5)); }
+  .pc i { display: block; width: 100%; height: 100%; background: linear-gradient(135deg, #8F2B44, #6B1A2E); }
+  .pc.tl { top: 0; left: 0; }     .pc.tl i { clip-path: polygon(0 0, 100% 0, 0 100%); }
+  .pc.tr { top: 0; right: 0; }    .pc.tr i { clip-path: polygon(0 0, 100% 0, 100% 100%); }
+  .pc.bl { bottom: 0; left: 0; }  .pc.bl i { clip-path: polygon(0 0, 0 100%, 100% 100%); }
+  .pc.br { bottom: 0; right: 0; } .pc.br i { clip-path: polygon(100% 0, 100% 100%, 0 100%); }
+  /* Caption: Moshref Naskh 30, tracking 0. Print -> caption letters 30, set by spaceCover() */
+  .landing .caption { margin-top: calc(24 * var(--u)); margin-bottom: auto; }
+  .ar-cap .ln { white-space: nowrap; }
+  .ar-cap .n { font-size: 1.4em; line-height: 0; } /* numerals 42pt (Moshref draws them small); line height unchanged */
+  .ar-cap { font-family: var(--arabic); font-size: calc(30 * var(--u)); line-height: calc(48 * var(--u)); letter-spacing: 0; text-align: center; }
+  .cue { display: flex; flex-direction: column; align-items: center; padding: 0 0 calc(39 * var(--u));
+         background: none; border: 0; color: inherit; font: inherit; cursor: pointer; transition: opacity .4s; }
+  .cue.gone { opacity: 0; pointer-events: none; }
+  /* Arrows: Zapf ❨ (under Scroll as is; above Back to top turned 180°) */
+  .arrow { display: block; font-family: var(--dings); font-weight: 500; font-size: calc(30 * var(--u)); line-height: calc(26 * var(--u)); letter-spacing: 0; }
+  .cue .arrow { margin-top: calc((7 + 30 * var(--kr)) * var(--u)); animation: drift 2.4s ease-in-out infinite; } /* SCROLL baseline -> arrow 14 */
+  @keyframes drift { 0%, 100% { translate: 0 0; } 50% { translate: 0 calc(5 * var(--u)); } }
+
+  /* Closing: book plate photo, Arabic line, back to top, colophon */
+  .section.closing { display: flex; flex-direction: column; align-items: center; height: 100%;
+                     padding: calc(105 * var(--u)) 0 calc((40.5 + 20 * var(--kr)) * var(--u)); } /* © baseline -> card bottom 51 */
+  .plate { width: min(calc(552 * var(--u)), 100%); border: max(1px, calc(1 * var(--u))) solid var(--ink); padding: calc(3.5 * var(--u)); }
+  .plate > div { border: max(1px, calc(3 * var(--u))) solid var(--ink); padding: calc(6 * var(--u)); }
+  .ar-line { font-family: var(--arabic); font-size: calc(30 * var(--u)); line-height: calc(48 * var(--u)); letter-spacing: 0; margin-top: calc(24 * var(--u)); text-align: center; }
+  .totop { margin-top: auto; display: flex; flex-direction: column; align-items: center; background: none; border: 0;
+           color: inherit; font: inherit; cursor: pointer; }
+  .totop .arrow { transform: rotate(180deg); }
+  .totop .caps30 { margin-top: calc((22 - 30 * var(--kr)) * var(--u)); }   /* arrow -> word 16 */
+  .totop:hover .caps30, .cue:hover .caps30 { text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+  .colophon { margin-top: calc((36.5 + 10 * var(--kr)) * var(--u)); font-size: calc(20 * var(--u)); letter-spacing: 0.1em;
+              line-height: calc(21 * var(--u)); font-variant-caps: all-small-caps; text-align: center; } /* word -> © 41 */
+  .colophon .sep { font-family: var(--dings); font-weight: 500; font-variant-caps: normal; letter-spacing: 0; padding: 0 .35em; }
+
+  /* Background test toggle */
+
+  /* ---------- Phones / narrow: stack, page scrolls ---------- */
+  @media (max-width: 820px), (max-aspect-ratio: 1/1) {
+    :root { --u: calc((min(100vw, 600px) - 24px) / 500); }
+    .page { height: auto; grid-template-columns: 1fr; padding: 12px; gap: 12px; max-width: 624px; margin: 0 auto; }
+    .card { border-radius: 14px; }
+    .cover { background-size: cover; padding: 56px 24px 44px; }
+    .arname { font-size: max(22px, calc(30 * var(--u))); line-height: 1.6; }
+    /* Contents box: type sized from the box, in desktop proportions */
+    .contents { --box: max(220px, calc(236 * var(--u))); width: var(--box); height: var(--box); }
+    .contents a { font-size: calc(var(--box) * 26 / 236); gap: calc(var(--box) * 12 / 236); }
+    .contents li { line-height: calc(var(--box) * 40 / 236); }
+    .talk { font-size: max(27px, calc(36 * var(--u))); }
+    .contact { font-size: max(18px, calc(26 * var(--u))); line-height: 1.4; }
+    .imprint { font-size: max(14px, calc(20 * var(--u))); line-height: 1.15; margin-top: 32px; }
+    .page { padding-top: 28px; }
+    .pages { overflow: visible; background: var(--paper) url("assets/paper-tile.webp") center top / 805px auto repeat-y; }
+    .scroller { height: auto; overflow: visible; padding: 0 24px; }
+    .section { min-height: 0; padding: 56px 0 48px; }
+    .row { grid-template-columns: 1fr; gap: calc(14 * var(--u)); }
+    .row h3 { margin-top: 0; }
+    .row > div:empty { display: none; }
+    .d { display: none; }
+    br.m { display: inline; }
+    /* No one-word last lines on phones */
+    .pages .h2, .pages .intro { text-wrap: balance; }
+    .row p.note.flush-m { padding-left: 0; }
+    .colophon .sep { padding-left: 0; }
+    /* Closing lines: break only where set, never inside a line */
+    .ar-line .ln, .colophon .ln { white-space: nowrap; }
+    .section.landing, .section.closing { height: auto; padding: 40px 0; }
+    .print { margin-top: 0; }
+    .landing .caption { margin-bottom: 0; }
+    .cue { display: none; }
+    .totop { margin-top: 40px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .scroller { scroll-behavior: auto; } .cue .arrow { animation: none; } }
+
+  /* =================== MOTION ===================
+     Everything below only runs when <html> has class "motion" (set by script; off with ?nomotion,
+     in the comp check, and for visitors whose device asks for reduced motion).
+     Each block is labelled; delete a block to remove that motion. */
+
+  /* Motion 1: sections settle in as they scroll into view (once) */
+  .motion .rv { opacity: 0; translate: 0 calc(8 * var(--u)); }
+  .motion .rv.in { opacity: 1; translate: 0 0; transition: opacity .6s ease-out var(--d, 0s), translate .6s cubic-bezier(.2,.7,.2,1) var(--d, 0s); }
+
+  /* Motion 2: contents box crossfades to the current section */
+  .motion .num > span, .motion .contents .label > .t, .motion .contents .label::after { transition: opacity .25s ease; }
+
+  /* Motion 3: buttons: arrow nudges on hover, button presses down on click */
+  .motion .btn .arr { display: inline-block; transition: translate .2s ease; }
+  .motion .btn:hover .arr, .motion .btn:focus-visible .arr { translate: calc(3 * var(--u)) 0; }
+  .motion .btn:active { translate: 0 1px; }
+
+  /* Motion 4: landing photo is laid onto the page on first load, then caption and cue fade in */
+  @keyframes settle { from { opacity: 0; translate: 0 calc(-16 * var(--u)); rotate: 1.2deg; } to { opacity: 1; translate: 0 0; rotate: 0deg; } }
+  @keyframes rise { from { opacity: 0; translate: 0 calc(6 * var(--u)); } to { opacity: 1; translate: 0 0; } }
+  .motion .print { animation: settle .8s cubic-bezier(.2,.7,.2,1) .15s backwards; }
+  .motion .landing .caption { animation: rise .6s ease-out .55s backwards; }
+  .motion .cue > * { animation: rise .6s ease-out .8s backwards; }
+  .motion .cue .arrow { animation: rise .6s ease-out .8s backwards, drift 2.4s ease-in-out 1.4s infinite; }
+
+  /* Motion 6: back-to-top arrow drifts upward */
+  @keyframes drift-up { 0%, 100% { translate: 0 0; } 50% { translate: 0 calc(-5 * var(--u)); } }
+  .motion .totop .arrow { animation: drift-up 2.4s ease-in-out infinite; }
+
+  /* Motion 7 removed: links use a standard underline (below the text) on hover */
+  .cue:hover .caps30 { text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+
+  /* While the page measures spacing, hold everything still so measurements aren't thrown off */
+  .measuring .rv, .measuring .print, .measuring .landing .caption { translate: none !important; rotate: none !important; transition: none !important; }
+  /* ================= END MOTION ================= */
+
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Ink spread on section headlines: blur the letter shapes, crush back with Levels 80/115, fill ink -->
+    <filter id="ink-h" x="-3%" y="-15%" width="106%" height="130%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="blur"/>
+      <feComponentTransfer in="blur" result="crushed">
+        <feFuncA type="linear" slope="7.2857" intercept="-2.2857"/>
+      </feComponentTransfer>
+      <feFlood flood-color="#7C1E35"/>
+      <feComposite in2="crushed" operator="in"/>
+    </filter>
+    <!-- Stamped logo: inner shadow at top of letters + faint light catch below -->
+    <filter id="deboss" x="-5%" y="-10%" width="110%" height="125%" color-interpolation-filters="sRGB">
+      <feOffset in="SourceAlpha" dy="1" result="down"/>
+      <feGaussianBlur in="down" stdDeviation="0.6" result="downB"/>
+      <feComposite in="SourceAlpha" in2="downB" operator="out" result="topEdge"/>
+      <feFlood flood-color="#000" flood-opacity="0.35"/>
+      <feComposite in2="topEdge" operator="in" result="inner"/>
+      <feOffset in="SourceAlpha" dy="1" result="up"/>
+      <feFlood flood-color="#fff" flood-opacity="0.2"/>
+      <feComposite in2="up" operator="in" result="catch"/>
+      <feMerge><feMergeNode in="catch"/><feMergeNode in="SourceGraphic"/><feMergeNode in="inner"/></feMerge>
+    </filter>
+  </defs>
+</svg>
+
+<div class="page">
+  <!-- LEFT: the cover -->
+  <header class="card cover">
+    <div class="logo" role="img" aria-label="Arab Community Services"><span class="ll">Arab</span><br><span class="ll" id="logo-wide">Community</span><br><span class="ll">Services</span></div>
+    <p class="arname" lang="ar" dir="rtl">المركز العربي للخدمات<br>القـــــــــــانونية والاجتـــــــــــماعية</p>
+    <p class="tagline">A sister organization of AROC</p>
+
+    <nav class="contents" aria-label="Sections">
+      <ol>
+        <li><a href="#services" data-target="services"><span class="num" aria-hidden="true"><span class="on">➊</span><span class="off">➀</span></span><span class="label" data-label="Services"><span class="t">Services</span></span></a></li>
+        <li><a href="#eligibility" data-target="eligibility"><span class="num" aria-hidden="true"><span class="on">➋</span><span class="off">➁</span></span><span class="label" data-label="Eligibility"><span class="t">Eligibility</span></span></a></li>
+        <li><a href="#process" data-target="process"><span class="num" aria-hidden="true"><span class="on">➌</span><span class="off">➂</span></span><span class="label" data-label="Process"><span class="t">Process</span></span></a></li>
+        <li><a href="#about" data-target="about"><span class="num" aria-hidden="true"><span class="on">➍</span><span class="off">➃</span></span><span class="label" data-label="About"><span class="t">About</span></span></a></li>
+        <li><a href="#donate" data-target="donate"><span class="num" aria-hidden="true"><span class="on">➎</span><span class="off">➄</span></span><span class="label" data-label="Donate"><span class="t">Donate</span></span></a></li>
+      </ol>
+    </nav>
+
+    <p class="talk" lang="ar" dir="rtl">اتــــــــــصل بنا.</p>
+    <div class="contact">
+      <a href="tel:+14158617444">(415) 861-7444</a>
+      <a href="mailto:info@arabcommunityservices.org">info@arabcommunityservices.org</a>
+    </div>
+    <p class="imprint">522 Valencia St.<span class="sep" aria-hidden="true">✺</span>San Francisco, CA<br>Monday–Friday<span class="sep" aria-hidden="true">✺</span>10 AM–6 PM</p>
+  </header>
+
+  <!-- RIGHT: the pages -->
+  <main class="card pages">
+    <div class="scroller" id="scroller">
+
+      <section class="section landing" id="top" data-nav="" aria-label="Our team">
+        <figure class="print">
+          <img src="assets/team.jpg" width="1600" height="1198" alt="A speaker holding a microphone, gesturing as she talks at a community event.">
+          <span class="pc tl" aria-hidden="true"><i></i></span><span class="pc tr" aria-hidden="true"><i></i></span>
+          <span class="pc bl" aria-hidden="true"><i></i></span><span class="pc br" aria-hidden="true"><i></i></span>
+        </figure>
+        <p class="caption ar-cap" lang="ar" dir="rtl"><span class="ln">محــامـون ومدافعـــــــــــون،</span><br> <span class="ln">معكــــم منذ <span class="n">٢٠٠٧</span>.</span></p>
+        <button class="cue" type="button" aria-label="Scroll to services"><span class="caps30">Scroll</span><span class="arrow" aria-hidden="true">❨</span></button>
+      </section>
+
+      <section class="section" id="services" aria-labelledby="h-services">
+        <p class="eyebrow">Services</p>
+        <h2 class="h2" id="h-services">Immigration.<br class="m"> <span class="nw">Social services.</span><br>Know your rights.</h2>
+        <p class="intro">We offer free, confidential legal and social services in English and Arabic.</p>
+        <div class="rows">
+          <div class="row">
+            <h3>Immigration</h3>
+            <p>Get legal help with family petitions, asylum, and representation if you or a family member is detained by ICE or has a court date.</p>
+          </div>
+          <div class="row">
+            <h3>Social services</h3>
+            <p>Apply for public benefits such as food stamps (CalFresh), health insurance (Medi&#8209;Cal), and cash assistance (CalWORKs).</p>
+          </div>
+          <div class="row">
+            <h3>Know your rights</h3>
+            <p>Learn what to do if immigration agents come to your home, work, or community. Free trainings for families, businesses, and community groups.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="eligibility" aria-labelledby="h-eligibility">
+        <p class="eyebrow">Eligibility</p>
+        <h2 class="h2" id="h-eligibility">Is this for you?</h2>
+        <p class="intro">We serve working-class Arab, Muslim, North African, and Southwest Asian residents of the Bay.</p>
+        <div class="rows">
+          <div class="row">
+            <h3>Requirements</h3>
+            <ul class="bullets">
+              <li><span class="star" aria-hidden="true">✺</span>You or someone in your household is a resident of the Greater SF Bay Area.</li>
+              <li><span class="star" aria-hidden="true">✺</span>Your household income falls within the low-to-moderate income range.</li>
+              <li><span class="star" aria-hidden="true">✺</span>You or someone in your household is Arab, Muslim, North African, or Southwest Asian.</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div aria-hidden="true"></div>
+            <p class="note">Not sure? Call anyway. If we can’t help, we’ll connect you with someone who can.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="process" aria-labelledby="h-process">
+        <p class="eyebrow">Process</p>
+        <h2 class="h2" id="h-process">What to expect</h2>
+        <p class="intro">A three-step intake.</p>
+        <div class="rows">
+          <div class="row">
+            <h3>How it works</h3>
+            <ol class="bullets">
+              <li><span class="star" aria-hidden="true">➊</span>Call us at <a href="tel:+14158617444">(415) 861-7444</a>.</li>
+              <li><span class="star" aria-hidden="true">➋</span>We’ll follow up to schedule a consultation and assess whether we’re the right team for your case.</li>
+              <li><span class="star" aria-hidden="true">➌</span>If we take on your case, we’ll gather your documents and get to work. If we can’t take on your case, we’ll refer you to trusted organizations and attorneys.</li>
+            </ol>
+          </div>
+          <div class="row">
+            <h3>Privacy</h3>
+            <p class="note flush-m">What you share with us stays strictly confidential. <strong class="u">We never share your information with immigration authorities or anyone else, without your consent.</strong></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about" aria-labelledby="h-about">
+        <p class="eyebrow">About</p>
+        <h2 class="h2" id="h-about">Who we are</h2>
+        <p class="intro">Lawyers and advocates reuniting families and defending people held by ICE since 2007.</p>
+        <div class="rows">
+          <div class="row">
+            <h3>Mission</h3>
+            <p>Arab Community Services protects Arabs and Muslims through free immigration representation, social services, and know-your-rights training.</p>
+          </div>
+          <div class="row">
+            <h3>Team</h3>
+            <p>Our team includes two immigration attorneys, one DOJ-accredited representative, three legal assistants, and one social services coordinator.</p>
+          </div>
+          <div class="row">
+            <h3>History</h3>
+            <p>We began in 2007 as <em>Arab American Legal Services (AALS)</em>, a program of the <em>Arab Resource and Organizing Center (AROC)</em>. In 2026, we became ACS, our own organization.</p>
+          </div>
+          <div class="row has-btn" id="about-aroc">
+            <h3>AROC</h3>
+            <div>
+              <p>Our sister organization, AROC, organizes working-class Arabs and Muslims in the Bay Area against racism, forced migration, and militarism.</p>
+              <a class="btn" href="https://www.araborganizing.org/" target="_blank" rel="noopener"><span>Learn more <span class="arr">➞</span></span></a>
+            </div>
+          </div>
+          <div class="row">
+            <h3>Work with us</h3>
+            <p>If you speak Arabic and believe in immigrant rights, there is a place for you here. We welcome law students and volunteers. Email us to get involved.<br><em><a href="mailto:info@arabcommunityservices.org">info@arabcommunityservices.org</a></em></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="donate" aria-labelledby="h-donate">
+        <p class="eyebrow">Donate</p>
+        <h2 class="h2" id="h-donate">Fund free legal help<br class="d"> for our community.</h2>
+        <p class="intro">Every service we offer is free. Your gift<br class="d"> makes that possible.</p>
+        <div class="rows">
+          <div class="row has-btn">
+            <h3>Online</h3>
+            <div>
+              <p>Give once, or give monthly and stand with our community all year.</p>
+              <a class="btn" href="https://secure.actblue.com/donate/acslegal" target="_blank" rel="noopener"><span>Donate <span class="arr">➞</span></span></a>
+            </div>
+          </div>
+          <div class="row">
+            <h3>By mail</h3>
+            <p>To donate via check, please email us at <em><a href="mailto:info@arabcommunityservices.org">info@arabcommunityservices.org</a></em> and we will send you the mailing address and payee details.</p>
+          </div>
+        </div>
+        <p class="footnote"><span class="star" aria-hidden="true">✺</span>ACS is a fiscally-sponsored project of a <span style="white-space:nowrap">501(c)(3)</span> nonprofit organization. Your gift may be tax-deductible. We will send you a receipt with the tax details.</p>
+      </section>
+
+      <section class="section closing" id="closing" data-nav="donate" aria-label="Closing">
+        <figure class="plate"><div><img src="assets/walk.jpg" width="576" height="431" alt="A group of women and children walking together along a beach, seen from behind."></div></figure>
+        <p class="ar-line" lang="ar" dir="rtl"><span class="ln">خدماتنا مجانية وســـــــــــرية،</span><br class="m"> <span class="ln">وفريقنا يتحدث العربية.</span></p>
+        <button class="totop" type="button"><span class="arrow" aria-hidden="true">❨</span><span class="caps30">Back to top</span></button>
+        <p class="colophon"><span class="ln">© 2026 Arab Community Services</span><br class="m"><span class="ln"><span class="sep" aria-hidden="true">✺</span>Design by Khalid Khaldi</span></p>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+
+<script>
+  // Ink blur scales with the headline size (2px at 96px in the hero = 0.021)
+  const inkBlur = document.querySelector('#ink-h feGaussianBlur');
+  const sizeInk = () => { const h = document.querySelector('.h2'); if (h) inkBlur.setAttribute('stdDeviation', (0.021 * parseFloat(getComputedStyle(h).fontSize)).toFixed(2)); };
+  addEventListener('resize', sizeInk); (document.fonts ? document.fonts.ready : Promise.resolve()).then(sizeInk); sizeInk();
+
+  // Logo: set tracking so COMMUNITY measures 419 of the card's 571 design px, as in the comp
+  const fitLogo = () => {
+    const logo = document.querySelector('.logo'), wide = document.getElementById('logo-wide'), card = document.querySelector('.cover');
+    if (!logo || !wide) return;
+    logo.style.setProperty('--logo-track', '0em');
+    const fs = parseFloat(getComputedStyle(logo).fontSize);
+    const w0 = wide.getBoundingClientRect().width;
+    const target = card.getBoundingClientRect().width * 419 / 571;
+    const track = Math.max(0, (target - w0) / 8);   // 8 gaps between 9 letters
+    logo.style.setProperty('--logo-track', (track / fs).toFixed(4) + 'em');
+  };
+  addEventListener('resize', fitLogo); (document.fonts ? document.fonts.ready : Promise.resolve()).then(fitLogo); fitLogo();
+
+
+
+  // Contents: mark the section on screen (works for the inner scroller on desktop, the page on phones)
+  const links = [...document.querySelectorAll('.contents a')];
+  const scroller = document.getElementById('scroller');
+  const stacked = () => getComputedStyle(scroller).overflowY === 'visible';
+  const mark = (id) => links.forEach(a => a.dataset.target === id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+  const sections = [...document.querySelectorAll('.section')];
+  const navOf = s => (s.dataset.nav !== undefined ? s.dataset.nav : s.id);   // landing: none, closing: donate
+  const update = () => {
+    const box = stacked() ? { top: 0, height: innerHeight } : scroller.getBoundingClientRect();
+    const line = box.top + box.height * 0.3;
+    let current = navOf(sections[0]);
+    for (const s of sections) if (s.getBoundingClientRect().top <= line) current = navOf(s);
+    mark(current);
+    // scroll cue fades once the visitor starts scrolling
+    const y = stacked() ? scrollY : scroller.scrollTop;
+    cue.classList.toggle('gone', y > 40);
+  };
+  const cue = document.querySelector('.cue');
+  const smooth = () => matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  const goTo = (el) => {
+    if (stacked()) (el ? el.scrollIntoView({ behavior: smooth() }) : scrollTo({ top: 0, behavior: smooth() }));
+    else scroller.scrollTo({ top: el ? el.offsetTop - scroller.offsetTop : 0, behavior: smooth() });
+  };
+  cue.addEventListener('click', () => goTo(document.getElementById('services')));
+  document.querySelector('.totop').addEventListener('click', () => { goTo(null); history.replaceState(null, '', location.pathname + location.search); });
+  scroller.addEventListener('scroll', update, { passive: true });
+  addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', update);
+  update();
+
+  links.forEach(a => a.addEventListener('click', (e) => {
+    const target = document.getElementById(a.dataset.target);
+    if (!target) return;
+    e.preventDefault();
+    goTo(target);
+    history.replaceState(null, '', '#' + a.dataset.target);
+    mark(a.dataset.target);
+  }));
+
+  // Cover spacing, measured on the letters themselves (not text boxes), so it matches the comp with the real fonts.
+  // Design px, measured on the 1440 x 900 comps (v4):
+  //   card top -> ARAB cap top 54; SERVICES -> Arabic name 37
+  //   Arabic name -> tagline baseline 44; tagline baseline -> box top 37
+  //   box -> "Talk to our team." 37 (minimum; extra window height goes here)
+  //   Talk -> phone 22, phone -> email 12; email -> first imprint baseline 47; imprint leading 18
+  //   last imprint baseline -> card bottom 40
+  const cvs = document.createElement('canvas').getContext('2d');
+  const probe = document.createElement('div');
+  probe.style.cssText = 'position:absolute;visibility:hidden;width:calc(1000 * var(--u));height:0';
+  document.body.appendChild(probe);
+  const baseline = (el, atEnd) => {
+    const m = document.createElement('span'); m.style.cssText = 'display:inline-block;width:0;height:0';
+    if (atEnd) el.appendChild(m); else el.prepend(m);
+    const y = m.getBoundingClientRect().bottom; m.remove(); return y;
+  };
+  // ink top of the first line and ink bottom of the last line
+  const ink = (el, topText, bottomText = topText) => {
+    const cs = getComputedStyle(el);
+    cvs.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+    cvs.direction = el.dir === 'rtl' ? 'rtl' : 'ltr';
+    return { top: baseline(el, false) - cvs.measureText(topText).actualBoundingBoxAscent,
+             bottom: baseline(el, true) + cvs.measureText(bottomText).actualBoundingBoxDescent };
+  };
+  const q = s => document.querySelector(s);
+  const spaceCover = () => { document.documentElement.classList.add('measuring'); try { spaceCoverInner(); } finally { document.documentElement.classList.remove('measuring'); } };
+  const spaceCoverInner = () => {
+    const u = probe.getBoundingClientRect().width / 1000;
+    const cover = q('.cover'), logo = q('.logo'), arname = q('.arname'), tag = q('.tagline'),
+          box = q('.contents'), talk = q('.talk'), contact = q('.contact'), imprint = q('.imprint');
+    const [phone, email] = contact.querySelectorAll('a');
+    const desk = getComputedStyle(q('#scroller')).overflowY !== 'visible';
+    [logo, arname, tag, box, contact, email, imprint].forEach(e => e.style.marginTop = '0px');
+    talk.style.marginTop = ''; cover.style.paddingBottom = '';
+    const px = v => (v).toFixed(2) + 'px';
+    const arLines = arname.innerText.split('\n').map(t => t.trim()).filter(Boolean);
+    const arInk = () => ink(arname, arLines[0], arLines[arLines.length - 1]);
+    if (desk) logo.style.marginTop = px(54 * u - (ink(logo, 'ARAB').top - cover.getBoundingClientRect().top));
+    arname.style.marginTop = px(37 * u - (arInk().top - ink(logo, 'SERVICES').bottom));
+    tag.style.marginTop = px(44 * u - (baseline(tag, true) - arInk().bottom));
+    box.style.marginTop = px(37 * u - (box.getBoundingClientRect().top - baseline(tag, true)));
+    contact.style.marginTop = px(22 * u - (ink(phone, phone.textContent).top - ink(talk, talk.textContent.trim()).bottom));
+    email.style.marginTop = px(12 * u - (ink(email, email.textContent).top - ink(phone, phone.textContent).bottom));
+    imprint.style.marginTop = px(47 * u - (baseline(imprint, false) - ink(email, email.textContent).bottom));
+    if (desk) cover.style.paddingBottom = px(40 * u - (imprint.getBoundingClientRect().bottom - baseline(imprint, true)));
+    const talkGap = ink(talk, talk.textContent.trim()).top - box.getBoundingClientRect().bottom;
+    if (talkGap < 37 * u) talk.style.marginTop = px(parseFloat(getComputedStyle(talk).marginTop) + 37 * u - talkGap);
+    // If the cover is too short for everything (short windows), take the difference out of the box -> "call us" gap, down to 24
+    if (desk) {
+      const over = imprint.getBoundingClientRect().bottom - (cover.getBoundingClientRect().bottom - parseFloat(getComputedStyle(cover).paddingBottom) + (imprint.getBoundingClientRect().bottom - baseline(imprint, true)));
+      const gapNow = ink(talk, talk.textContent.trim()).top - box.getBoundingClientRect().bottom;
+      if (over > 0.5) talk.style.marginTop = px(parseFloat(getComputedStyle(talk).marginTop) - Math.min(over, Math.max(0, gapNow - 24 * u)));
+    }
+
+    // Landing: print -> Arabic caption 30 (letters)
+    const cap = q('.landing .caption'), pr = q('.print');
+    cap.style.marginTop = '0px';
+    cap.style.marginTop = px(30 * u - (ink(cap, cap.textContent.trim()).top - pr.getBoundingClientRect().bottom));
+    // Closing card: book plate -> Arabic line 30 (letters)
+    const ar = q('.ar-line'), plate = q('.plate');
+    ar.style.marginTop = '0px';
+    ar.style.marginTop = px(30 * u - (ink(ar, ar.textContent.trim()).top - plate.getBoundingClientRect().bottom));
+  };
+
+  // Right card: where the baseline sits inside a line depends on the font. Measure it once for Anziano
+  // Regular and Bold so the CSS gaps land baseline-to-baseline as in the comps.
+  const measureK = (w) => {
+    const d = document.createElement('div');
+    d.style.cssText = `position:absolute;left:-9999px;top:0;visibility:hidden;font-family:${getComputedStyle(document.body).fontFamily};font-weight:${w};font-size:1000px;line-height:1000px;letter-spacing:0`;
+    d.textContent = 'x';
+    const m = document.createElement('span'); m.style.cssText = 'display:inline-block;width:0;height:0';
+    d.appendChild(m); document.body.appendChild(d);
+    const b = m.getBoundingClientRect().bottom - d.getBoundingClientRect().top; d.remove();
+    return ((b - 500) / 1000).toFixed(4);
+  };
+  const setK = () => {
+    document.documentElement.style.setProperty('--kr', measureK(400));
+    document.documentElement.style.setProperty('--kb', measureK(700));
+  };
+
+  // Keep the last two words of each paragraph together (all screens)
+  document.querySelectorAll('.pages p:not([lang="ar"]):not(.colophon), .pages li, .pages .h2').forEach(el => {
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    let last = null;
+    while (walker.nextNode()) if (walker.currentNode.textContent.trim()) last = walker.currentNode;
+    if (!last) return;
+    const t = last.textContent, m = t.match(/^([\s\S]*\s)(\S+\s+\S+\s*)$/);
+    if (!m) return;   // last text run is a single word (e.g. a link): leave it
+    const keep = document.createElement('span'); keep.className = 'keep'; keep.textContent = m[2];
+    last.textContent = m[1]; last.after(keep);
+  });
+
+
+  // =================== MOTION ===================
+  // Off with ?nomotion, in the comp check, and when the device asks for reduced motion.
+  const params = new URLSearchParams(location.search);
+  const motionOn = !params.has('nomotion') && !params.has('check') && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (motionOn) {
+    document.documentElement.classList.add('motion');
+    // Motion 1: reveal right-card blocks as they scroll into view, once; blocks arriving together are staggered
+    const blocks = document.querySelectorAll('.section:not(.landing) > :is(.eyebrow, .h2, .intro, .footnote, .plate, .ar-line, .totop, .colophon), .rows > .row');
+    blocks.forEach(el => el.classList.add('rv'));
+    const io = new IntersectionObserver(entries => {
+      entries.filter(e => e.isIntersecting).forEach((e, i) => {
+        e.target.style.setProperty('--d', Math.min(i, 5) * 0.07 + 's');
+        e.target.classList.add('in'); io.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    blocks.forEach(el => io.observe(el));
+  }
+  // ================= END MOTION =================
+
+  const layout = () => { setK(); spaceCover(); sizeInk(); update(); };
+  q('.plate img').addEventListener('load', spaceCover);
+  addEventListener('resize', spaceCover);
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(layout); layout();
+
+  // Comp check: add ?check to the address. Use a 1440 x 900 window.
+  if (new URLSearchParams(location.search).has('check')) {
+    const comps = { landing: 'check/landing.jpg', services: 'check/services.jpg', eligibility: 'check/eligibility.jpg',
+                    process: 'check/process.jpg', about: 'check/about.jpg', 'about-continued': 'check/about-continued.jpg',
+                    donate: 'check/donate.jpg', closing: 'check/closing.jpg' };
+    const targets = { landing: 'top', 'about-continued': 'about-aroc' };
+    const img = document.createElement('img');
+    img.style.cssText = 'position:fixed;left:0;top:0;width:calc(1440 * var(--u));height:calc(900 * var(--u));opacity:.5;pointer-events:none;z-index:50';
+    const panel = document.createElement('div');
+    panel.style.cssText = 'position:fixed;right:12px;bottom:12px;z-index:60;background:#fff;color:#111;font:13px/1.4 -apple-system,system-ui,sans-serif;padding:10px 12px;border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,.35);display:grid;gap:8px;letter-spacing:0';
+    panel.innerHTML = '<strong>Comp check</strong>' +
+      Object.keys(comps).map(k => `<label><input type="radio" name="comp" value="${k}"> ${(k[0].toUpperCase() + k.slice(1)).replace('-', ', ')}</label>`).join('') +
+      '<label>Opacity <input type="range" min="0" max="1" step="0.05" value="0.5"></label>' +
+      `<span id="winsize"></span>`;
+    document.body.append(img, panel);
+    const show = (k) => {
+      img.src = comps[k];
+      const t = document.getElementById(targets[k] || k);
+      scroller.style.scrollBehavior = 'auto';
+      if (k === 'about-continued') {   // the comp starts with the AROC row's first baseline 109 below the card top
+        const u = probe.getBoundingClientRect().width / 1000;
+        scroller.scrollTop = 0;
+        const p0 = t.querySelector('p'), top0 = scroller.getBoundingClientRect().top;
+        scroller.scrollTop = baseline(p0, false) - top0 - 109 * u;
+      } else scroller.scrollTop = t.offsetTop - scroller.offsetTop;
+      scroller.style.scrollBehavior = '';
+      panel.querySelector(`input[value="${k}"]`).checked = true;
+    };
+    panel.addEventListener('change', e => {
+      if (e.target.name === 'comp') show(e.target.value);
+      if (e.target.type === 'range') img.style.opacity = e.target.value;
+    });
+    panel.querySelector('input[type=range]').addEventListener('input', e => img.style.opacity = e.target.value);
+    const ws = () => panel.querySelector('#winsize').textContent = `Window ${innerWidth} × ${innerHeight}` + (innerWidth === 1440 && innerHeight === 900 ? ' ✓' : ' (set to 1440 × 900)');
+    addEventListener('resize', ws); ws();
+    show('landing');
+  }
+</script>
+</body>
+</html>
