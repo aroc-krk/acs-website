@@ -3,8 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow">
 <title>Arab Community Services</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="https://use.typekit.net/dnn1lvq.css">
 <style>
   @font-face {
@@ -280,12 +282,6 @@
   .motion .landing .caption { animation: rise .6s ease-out .55s backwards; }
   .motion .cue > * { animation: rise .6s ease-out .8s backwards; }
   .motion .cue .arrow { animation: rise .6s ease-out .8s backwards, drift 2.4s ease-in-out 1.4s infinite; }
-
-  /* Motion 5: landing photo lifts slightly on hover (desktop) */
-  @media (hover: hover) {
-    .motion .print { transition: translate .3s ease, box-shadow .3s ease; }
-    .motion .print:hover { translate: 0 calc(-2 * var(--u)); box-shadow: 0 calc(6 * var(--u)) calc(14 * var(--u)) rgba(43, 26, 20, .3); }
-  }
 
   /* Motion 6: back-to-top arrow drifts upward */
   @keyframes drift-up { 0%, 100% { translate: 0 0; } 50% { translate: 0 calc(-5 * var(--u)); } }
