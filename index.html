@@ -174,7 +174,9 @@
   .row.has-btn { padding-bottom: calc(30 * var(--u)); }
 
   /* Footnote: Regular 20 / 23, tracking +25; Zapf ✺ 20 hanging in the label column. Last body baseline -> footnote baseline 44 */
-  .footnote { margin-top: calc((16 + 10 * var(--kr)) * var(--u)); padding-left: calc(32 * var(--u)); text-indent: calc(-32 * var(--u));
+  /* Donate: the footnote sits at the bottom of the page like fine print; keeps at least the old gap when space is tight */
+  #donate { display: flex; flex-direction: column; padding-bottom: calc((40 - 23 + 20 * (1 - var(--kr))) * var(--u)); } /* last footnote baseline 40 above the card bottom, like the cover imprint */
+  .footnote { margin-top: auto; padding-top: calc((16 + 10 * var(--kr)) * var(--u)); padding-left: calc(32 * var(--u)); text-indent: calc(-32 * var(--u));
               font-size: calc(20 * var(--u)); line-height: calc(23 * var(--u)); letter-spacing: 0.025em; }
   .footnote .star { display: inline-block; width: calc(32 * var(--u)); text-indent: 0; line-height: 0;
                     font-family: var(--dings); font-weight: 500; font-size: calc(20 * var(--u)); letter-spacing: 0; }
@@ -251,6 +253,8 @@
     /* No one-word last lines on phones */
     .pages .h2, .pages .intro { text-wrap: balance; }
     .row p.note.flush-m { padding-left: 0; }
+    .footnote { padding-top: 64px; }
+    #donate { padding-bottom: 48px; }
     .colophon .sep { padding-left: 0; }
     /* Closing lines: break only where set, never inside a line */
     .ar-line .ln, .colophon .ln { white-space: nowrap; }
@@ -421,7 +425,7 @@
           </div>
           <div class="row">
             <h3>Privacy</h3>
-            <p class="note flush-m">What you share with us stays strictly confidential. <strong class="u">We never share your information with immigration authorities or anyone else, without your consent.</strong></p>
+            <p class="note flush-m">What you share with us stays strictly confidential. <strong class="u">We never share your information with immigration authorities or anyone else without your consent.</strong></p>
           </div>
         </div>
       </section>
