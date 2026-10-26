@@ -89,7 +89,8 @@
   .contents .label::after { content: attr(data-label); font-weight: 700; } /* bold copy, also reserves the bold width */
   .contents a:hover .label { text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; }
 
-  .talk { margin-top: auto; font-size: calc(36 * var(--u)); letter-spacing: -0.05em; font-weight: 700; }
+  /* "Call us" in Arabic: Moshref Naskh 36, tracking 0 */
+  .talk { margin-top: auto; font-family: var(--arabic); font-size: calc(36 * var(--u)); line-height: calc(36 * var(--u)); letter-spacing: 0; font-weight: 400; }
   .contact { margin-top: calc(6 * var(--u)); font-size: calc(26 * var(--u)); letter-spacing: -0.05em; font-weight: 400; line-height: calc(30 * var(--u)); display: grid; }
   .contact a:hover { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
   .contact a[href^="mailto"] { letter-spacing: 0; }
@@ -192,6 +193,7 @@
   .pc.br { bottom: 0; right: 0; } .pc.br i { clip-path: polygon(100% 0, 100% 100%, 0 100%); }
   /* Caption: Moshref Naskh 30, tracking 0. Print -> caption letters 30, set by spaceCover() */
   .landing .caption { margin-top: calc(24 * var(--u)); margin-bottom: auto; }
+  .ar-cap .n { font-size: 1.4em; line-height: 0; } /* numerals 42pt (Moshref draws them small); line height unchanged */
   .ar-cap { font-family: var(--arabic); font-size: calc(30 * var(--u)); line-height: calc(48 * var(--u)); letter-spacing: 0; text-align: center; }
   .cue { display: flex; flex-direction: column; align-items: center; padding: 0 0 calc(39 * var(--u));
          background: none; border: 0; color: inherit; font: inherit; cursor: pointer; transition: opacity .4s; }
@@ -340,7 +342,7 @@
       </ol>
     </nav>
 
-    <p class="talk">Talk to our team.</p>
+    <p class="talk" lang="ar" dir="rtl">اتــــــــــصل بنا.</p>
     <div class="contact">
       <a href="tel:+14158617444">(415) 861-7444</a>
       <a href="mailto:info@arabcommunityservices.org">info@arabcommunityservices.org</a>
@@ -354,11 +356,11 @@
 
       <section class="section landing" id="top" data-nav="" aria-label="Our team">
         <figure class="print">
-          <img src="assets/team.jpg" width="858" height="642" alt="Community members dancing dabke together at an outdoor gathering.">
+          <img src="assets/team.jpg" width="1600" height="1198" alt="A speaker holding a microphone, gesturing as she talks at a community event.">
           <span class="pc tl" aria-hidden="true"><i></i></span><span class="pc tr" aria-hidden="true"><i></i></span>
           <span class="pc bl" aria-hidden="true"><i></i></span><span class="pc br" aria-hidden="true"><i></i></span>
         </figure>
-        <p class="caption ar-cap" lang="ar" dir="rtl">خدمات مجــــــــــانية بالعربي.</p>
+        <p class="caption ar-cap" lang="ar" dir="rtl">محامين ومدافعين، معكــــم منذ <span class="n">٢٠٠٧</span>.</p>
         <button class="cue" type="button" aria-label="Scroll to services"><span class="caps30">Scroll</span><span class="arrow" aria-hidden="true">❨</span></button>
       </section>
 
@@ -437,7 +439,7 @@
           </div>
           <div class="row">
             <h3>History</h3>
-            <p>We began in 2007 as <em>Arab American Legal Services (AALS)</em>, a program of the <em>Arab Resource and Organizing Center</em>. In 2026, we became ACS, our own organization.</p>
+            <p>We began in 2007 as <em>Arab American Legal Services (AALS)</em>, a program of the <em>Arab Resource and Organizing Center (AROC)</em>. In 2026, we became ACS, our own organization.</p>
           </div>
           <div class="row has-btn" id="about-aroc">
             <h3>AROC</h3>
@@ -461,13 +463,13 @@
           <div class="row has-btn">
             <h3>Online</h3>
             <div>
-              <p>Someone will call us today, unsure how to navigate the system alone. Your gift means we can answer. Give once, or give monthly and stand with our community all year.</p>
-              <a class="btn" href="https://araborganizing.networkforgood.com/projects/100246-main-giving-page" target="_blank" rel="noopener"><span>Donate <span class="arr">➞</span></span></a>
+              <p>Give once, or give monthly and stand with our community all year.</p>
+              <a class="btn" href="https://secure.actblue.com/donate/acslegal" target="_blank" rel="noopener"><span>Donate <span class="arr">➞</span></span></a>
             </div>
           </div>
           <div class="row">
             <h3>By mail</h3>
-            <p>Please make checks payable to Arab Community Services, and mail to:<br><em>522 Valencia St.<br>San Francisco, CA 94110</em></p>
+            <p>To donate via check, please email us at <em><a href="mailto:info@arabcommunityservices.org">info@arabcommunityservices.org</a></em> and we will send you the mailing address and payee details.</p>
           </div>
         </div>
         <p class="footnote"><span class="star" aria-hidden="true">✺</span>ACS is a fiscally-sponsored project of a <span style="white-space:nowrap">501(c)(3)</span> nonprofit organization. Your gift may be tax-deductible. We will send you a receipt with the tax details.</p>
@@ -592,6 +594,12 @@
     if (desk) cover.style.paddingBottom = px(40 * u - (imprint.getBoundingClientRect().bottom - baseline(imprint, true)));
     const talkGap = ink(talk, talk.textContent.trim()).top - box.getBoundingClientRect().bottom;
     if (talkGap < 37 * u) talk.style.marginTop = px(parseFloat(getComputedStyle(talk).marginTop) + 37 * u - talkGap);
+    // If the cover is too short for everything (short windows), take the difference out of the box -> "call us" gap, down to 24
+    if (desk) {
+      const over = imprint.getBoundingClientRect().bottom - (cover.getBoundingClientRect().bottom - parseFloat(getComputedStyle(cover).paddingBottom) + (imprint.getBoundingClientRect().bottom - baseline(imprint, true)));
+      const gapNow = ink(talk, talk.textContent.trim()).top - box.getBoundingClientRect().bottom;
+      if (over > 0.5) talk.style.marginTop = px(parseFloat(getComputedStyle(talk).marginTop) - Math.min(over, Math.max(0, gapNow - 24 * u)));
+    }
 
     // Landing: print -> Arabic caption 30 (letters)
     const cap = q('.landing .caption'), pr = q('.print');
