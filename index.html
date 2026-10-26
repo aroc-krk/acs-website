@@ -153,6 +153,10 @@
   .bullets a:hover { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
 
   em { font-style: italic; }
+  /* No one-word last lines (all screens) */
+  .pages p, .pages li { text-wrap: pretty; }
+  .pages .ar-line, .pages .colophon, .pages .ar-cap { text-wrap: wrap; }
+  .keep { white-space: nowrap; }
   .nw { white-space: nowrap; }
   br.m { display: none; }
   strong.u { font-weight: 700; text-decoration: underline; text-decoration-thickness: .06em; text-underline-offset: .18em; } /* italic = Regular body set in italic */
@@ -193,6 +197,7 @@
   .pc.br { bottom: 0; right: 0; } .pc.br i { clip-path: polygon(100% 0, 100% 100%, 0 100%); }
   /* Caption: Moshref Naskh 30, tracking 0. Print -> caption letters 30, set by spaceCover() */
   .landing .caption { margin-top: calc(24 * var(--u)); margin-bottom: auto; }
+  .ar-cap .ln { white-space: nowrap; }
   .ar-cap .n { font-size: 1.4em; line-height: 0; } /* numerals 42pt (Moshref draws them small); line height unchanged */
   .ar-cap { font-family: var(--arabic); font-size: calc(30 * var(--u)); line-height: calc(48 * var(--u)); letter-spacing: 0; text-align: center; }
   .cue { display: flex; flex-direction: column; align-items: center; padding: 0 0 calc(39 * var(--u));
@@ -244,13 +249,10 @@
     .d { display: none; }
     br.m { display: inline; }
     /* No one-word last lines on phones */
-    .pages p, .pages li { text-wrap: pretty; }
     .pages .h2, .pages .intro { text-wrap: balance; }
-    .keep { white-space: nowrap; }
     .row p.note.flush-m { padding-left: 0; }
     .colophon .sep { padding-left: 0; }
     /* Closing lines: break only where set, never inside a line */
-    .ar-line, .colophon { text-wrap: wrap; }
     .ar-line .ln, .colophon .ln { white-space: nowrap; }
     .section.landing, .section.closing { height: auto; padding: 40px 0; }
     .print { margin-top: 0; }
@@ -360,7 +362,7 @@
           <span class="pc tl" aria-hidden="true"><i></i></span><span class="pc tr" aria-hidden="true"><i></i></span>
           <span class="pc bl" aria-hidden="true"><i></i></span><span class="pc br" aria-hidden="true"><i></i></span>
         </figure>
-        <p class="caption ar-cap" lang="ar" dir="rtl">محامين ومدافعين، معكــــم منذ <span class="n">٢٠٠٧</span>.</p>
+        <p class="caption ar-cap" lang="ar" dir="rtl"><span class="ln">محــامـون ومدافعـــــــــــون،</span><br> <span class="ln">معكــــم منذ <span class="n">٢٠٠٧</span>.</span></p>
         <button class="cue" type="button" aria-label="Scroll to services"><span class="caps30">Scroll</span><span class="arrow" aria-hidden="true">❨</span></button>
       </section>
 
@@ -419,7 +421,7 @@
           </div>
           <div class="row">
             <h3>Privacy</h3>
-            <p class="note flush-m">What you share with us stays strictly confidential. <strong class="u">We never share your information with immigration authorities or anyone else.</strong></p>
+            <p class="note flush-m">What you share with us stays strictly confidential. <strong class="u">We never share your information with immigration authorities or anyone else, without your consent.</strong></p>
           </div>
         </div>
       </section>
@@ -627,7 +629,7 @@
     document.documentElement.style.setProperty('--kb', measureK(700));
   };
 
-  // Keep the last two words of each paragraph together (only takes effect on phones, via .keep)
+  // Keep the last two words of each paragraph together (all screens)
   document.querySelectorAll('.pages p:not([lang="ar"]):not(.colophon), .pages li, .pages .h2').forEach(el => {
     const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
     let last = null;
