@@ -4,709 +4,718 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Arab Community Services</title>
+<meta name="description" content="Free legal and social services for Arabs and Muslims in the San Francisco Bay Area. A sister organization of AROC.">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="https://use.typekit.net/dnn1lvq.css">
 <style>
-  @font-face {
-    font-family: "Moshref Naskh";
-    src: url("assets/moshref-naskh.woff2") format("woff2");
-    font-display: swap;
-  }
+  @font-face { font-family: "Moshref Naskh"; src: url("assets/moshref-naskh.woff2") format("woff2"); font-display: swap; }
+
   :root {
-    --bg: #FFFFFF;
-    --cloth: #4F5F30;
-    --paper: #D2CDC5;
-    --parchment: #FAF6EB; /* ivory cover type */
-    --ink: #7C1E35; /* sumac */
-    --rule: rgba(124, 30, 53, 0.32);
+    --page: #F8F8F6;          /* paper base, under the texture */
+    --ink: #7C1E35;           /* sumac: all type */
+    --green: #3F4D27;         /* stamp ink */
     --serif: "anziano", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
     --arabic: "Moshref Naskh", "Geeza Pro", "Noto Naskh Arabic", serif;
-    --dings: "itc-zapf-dingbats-std", "Zapf Dingbats", "ZapfDingbatsITC", "Apple Symbols", "Segoe UI Symbol", sans-serif;
-    /* 1 design px on the 1440 x 900 comp, scaled to fit the window */
-    --u: min(calc(100vw / 1440), calc(100vh / 900));
+    /* 1 design px on the 1440 x 892 comp, scaled to the window (capped so huge screens don't balloon) */
+    --u: min(calc(100vw / 1440), calc(100svh / 892), 1.35px);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: var(--bg); }
-  body { font-family: var(--serif); font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; transition: background .2s; }
+  html { background: var(--page); scroll-behavior: smooth; }
+  body {
+    font-family: var(--serif); color: var(--ink);
+    background: var(--page) url("assets/paper.webp") 0 0 / 603px 603px repeat;
+    font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1;
+    -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%;
+  }
   a { color: inherit; text-decoration: none; }
-  a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: 2px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; border-radius: 2px; }
 
-  /* ---------- Desktop: two fixed-height cards, right card scrolls ---------- */
-  .page {
-    height: 100vh; height: 100svh;
-    display: grid;
-    grid-template-columns: 571fr 805fr;
-    gap: calc(16 * var(--u));
-    padding: calc(24 * var(--u));
+  /* =============== NAV ===============
+     Links printed on the page, centred; the left edge of the row is the left edge of the wordmark.
+     On scroll a soft veil of paper fades in behind it (no container, rule or shadow).
+     Hides while scrolling down, returns on scroll up. */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+    display: flex; justify-content: center;
+    padding-top: calc(41 * var(--u));
+    transition: transform .35s ease;
   }
-  .card { border-radius: calc(16 * var(--u)); min-height: 0; }
+  .nav.hide { transform: translateY(-100%); }
+  .nav::before {           /* the veil: page colour + grain, fading downward */
+    content: ""; position: absolute; inset: 0 0 calc(-60 * var(--u)) 0; z-index: -1;
+    background: var(--page) url("assets/paper.webp") 0 0 / 603px 603px repeat;
+    -webkit-mask-image: linear-gradient(#000 55%, transparent);
+            mask-image: linear-gradient(#000 55%, transparent);
+    opacity: 0; transition: opacity .3s ease;
+  }
+  .nav.veil::before { opacity: 1; }
+  .nav-row {
+    width: var(--col); display: flex; justify-content: space-between; align-items: center;
+    font-size: calc(26 * var(--u)); letter-spacing: 0; line-height: 1;
+  }
+  .nav-row a { padding: calc(6 * var(--u)) 0; }
+  /* Current section in bold: the regular and bold words are stacked and crossfade (0.4s), so there's no snap or shift */
+  .nav-row .link { display: inline-grid; justify-items: center; }
+  .nav-row .link > span, .nav-row .link::after { grid-area: 1 / 1; transition: opacity .4s ease; }
+  .nav-row .link::after { content: attr(data-label); font-weight: 700; opacity: 0; }
+  .nav-row .link[aria-current="true"] > span { opacity: 0; }
+  .nav-row .link[aria-current="true"]::after { opacity: 1; }
+  .nav-row a:not(.donate):hover > span, .nav-row a:not(.donate):hover::after { text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+  .donate {
+    background: var(--ink); color: #FAF6EB; border-radius: 4px;
+    padding: calc(10 * var(--u)) calc(10 * var(--u)) !important;
+  }
+  /* Donate: on hover presses 2% (stays sumac), and a paper-coloured line fades in 3px inside its edge (an echo of the stamps' double rule) */
+  .donate { transition: transform .5s cubic-bezier(.3,.7,.4,1.15), background-color .45s ease, box-shadow .45s ease;
+            box-shadow: inset 0 0 0 3px rgba(124, 30, 53, 0), inset 0 0 0 4px rgba(250, 246, 235, 0); -webkit-tap-highlight-color: transparent; }
+  .donate:is(:hover, :focus-visible, :active) { transform: scale(.98);
+            box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 4px #FAF6EB; }
+  .menu-btn { display: none; }
 
-  .cover {
-    background: var(--cloth) url("assets/cloth.webp") center / 100% 100% no-repeat;
-    color: var(--parchment);
-    text-align: center;
-    display: flex; flex-direction: column;
-    padding: calc(64 * var(--u)) calc(40 * var(--u)) calc(48 * var(--u));
-    overflow: hidden;
+  /* =============== HERO ===============
+     Measured on the comp: wordmark left edge = nav left edge; wordmark centred in the window;
+     stamp starts 547 to the right of the wordmark, its centre 55 below the wordmark's centre. */
+  :root { --col: calc(578 * var(--u)); }   /* width of the nav row = the hero's left column */
+  .hero {
+    min-height: 100vh; min-height: 100svh;
+    display: flex; align-items: center; justify-content: center;
   }
-  .logo {
-    /* Matched to measured comp: cap height 28, baseline-to-baseline 48, COMMUNITY 419 wide (of 571) */
-    font-size: calc(42 * var(--u)); line-height: calc(48 * var(--u));
-    letter-spacing: var(--logo-track, 0.45em); /* balance trailing tracking */
-    font-weight: 700; text-transform: uppercase;
-    filter: url(#deboss);
+  .hero-inner { position: relative; width: var(--col); }
+  .wordmark {
+    font-size: calc(84 * var(--u)); line-height: calc(77.5 * var(--u));
+    letter-spacing: 0.2em; font-weight: 400;
+    font-variant-caps: all-small-caps; text-transform: lowercase;
+    margin-left: calc(-4 * var(--u));       /* the A overhangs slightly so the stems line up */
+    white-space: nowrap;
+    filter: url(#ink-word);
   }
-  .logo .ll { display: inline-block; margin-right: calc(-1 * var(--logo-track, 0.45em)); }
-  /* Arabic name: Moshref Naskh 30 / 48, tracking 0 */
-  .arname { font-family: var(--arabic); font-size: calc(30 * var(--u)); line-height: calc(48 * var(--u)); letter-spacing: 0; margin-top: calc(29 * var(--u)); }
-  /* Tagline under the Arabic name: imprint style (20pt small caps, tracking 100) */
-  .tagline { font-size: calc(20 * var(--u)); letter-spacing: 0.1em; line-height: calc(21 * var(--u)); font-variant-caps: all-small-caps; margin-top: calc(29 * var(--u)); }
+  .wordmark span { display: block; }
 
-  /* Contents box: 236 x 236 square, 4px ivory stroke, stamped. Centred on the card.
-     Gaps above it (logo > Arabic name > tagline > box) are set by spaceCover() below from the real letter shapes. */
-  .contents {
-    position: relative; align-self: center; flex: none;
-    width: calc(236 * var(--u)); height: calc(236 * var(--u));
-    margin-top: calc(30 * var(--u));
+  /* The stamp: double rule in green ink, tilted, laid over the end of COMMUNITY */
+  .stamp {
+    position: absolute; left: calc(547 * var(--u)); top: 50%;
+    width: calc(240 * var(--u)); height: calc(240 * var(--u));
+    transform: translateY(calc(-120 * var(--u) + 55 * var(--u))) rotate(-4deg);
+    display: grid; place-items: center; text-align: center;
+    color: var(--green);
+  }
+  .stamp .ink { position: absolute; inset: 0; display: grid; place-items: center; filter: url(#ink-stamp); }
+  .stamp .ink::before, .stamp .ink::after { content: ""; position: absolute; pointer-events: none; }
+  .stamp .ink::before { inset: 0; border: max(2px, calc(3 * var(--u))) solid currentColor; }
+  .stamp .ink::after  { inset: calc(7 * var(--u)); border: 1px solid currentColor; }
+  .stamp .ar  { display: block; font-family: var(--arabic); font-size: calc(55 * var(--u)); line-height: 1.15; letter-spacing: 0; }
+  .stamp .num { display: block; font-size: calc(34.5 * var(--u)); line-height: 1.2; letter-spacing: 0; margin-top: calc(4 * var(--u)); }
+
+
+  /* =============== SECTIONS (shared) ===============
+     Paragraph styles, straight from Photoshop: pt = px, leading = line height, tracking/1000 = em.
+     Vertical gaps are baseline-to-baseline distances, all multiples of 8: section 160, label→headline 72,
+     headline→intro 48, intro→first row 80, last line→rule 32, rule→next line 40, between bullets 32,
+     last line→green stamp 32. Label column 296. --kr/--kb (where the baseline sits in
+     a line for Anziano Regular/Bold) are measured in the browser by the script so the gaps land exactly. */
+  :root { --kr: 0.33; --kb: 0.33; --gap: calc(160 * var(--u)); }
+  .section { position: relative; padding: var(--gap) calc(72 * var(--u)) 0; }
+  .section:last-of-type { padding-bottom: var(--gap); }
+  .label  { font-size: calc(28 * var(--u)); line-height: calc(18 * var(--u)); letter-spacing: .2em;
+            font-variant-caps: all-small-caps; text-transform: lowercase; }
+  .h2     { font-weight: 700; font-size: calc(60 * var(--u)); line-height: calc(60 * var(--u)); letter-spacing: -.05em;
+            margin-top: calc((33 + 28 * var(--kr) - 60 * var(--kb)) * var(--u)); filter: url(#ink-h); }
+  .intro  { font-size: calc(37 * var(--u)); line-height: calc(42 * var(--u)); letter-spacing: -.025em;
+            margin-top: calc((-3 + 60 * var(--kb) - 37 * var(--kr)) * var(--u)); }
+  .rows   { width: calc(855 * var(--u)); margin-top: calc((42.5 + 7 * var(--kr)) * var(--u)); }
+  .row    { display: grid; grid-template-columns: calc(296 * var(--u)) 1fr;
+            padding-bottom: calc((15.5 + 30 * var(--kr)) * var(--u)); }
+  .row + .row { border-top: 1px solid rgba(124, 30, 53, .6); padding-top: calc((22.5 - 30 * var(--kr)) * var(--u)); }   /* +1px rule */
+  .row:last-child { padding-bottom: 0; }
+  .row h3 { font-weight: 700; font-size: calc(30 * var(--u)); line-height: calc(28 * var(--u)); letter-spacing: -.025em;
+            margin-top: calc((2.5 + 30 * var(--kr) - 30 * var(--kb)) * var(--u)); }
+  br.m { display: none; } .nw { white-space: nowrap; }
+  .section p { text-wrap: pretty; }
+  .row p  { font-size: calc(30 * var(--u)); line-height: calc(33 * var(--u)); letter-spacing: -.025em; }
+
+  /* Green action stamp (tilted, worn): 64 tall, text Anziano 30 */
+  .act {
+    display: inline-flex; align-items: center; position: relative;
+    height: calc(64 * var(--u)); padding: 0 calc(28 * var(--u));
+    margin-top: calc((15.5 + 30 * var(--kr)) * var(--u)); margin-left: calc(296 * var(--u));
+    color: var(--green); font-size: calc(30 * var(--u)); letter-spacing: -.025em; line-height: 1;
+    transform: rotate(-2deg);
+  }
+  .act .ink { position: absolute; inset: 0; filter: url(#ink-act); }
+  .act .ink::before, .act .ink::after { content: ""; position: absolute; }
+  .act .ink::before { inset: 0; border: max(2px, calc(3 * var(--u))) solid currentColor; }
+  .act .ink::after  { inset: calc(7 * var(--u)); border: 1px solid currentColor; }
+  .act .t { filter: url(#ink-act); white-space: nowrap; }
+
+  /* Arabic section stamp: sumac, double rule, +6°, Moshref 144 */
+  .ar-stamp {
+    --sw: 416; --sh: 230; --sx: 1162.5; --sy: 446.75;   /* size, and centre in comp coordinates (label cap top = 73) */
+    position: absolute; width: calc(var(--sw) * var(--u)); height: calc(var(--sh) * var(--u));
+    left: calc((var(--sx) - var(--sw) / 2) * var(--u)); top: calc(var(--gap) + (var(--sy) - 73 - var(--sh) / 2) * var(--u));
+    transform: rotate(6deg); color: var(--ink); filter: url(#ink-stamp);
     display: grid; place-items: center;
   }
-  .contents::before {
-    content: ""; position: absolute; inset: 0; pointer-events: none;
-    border: max(2px, calc(4 * var(--u))) solid var(--parchment);
-    filter: url(#deboss);
+  .ar-stamp::before, .ar-stamp::after { content: ""; position: absolute; }
+  .ar-stamp::before { inset: 0; border: max(2px, calc(3 * var(--u))) solid currentColor; }
+  .ar-stamp::after  { inset: calc(7 * var(--u)); border: 1px solid currentColor; }
+  #process .ar-stamp { --sw: 452; --sh: 236; --sx: 1145.5; --sy: 492; }
+  #about .ar-stamp   { --sw: 456; --sh: 236; --sx: 1168.5; --sy: 699; }   /* comp position, moved 24 right to clear the text */
+  .ar-stamp span { font-family: var(--arabic); font-size: calc(144 * var(--u)); line-height: 1; padding-bottom: calc(10 * var(--u)); }
+  #donate .ar-stamp span { padding-bottom: calc(48 * var(--u)); }   /* lift تبرع so the ع's tail clears the inner rule */
+
+  /* Reading focus: rows below the reading line wait at 75%; once read they stay full. */
+  .focus .row h3, .focus .row p { transition: opacity .4s ease; }
+  .focus .row:not(.read) p, .focus .row:not(.read):not(.first) h3 { opacity: .75; }
+  @media (hover: hover) { .focus .row:hover h3, .focus .row:hover p { opacity: 1; } }
+
+  /* Bulleted rows: Zapf Dingbats 30 (✺, or ❶ ❷ ❸ for steps), hung so the glyph ends 24 before the text; 32 between items.
+     ✺ centres on the lowercase letters (4 above the baseline); the numbers centre on the capitals (10 above). */
+  .bullets { list-style: none; margin: 0; padding: 0; font-size: calc(30 * var(--u)); line-height: calc(33 * var(--u)); letter-spacing: -.025em; }
+  .bullets li + li { margin-top: calc(32 * var(--u)); }
+  .bullets li::before {
+    content: "\273A"; display: inline-block; width: calc(64 * var(--u)); margin-left: calc(-64 * var(--u));
+    padding-right: calc(24 * var(--u)); box-sizing: border-box; text-align: right;
+    font-family: "itc-zapf-dingbats-std", "Zapf Dingbats", sans-serif; font-weight: 500; font-size: calc(30 * var(--u));
+    line-height: 0; letter-spacing: 0; position: relative; top: calc((var(--bc) * 30 - 4) * var(--u));
   }
-  .contents ol { list-style: none; text-align: left; display: grid; }
-  .contents li { line-height: calc(40 * var(--u)); } /* 5 items, baselines 40 apart */
-  .contents a { display: flex; align-items: baseline; gap: calc(12 * var(--u)); font-size: calc(26 * var(--u)); letter-spacing: 0; font-weight: 400; }
-  .num { font-family: var(--dings); font-weight: 500; font-size: .943em; width: 1.2em; display: inline-grid; }
-  .num > span, .contents .label > .t, .contents .label::after { grid-area: 1 / 1; }
-  .num .on, .contents .label::after { opacity: 0; }
-  .contents a[aria-current="true"] .num .on, .contents a[aria-current="true"] .label::after { opacity: 1; }
-  .contents a[aria-current="true"] .num .off, .contents a[aria-current="true"] .label > .t { opacity: 0; }
-  .contents .label { display: inline-grid; justify-items: start; }
-  .contents .label::after { content: attr(data-label); font-weight: 700; } /* bold copy, also reserves the bold width */
-  .contents a:hover .label { text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+  .bullets.steps li::before { top: calc((var(--bn) * 30 - 10) * var(--u)); }
+  .bullets.steps li:nth-child(1)::before { content: "\278A"; }
+  .bullets.steps li:nth-child(2)::before { content: "\278B"; }
+  .bullets.steps li:nth-child(3)::before { content: "\278C"; }
+  :root { --bc: .33; --bn: .35; }  /* where each glyph's ink centre sits above the baseline, measured by the script */
+  .focus .bullets li { transition: opacity .4s ease; }
+  .focus .bullets li:not(.read) { opacity: .75; }
+  @media (hover: hover) { .focus .bullets li:hover { opacity: 1; } }
+  .row.note p { grid-column: 2; }
+  .tel { color: inherit; text-decoration: none; }
+  .tel:hover { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
+  .promise { font-weight: 700; text-decoration: underline; text-underline-offset: .16em; text-decoration-thickness: max(1px, calc(2 * var(--u))); text-decoration-skip-ink: none; }
+  #process .rows { width: calc(728 * var(--u)); }
 
-  /* "Call us" in Arabic: Moshref Naskh 36, tracking 0 */
-  .talk { margin-top: auto; font-family: var(--arabic); font-size: calc(36 * var(--u)); line-height: calc(36 * var(--u)); letter-spacing: 0; font-weight: 400; }
-  .contact { margin-top: calc(6 * var(--u)); font-size: calc(26 * var(--u)); letter-spacing: -0.05em; font-weight: 400; line-height: calc(30 * var(--u)); display: grid; }
-  .contact a:hover { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
-  .contact a[href^="mailto"] { letter-spacing: 0; }
-  /* Imprint: 20pt, small caps, tracking 100, no stamp */
-  .imprint { margin-top: calc(40 * var(--u)); font-size: calc(20 * var(--u)); letter-spacing: 0.1em; line-height: calc(18 * var(--u)); font-variant-caps: all-small-caps; }
-
-  /* Imprint separators: Zapf ✺ */
-  .imprint .sep { font-family: var(--dings); font-weight: 500; font-variant-caps: normal; letter-spacing: 0; margin: 0 .5em; }
-
-  /* ---------- Right card ----------
-     Type is straight from the Photoshop paragraph styles: size pt = px, leading pt = line height px,
-     tracking /1000 = em. No adjustments.
-     Vertical gaps are baseline-to-baseline distances measured on the comps. Where a block's top or bottom
-     sits relative to its baseline depends on the font, so the page measures that once in the browser
-     (--kr regular, --kb bold, set by script below) and the gaps below use it. */
-  :root { --kr: 0.33; --kb: 0.33; }
-  /* tracking -25 is set on each style (em must be per element, or it inherits as a fixed px value) */
-  .pages {
-    background: var(--paper) url("assets/paper.webp") center / 100% 100% no-repeat;
-    background-attachment: local, scroll;
-    color: var(--ink);
-    position: relative;
-    overflow: hidden;
+  /* Untilted green stamp button inside a row (About → AROC, Donate → ActBlue): Regular 30/28, same ink and double rule
+     as the green stamps, 16 inside, Anziano ">" */
+  .row .more {
+    grid-column: 2; justify-self: start; display: inline-flex; align-items: center; position: relative;
+    margin-top: calc((7.5 + 30 * var(--kr)) * var(--u));   /* last line's baseline → top of box: 24 */
+    padding: calc(16 * var(--u)); color: var(--green);
+    font-size: calc(30 * var(--u)); line-height: calc(28 * var(--u)); letter-spacing: -.025em;
   }
-  .scroller {
-    height: 100%; overflow-y: auto; overscroll-behavior: contain;
-    scroll-behavior: smooth;
-    padding: 0 calc(40 * var(--u));
-    scrollbar-width: thin; scrollbar-color: rgba(124,30,53,.25) transparent;
+  .row .more .ink { position: absolute; inset: 0; filter: url(#ink-act); }
+  .row .more .ink::before, .row .more .ink::after { content: ""; position: absolute; }
+  .row .more .ink::before { inset: 0; border: max(2px, calc(3 * var(--u))) solid currentColor; }
+  .row .more .ink::after  { inset: calc(7 * var(--u)); border: 1px solid currentColor; }
+  .row .more .t { filter: url(#ink-act); white-space: nowrap; }
+
+  /* Hover (all green stamp buttons): straightens, presses down 2%, and fills solid green. The worn ink fades out as a
+     solid fill, inner rule and paper-coloured text fade in with half the wear (ink-half). Twice as slow as the hero/nav.
+     Keyboard focus and a tap on phones do the same. */
+  .act, .row .more { transition: transform 1s cubic-bezier(.3,.7,.4,1.15); -webkit-tap-highlight-color: transparent; }
+  .act .ink, .row .more .ink, .act .t, .row .more .t { transition: opacity .9s ease; }
+  .act .t, .row .more .t { position: relative; }
+  .act .fill, .row .more .fill { position: absolute; inset: 0; background: var(--green); opacity: 0; transition: opacity .9s ease;
+                                filter: url(#ink-half); }
+  .act .fill::after, .row .more .fill::after { content: ""; position: absolute; inset: calc(7 * var(--u)); border: 1px solid var(--page); }
+  .act::after, .row .more::after {
+    content: attr(data-label); position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    color: var(--page); white-space: nowrap; opacity: 0; transition: opacity .9s ease; filter: url(#ink-half);
   }
-  /* card top -> section label baseline 90 */
-  .section { min-height: 100%; padding: calc((81 - 28 * var(--kr)) * var(--u)) 0 calc(64 * var(--u)); scroll-margin-top: 0; }
-  /* Section label: Regular 28 / 18, tracking 200, small caps */
-  .eyebrow { font-size: calc(28 * var(--u)); line-height: calc(18 * var(--u)); letter-spacing: 0.2em; font-variant-caps: all-small-caps; }
-  /* Section headline: Bold 60 / 60, tracking -50. Label baseline -> headline baseline 61 */
-  .h2 { font-weight: 700; font-size: calc(60 * var(--u)); line-height: calc(60 * var(--u)); letter-spacing: -0.05em; filter: url(#ink-h);
-        margin-top: calc((22 + 28 * var(--kr) - 60 * var(--kb)) * var(--u)); }
-  /* Section subheadline: Regular 37 / 42, tracking -25. Headline last baseline -> subheadline baseline 52 */
-  .intro { font-size: calc(37 * var(--u)); line-height: calc(42 * var(--u)); letter-spacing: -0.025em;
-           margin-top: calc((1 + 60 * var(--kb) - 37 * var(--kr)) * var(--u)); }
+  .act:is(:hover, :focus-visible, :active), .row .more:is(:hover, :focus-visible, :active) { transform: rotate(0deg) scale(.98); }
+  .act:is(:hover, :focus-visible, :active) :is(.ink, .t), .row .more:is(:hover, :focus-visible, :active) :is(.ink, .t) { opacity: 0; }
+  .act:is(:hover, :focus-visible, :active) .fill, .row .more:is(:hover, :focus-visible, :active) .fill,
+  .act:is(:hover, :focus-visible, :active)::after, .row .more:is(:hover, :focus-visible, :active)::after { opacity: 1; }
 
-  /* Rows. Subheadline last baseline -> first body baseline 78; label baseline = body baseline */
-  .rows { margin-top: calc((40.5 + 7 * var(--kr)) * var(--u)); }
-  .row { display: grid; grid-template-columns: calc(251 * var(--u)) 1fr;
-         padding-bottom: calc((11.5 + 30 * var(--kr)) * var(--u)); }            /* last body baseline -> rule 28 */
-  .row + .row { border-top: 1px solid var(--rule); padding-top: calc((24.5 - 30 * var(--kr)) * var(--u)); } /* rule -> body baseline 42 */
-  .row:last-child { padding-bottom: 0; }
-  /* Row label: Bold 30 / 28, tracking -25 */
-  .row h3 { font-weight: 700; font-size: calc(30 * var(--u)); line-height: calc(28 * var(--u)); letter-spacing: -0.025em;
-            margin-top: calc((2.5 + 30 * var(--kr) - 30 * var(--kb)) * var(--u)); }
-  /* Row body: Regular 30 / 33, tracking -25 */
-  .row p, .bullets li { font-size: calc(30 * var(--u)); line-height: calc(33 * var(--u)); letter-spacing: -0.025em; }
+  /* Hero stamp: straightens and presses on hover (no fill) */
+  .stamp { transition: transform .5s cubic-bezier(.3,.7,.4,1.15); -webkit-tap-highlight-color: transparent; }
+  .stamp:is(:hover, :focus-visible, :active) { transform: translateY(calc(-120 * var(--u) + 55 * var(--u))) rotate(0deg) scale(.98); }
 
-  /* Starburst bullets: Zapf 30, text hangs 44 in; one empty line (33) between bullets */
-  .bullets { list-style: none; display: grid; gap: calc(33 * var(--u)); }
-  .bullets li { padding-left: calc(44 * var(--u)); text-indent: calc(-44 * var(--u)); }
-  .bullets .star { display: inline-block; width: calc(44 * var(--u)); text-indent: 0; line-height: 0;
-                   font-family: var(--dings); font-weight: 500; font-size: calc(30 * var(--u)); letter-spacing: 0; }
-  .row p.note { padding-left: calc(44 * var(--u)); }
-  .bullets a:hover { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
-
-  em { font-style: italic; }
-  /* No one-word last lines (all screens) */
-  .pages p, .pages li { text-wrap: pretty; }
-  .pages .ar-line, .pages .colophon, .pages .ar-cap { text-wrap: wrap; }
-  .keep { white-space: nowrap; }
-  .nw { white-space: nowrap; }
-  br.m { display: none; }
-  strong.u { font-weight: 700; text-decoration: underline; text-decoration-thickness: .06em; text-underline-offset: .18em; } /* italic = Regular body set in italic */
-  .row a:not(.btn):hover { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
-
-  /* Buttons: Anziano Bold 30, tracking -25. Box 139 x 50, 2px stroke, square corners. Arrow: Zapf Dingbats ➞
-     last body baseline -> box top 24; box bottom -> rule 30 */
-  .btn { display: inline-flex; height: calc(52 * var(--u)); padding: 0 calc(8 * var(--u));
-         border: max(1px, calc(2 * var(--u))) solid currentColor;
-         font-weight: 700; font-size: calc(30 * var(--u)); line-height: calc(48 * var(--u)); letter-spacing: -0.025em;
-         white-space: nowrap; margin-top: calc((7.5 + 30 * var(--kr)) * var(--u)); transition: background .15s, color .15s; }
-  .btn > span { position: relative; top: calc((8 - 30 * var(--kb)) * var(--u)); }
-  .btn .arr { font-family: var(--dings); font-weight: 500; letter-spacing: 0; }
-  .btn:hover, .btn:focus-visible { background: var(--ink); color: var(--parchment); }
-  .row.has-btn { padding-bottom: calc(30 * var(--u)); }
-
-  /* Footnote: Regular 20 / 23, tracking +25; Zapf ✺ 20 hanging in the label column. Last body baseline -> footnote baseline 44 */
-  /* Donate: the footnote sits at the bottom of the page like fine print; keeps at least the old gap when space is tight */
-  #donate { display: flex; flex-direction: column; padding-bottom: calc((40 - 23 + 20 * (1 - var(--kr))) * var(--u)); } /* last footnote baseline 40 above the card bottom, like the cover imprint */
-  .footnote { margin-top: auto; padding-top: calc((16 + 10 * var(--kr)) * var(--u)); padding-left: calc(32 * var(--u)); text-indent: calc(-32 * var(--u));
-              font-size: calc(20 * var(--u)); line-height: calc(23 * var(--u)); letter-spacing: 0.025em; }
-  .footnote .star { display: inline-block; width: calc(32 * var(--u)); text-indent: 0; line-height: 0;
-                    font-family: var(--dings); font-weight: 500; font-size: calc(20 * var(--u)); letter-spacing: 0; }
-
-  /* Small caps labels on the landing and closing cards: 30pt small caps, tracking 100 */
-  .caps30 { font-size: calc(30 * var(--u)); letter-spacing: 0.1em; line-height: calc(14 * var(--u)); font-variant-caps: all-small-caps; }
-
-  /* Landing: framed team photo (photo corners), caption, scroll cue */
-  .section.landing { display: flex; flex-direction: column; align-items: center; height: 100%; padding: 0; }
-  .print { position: relative; margin-top: auto; width: min(calc(553 * var(--u)), 100%); padding: calc(14 * var(--u));
-           background: var(--parchment); box-shadow: 0 calc(2 * var(--u)) calc(6 * var(--u)) rgba(43, 26, 20, .25);
-           transform: rotate(.5deg); }
-  .print img, .plate img { display: block; width: 100%; height: auto; aspect-ratio: 858 / 642; object-fit: cover; }
-  .pc { position: absolute; width: calc(28 * var(--u)); height: calc(28 * var(--u));
-        filter: drop-shadow(0 calc(2 * var(--u)) calc(2 * var(--u)) rgba(43, 26, 20, .5)); }
-  .pc i { display: block; width: 100%; height: 100%; background: linear-gradient(135deg, #8F2B44, #6B1A2E); }
-  .pc.tl { top: 0; left: 0; }     .pc.tl i { clip-path: polygon(0 0, 100% 0, 0 100%); }
-  .pc.tr { top: 0; right: 0; }    .pc.tr i { clip-path: polygon(0 0, 100% 0, 100% 100%); }
-  .pc.bl { bottom: 0; left: 0; }  .pc.bl i { clip-path: polygon(0 0, 0 100%, 100% 100%); }
-  .pc.br { bottom: 0; right: 0; } .pc.br i { clip-path: polygon(100% 0, 100% 100%, 0 100%); }
-  /* Caption: Moshref Naskh 30, tracking 0. Print -> caption letters 30, set by spaceCover() */
-  .landing .caption { margin-top: calc(24 * var(--u)); margin-bottom: auto; }
-  .ar-cap .ln { white-space: nowrap; }
-  .ar-cap .n { font-size: 1.4em; line-height: 0; } /* numerals 42pt (Moshref draws them small); line height unchanged */
-  .ar-cap { font-family: var(--arabic); font-size: calc(30 * var(--u)); line-height: calc(48 * var(--u)); letter-spacing: 0; text-align: center; }
-  .cue { display: flex; flex-direction: column; align-items: center; padding: 0 0 calc(39 * var(--u));
-         background: none; border: 0; color: inherit; font: inherit; cursor: pointer; transition: opacity .4s; }
-  .cue.gone { opacity: 0; pointer-events: none; }
-  /* Arrows: Zapf ❨ (under Scroll as is; above Back to top turned 180°) */
-  .arrow { display: block; font-family: var(--dings); font-weight: 500; font-size: calc(30 * var(--u)); line-height: calc(26 * var(--u)); letter-spacing: 0; }
-  .cue .arrow { margin-top: calc((7 + 30 * var(--kr)) * var(--u)); animation: drift 2.4s ease-in-out infinite; } /* SCROLL baseline -> arrow 14 */
-  @keyframes drift { 0%, 100% { translate: 0 0; } 50% { translate: 0 calc(5 * var(--u)); } }
-
-  /* Closing: book plate photo, Arabic line, back to top, colophon */
-  .section.closing { display: flex; flex-direction: column; align-items: center; height: 100%;
-                     padding: calc(105 * var(--u)) 0 calc((40.5 + 20 * var(--kr)) * var(--u)); } /* © baseline -> card bottom 51 */
-  .plate { width: min(calc(552 * var(--u)), 100%); border: max(1px, calc(1 * var(--u))) solid var(--ink); padding: calc(3.5 * var(--u)); }
-  .plate > div { border: max(1px, calc(3 * var(--u))) solid var(--ink); padding: calc(6 * var(--u)); }
-  .ar-line { font-family: var(--arabic); font-size: calc(30 * var(--u)); line-height: calc(48 * var(--u)); letter-spacing: 0; margin-top: calc(24 * var(--u)); text-align: center; }
-  .totop { margin-top: auto; display: flex; flex-direction: column; align-items: center; background: none; border: 0;
-           color: inherit; font: inherit; cursor: pointer; }
-  .totop .arrow { transform: rotate(180deg); }
-  .totop .caps30 { margin-top: calc((22 - 30 * var(--kr)) * var(--u)); }   /* arrow -> word 16 */
-  .totop:hover .caps30, .cue:hover .caps30 { text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; }
-  .colophon { margin-top: calc((36.5 + 10 * var(--kr)) * var(--u)); font-size: calc(20 * var(--u)); letter-spacing: 0.1em;
-              line-height: calc(21 * var(--u)); font-variant-caps: all-small-caps; text-align: center; } /* word -> © 41 */
-  .colophon .sep { font-family: var(--dings); font-weight: 500; font-variant-caps: normal; letter-spacing: 0; padding: 0 .35em; }
-
-  /* Background test toggle */
-
-  /* ---------- Phones / narrow: stack, page scrolls ---------- */
-  @media (max-width: 820px), (max-aspect-ratio: 1/1) {
-    :root { --u: calc((min(100vw, 600px) - 24px) / 500); }
-    .page { height: auto; grid-template-columns: 1fr; padding: 12px; gap: 12px; max-width: 624px; margin: 0 auto; }
-    .card { border-radius: 14px; }
-    .cover { background-size: cover; padding: 56px 24px 44px; }
-    .arname { font-size: max(22px, calc(30 * var(--u))); line-height: 1.6; }
-    /* Contents box: type sized from the box, in desktop proportions */
-    .contents { --box: max(220px, calc(236 * var(--u))); width: var(--box); height: var(--box); }
-    .contents a { font-size: calc(var(--box) * 26 / 236); gap: calc(var(--box) * 12 / 236); }
-    .contents li { line-height: calc(var(--box) * 40 / 236); }
-    .talk { font-size: max(27px, calc(36 * var(--u))); }
-    .contact { font-size: max(18px, calc(26 * var(--u))); line-height: 1.4; }
-    .imprint { font-size: max(14px, calc(20 * var(--u))); line-height: 1.15; margin-top: 32px; }
-    .page { padding-top: 28px; }
-    .pages { overflow: visible; background: var(--paper) url("assets/paper-tile.webp") center top / 805px auto repeat-y; }
-    .scroller { height: auto; overflow: visible; padding: 0 24px; }
-    .section { min-height: 0; padding: 56px 0 48px; }
-    .row { grid-template-columns: 1fr; gap: calc(14 * var(--u)); }
-    .row h3 { margin-top: 0; }
-    .row > div:empty { display: none; }
-    .d { display: none; }
-    br.m { display: inline; }
-    /* No one-word last lines on phones */
-    .pages .h2, .pages .intro { text-wrap: balance; }
-    .row p.note.flush-m { padding-left: 0; }
-    .footnote { padding-top: 64px; }
-    #donate { padding-bottom: 48px; }
-    .colophon .sep { padding-left: 0; }
-    /* Closing lines: break only where set, never inside a line */
-    .ar-line .ln, .colophon .ln { white-space: nowrap; }
-    .section.landing, .section.closing { height: auto; padding: 40px 0; }
-    .print { margin-top: 0; }
-    .landing .caption { margin-bottom: 0; }
-    .cue { display: none; }
-    .totop { margin-top: 40px; }
+  .row.has-more { padding-bottom: calc(32 * var(--u)) !important; }   /* box → rule: 32 */
+  .row p i, .row p em { font-style: italic; }
+  #donate .ar-stamp { --sw: 452; --sh: 236; --sx: 1169.5; --sy: 492; }   /* comp position, moved 24 right to clear the full-width rule */
+  /* Footnote: Anziano 20/23, tracking 25, in the body column; ✺ 20 hung 16 to the left; 48 below the last line */
+  .fine {
+    position: relative; margin: calc((20 + 10 * var(--kr)) * var(--u)) 0 0 calc(296 * var(--u));
+    width: calc(559 * var(--u)); font-size: calc(20 * var(--u)); line-height: calc(23 * var(--u)); letter-spacing: .025em;
   }
-  @media (prefers-reduced-motion: reduce) { .scroller { scroll-behavior: auto; } .cue .arrow { animation: none; } }
+  .fine::before {
+    content: "\273A"; display: inline-block; width: calc(40 * var(--u)); margin-left: calc(-40 * var(--u));
+    padding-right: calc(16 * var(--u)); box-sizing: border-box; text-align: right;
+    font-family: "itc-zapf-dingbats-std", "Zapf Dingbats", sans-serif; font-weight: 500; font-size: calc(20 * var(--u));
+    line-height: 0; letter-spacing: 0; position: relative; top: calc((var(--bc) * 20 - 3) * var(--u));
+  }
+  .mail { color: inherit; text-decoration: none; font-style: italic; }
+  .mail:hover { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
+  #eligibility .rows { width: calc(760 * var(--u)); }   /* rule width follows the content */
 
-  /* =================== MOTION ===================
-     Everything below only runs when <html> has class "motion" (set by script; off with ?nomotion,
-     in the comp check, and for visitors whose device asks for reduced motion).
-     Each block is labelled; delete a block to remove that motion. */
+  /* =============== CLOSING ===============
+     Fills the window like the hero: photo + caption centred in the window, footer along the bottom (64 up).
+     Equal rows above and below the photo block keep it at the window's exact middle. */
+  .closing {
+    min-height: 100vh; min-height: 100svh; display: grid; grid-template-rows: 1fr auto 1fr;
+    padding: calc(64 * var(--u)) calc(72 * var(--u));
+  }
+  .closing .center { grid-row: 2; }
+  .closing .foot { grid-row: 3; align-self: end; }
+  .closing .center { display: grid; justify-items: center; align-content: center; }
+  /* Photo frame: outer 1px, 4 gap, inner 3px, 8 to the photo; worn like the stamps */
+  .photo { position: relative; margin: 0; width: calc(525 * var(--u) + 32 * var(--u)); padding: calc(16 * var(--u)); }
+  .photo img { display: block; width: 100%; height: auto; aspect-ratio: 576 / 431; }
+  .photo .frame { position: absolute; inset: 0; color: var(--ink); filter: url(#ink-stamp); pointer-events: none; }
+  .photo .frame::before, .photo .frame::after { content: ""; position: absolute; }
+  .photo .frame::before { inset: 0; border: 1px solid currentColor; }
+  .photo .frame::after  { inset: calc(1px + 4 * var(--u)); border: max(2px, calc(3 * var(--u))) solid currentColor; }
+  /* Caption: Moshref 32, line 1 to the right of the photo and line 2 to the left (read right to left), 40 from the frame;
+     photo and caption together sit in the middle of the window */
+  .closing .center { display: flex; flex-direction: row; justify-content: center; align-items: center; gap: calc(40 * var(--u)); }
+  .caption { margin: 0; font-family: var(--arabic); font-size: calc(32 * var(--u)); line-height: 1.5; white-space: nowrap; }
+  .caption.c2 { order: -1; }
+  .caption.c1 { order: 1; }
+  .foot {
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: last baseline;
+    font-size: calc(20 * var(--u)); line-height: calc(24 * var(--u)); letter-spacing: .1em; font-variant-caps: all-small-caps; text-transform: lowercase;
+    font-variant-numeric: oldstyle-nums; font-feature-settings: "onum" 1;
+  }
+  .foot .addr { justify-self: end; text-align: right; font-style: normal; }
+  .totop { display: grid; justify-items: center; gap: calc(16 * var(--u)); text-transform: none;
+           font-size: calc(30 * var(--u)); line-height: 1; letter-spacing: .2em; font-variant-caps: all-small-caps; }
+  .totop .t { text-transform: lowercase; margin-right: -.2em; }   /* trailing tracking would push it off-centre */
+  .totop .cres { font-family: "itc-zapf-dingbats-std", "Zapf Dingbats", sans-serif; font-weight: 500; letter-spacing: 0;
+                 font-variant-caps: normal; transform: rotate(90deg); transition: transform .2s ease; }
+  .totop:hover .cres { transform: rotate(90deg) translateX(-3px); }
+  .totop:hover .t { text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; }
 
-  /* Motion 1: sections settle in as they scroll into view (once) */
-  .motion .rv { opacity: 0; translate: 0 calc(8 * var(--u)); }
-  .motion .rv.in { opacity: 1; translate: 0 0; transition: opacity .6s ease-out var(--d, 0s), translate .6s cubic-bezier(.2,.7,.2,1) var(--d, 0s); }
+  /* ---------- Phones: keep the composition, change only what can't fit ---------- */
+  /* Single column up to 900px wide. The column grows with the window up to 560px, then stops and stays centred,
+     so in-between widths (small tablets, narrow windows) don't stretch. Everything in the hero scales off the column. */
+  @media (max-width: 900px) {
+    :root { --col: min(calc(100vw - 48px), 560px); --u: calc(var(--col) / 640); --side: max(24px, calc((100vw - 560px) / 2)); }
+    .nav { padding-top: 18px; }
+    br.d { display: none; } br.m { display: inline; }
+    .nav-row { width: var(--col); font-size: 20px; }
+    .nav-row .link { display: none; }
+    .menu-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: none; border: 0; color: inherit; font: inherit; font-size: 20px; cursor: pointer; padding: 0; min-width: 44px; min-height: 44px;
+    }
+    .menu-btn i { display: grid; gap: 5px; }
+    .menu-btn i::before, .menu-btn i::after { content: ""; display: block; width: 20px; height: 2px; background: currentColor; }
+    .donate { padding: 8px 10px !important; }
+    .hero { padding: 96px 0 72px; align-items: center; }
+    .hero-inner { display: block; padding-bottom: calc(180 * var(--u)); }
+    .wordmark { font-size: calc(84 * var(--u)); line-height: calc(77.5 * var(--u)); }
+    /* Hero stamp: locked to the wordmark (same unit), so it swallows the last two letters of SERVICES at every width */
+    .stamp {
+      position: absolute; left: calc(328 * var(--u)); top: calc(142 * var(--u));
+      width: calc(264 * var(--u)); height: calc(264 * var(--u));
+      transform: rotate(-4deg);
+    }
+    .stamp:is(:hover, :focus-visible, :active) { transform: rotate(0deg) scale(.98); }
+    .act .fill::after, .row .more .fill::after { inset: 6px; }
+    .stamp .ar { font-size: calc(60 * var(--u)); }
+    .stamp .num { font-size: calc(38 * var(--u)); }
+    .stamp .ink::after { inset: calc(8 * var(--u)); }
 
-  /* Motion 2: contents box crossfades to the current section */
-  .motion .num > span, .motion .contents .label > .t, .motion .contents .label::after { transition: opacity .25s ease; }
+    /* sections on phones: fixed sizes, label above body, Arabic stamp under the intro.
+       Baseline-to-baseline gaps are multiples of 8 (label→headline 56, headline→intro 48, line→rule 32, rule→line 40, line→stamp 40) */
+    .section { padding: 96px var(--side) 0; }
+    .section:last-of-type { padding-bottom: 96px; }
+    .label { font-size: 18px; line-height: 14px; }
+    .h2 { font-size: 36px; line-height: 38px; margin-top: 24px; filter: url(#ink-h-sm); }
+    .intro { font-size: 22px; line-height: 28px; margin-top: 20px; }
+    .rows { width: auto; margin-top: 40px; }
+    .row { grid-template-columns: 1fr; gap: 8px; padding-bottom: 25px; }
+    .row + .row { padding-top: 21px; }
+    .row h3 { font-size: 20px; line-height: 22px; margin-top: 0; }
+    .row p { font-size: 19px; line-height: 26px; }
+    .act { height: 52px; padding: 0 20px; font-size: 21px; margin: 33px 0 0; }
+    .act .ink::after { inset: 6px; }
+    /* Arabic stamps: centred under the intro, 70% of the column (max 300px), text and box scale together */
+    .ar-stamp { --w: min(calc(var(--col) * .7), 300px);
+      position: relative; left: auto !important; top: auto !important; width: var(--w); height: calc(var(--w) * var(--sh) / var(--sw));
+      margin: 40px auto 0; display: grid; }
+    .ar-stamp span { font-size: calc(var(--w) * 144 / var(--sw)); padding-bottom: calc(var(--w) * 10 / var(--sw)); }
+    #donate .ar-stamp span { padding-bottom: calc(var(--w) * 48 / var(--sw)); }
+    .closing { padding: 80px var(--side) 48px; }
+    .photo { width: 100%; padding: 12px; }
+    .photo .frame::after { inset: 5px; }
+    .closing .center { flex-direction: column; gap: 0; }
+    .caption { font-size: 24px; line-height: 40px; white-space: normal; text-align: center; }
+    .caption.c1 { order: 0; margin-top: 24px; }
+    .caption.c2 { order: 1; }
+    .foot { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 24px; font-size: 14px; line-height: 20px; margin-top: 72px; }
+    .foot .totop { order: -1; font-size: 22px; gap: 12px; }
+    .foot .addr { justify-self: center; text-align: center; order: 0; }
+    .foot .copy { order: 1; }
+    .ar-stamp::after { inset: 6px; }
+    .bullets { font-size: 19px; line-height: 26px; padding-left: 32px; }
+    .bullets li + li { margin-top: 16px; }
+    .bullets li::before { font-size: 19px; width: 32px; margin-left: -32px; padding-right: 12px; top: calc(var(--bc) * 19px - 2.5px); }
+    .bullets.steps li::before { top: calc(var(--bn) * 19px - 6.5px); }
+    #process .rows { width: auto; }
+    .row .more { grid-column: auto; margin-top: 8px; padding: 16px; font-size: 21px; line-height: 22px; }
+    .row .more .ink::after { inset: 6px; }
+    .fine { margin: 32px 0 0; padding-left: 28px; width: auto; font-size: 15px; line-height: 20px; }
+    .fine::before { font-size: 15px; width: 28px; margin-left: -28px; padding-right: 12px; top: calc(var(--bc) * 15px - 2px); }
+    .row.has-more { padding-bottom: 32px !important; }
+    #eligibility .rows { width: auto; }
+    .row.note p { grid-column: auto; }
+  }
 
-  /* Motion 3: buttons: arrow nudges on hover, button presses down on click */
-  .motion .btn .arr { display: inline-block; transition: translate .2s ease; }
-  .motion .btn:hover .arr, .motion .btn:focus-visible .arr { translate: calc(3 * var(--u)) 0; }
-  .motion .btn:active { translate: 0 1px; }
+  /* Full-screen menu (phones) */
+  .sheet {
+    position: fixed; inset: 0; z-index: 30;
+    background: var(--page) url("assets/paper.webp") 0 0 / 603px 603px repeat;
+    padding: 18px 24px 40px; display: flex; flex-direction: column;
+    opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility 0s .25s;
+  }
+  .sheet.open { opacity: 1; visibility: visible; transition: opacity .25s ease; }
+  .sheet .close { align-self: flex-start; display: grid; place-items: center start; width: 44px; height: 44px; margin: -6px 0;
+                  background: none; border: 0; color: var(--ink); cursor: pointer; }
+  .sheet .close i { position: relative; display: block; width: 20px; height: 20px; }
+  .sheet .close i::before, .sheet .close i::after { content: ""; position: absolute; left: 0; top: 9px; width: 20px; height: 2px; background: currentColor; }
+  .sheet .close i::before { transform: rotate(45deg); }
+  .sheet .close i::after  { transform: rotate(-45deg); }
+  .sheet nav { margin-top: 64px; display: grid; gap: 18px; }
+  .sheet nav a { justify-self: start; font-size: 42px; line-height: 1.1; letter-spacing: .1em; font-variant-caps: all-small-caps; text-transform: lowercase; }
+  .sheet nav a[aria-current="true"] { font-weight: 700; }
+  .sheet .donate { letter-spacing: 0; font-variant-caps: normal; text-transform: none;   /* matches the Donate button in the nav bar */
+                   justify-self: start; font-size: 30px; padding: 10px 14px !important; margin-top: calc(5px + 42px * var(--kr)); }
+  .sheet .call { margin-top: auto; display: grid; gap: 4px; }
+  .sheet .call .ar { font-family: var(--arabic); font-size: 34px; justify-self: start; }
+  .sheet .call .num { font-size: 22px; }
 
-  /* Motion 4: landing photo is laid onto the page on first load, then caption and cue fade in */
-  @keyframes settle { from { opacity: 0; translate: 0 calc(-16 * var(--u)); rotate: 1.2deg; } to { opacity: 1; translate: 0 0; rotate: 0deg; } }
-  @keyframes rise { from { opacity: 0; translate: 0 calc(6 * var(--u)); } to { opacity: 1; translate: 0 0; } }
-  .motion .print { animation: settle .8s cubic-bezier(.2,.7,.2,1) .15s backwards; }
-  .motion .landing .caption { animation: rise .6s ease-out .55s backwards; }
-  .motion .cue > * { animation: rise .6s ease-out .8s backwards; }
-  .motion .cue .arrow { animation: rise .6s ease-out .8s backwards, drift 2.4s ease-in-out 1.4s infinite; }
-
-  /* Motion 6: back-to-top arrow drifts upward */
-  @keyframes drift-up { 0%, 100% { translate: 0 0; } 50% { translate: 0 calc(-5 * var(--u)); } }
-  .motion .totop .arrow { animation: drift-up 2.4s ease-in-out infinite; }
-
-  /* Motion 7 removed: links use a standard underline (below the text) on hover */
-  .cue:hover .caps30 { text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; }
-
-  /* While the page measures spacing, hold everything still so measurements aren't thrown off */
-  .measuring .rv, .measuring .print, .measuring .landing .caption { translate: none !important; rotate: none !important; transition: none !important; }
-  /* ================= END MOTION ================= */
-
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .nav, .nav::before, .sheet { transition: none; }
+    .focus .row h3, .focus .row p, .focus .bullets li { opacity: 1 !important; transition: none; }
+    .act, .row .more { transition: none; }
+    .act:is(:hover, :focus-visible, :active) { transform: rotate(-2deg); }
+    .row .more:is(:hover, :focus-visible, :active) { transform: none; }
+    .stamp, .donate { transition: none; }
+    .stamp:is(:hover, :focus-visible, :active) { transform: translateY(calc(-120 * var(--u) + 55 * var(--u))) rotate(-4deg); }
+    .donate:is(:hover, :focus-visible, :active) { transform: none; }
+  }
 </style>
 </head>
 <body>
+
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
-    <!-- Ink spread on section headlines: blur the letter shapes, crush back with Levels 80/115, fill ink -->
+    <!-- Ink on cotton paper. Three parts: rough edges (displacement), slight spread (blur + threshold),
+         and uneven inking (fine specks knocked out + broad patches of lighter ink). -->
+    <filter id="ink-word" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" result="fine"/>
+      <feDisplacementMap in="SourceGraphic" in2="fine" scale="1.6" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feGaussianBlur in="rough" stdDeviation="0.55" result="soft"/>
+      <feComponentTransfer in="soft" result="spread"><feFuncA type="linear" slope="2.6" intercept="-0.45"/></feComponentTransfer>
+      <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" seed="11" result="speck"/>
+      <feColorMatrix in="speck" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.4 0 0 0 2.4" result="speckMask"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="2" result="broad"/>
+      <feColorMatrix in="broad" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.6 0 0 0 0.68" result="broadMask"/>
+      <feComposite in="speckMask" in2="broadMask" operator="arithmetic" k1="1" result="mask"/>
+      <feComposite in="spread" in2="mask" operator="in"/>
+    </filter>
+    <!-- Ink spread on section headlines: blur the letter shapes, crush back (Levels 80/115), fill sumac -->
     <filter id="ink-h" x="-3%" y="-15%" width="106%" height="130%" color-interpolation-filters="sRGB">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="blur"/>
-      <feComponentTransfer in="blur" result="crushed">
-        <feFuncA type="linear" slope="7.2857" intercept="-2.2857"/>
-      </feComponentTransfer>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.2" result="blur"/>
+      <feComponentTransfer in="blur" result="crushed"><feFuncA type="linear" slope="7.2857" intercept="-2.2857"/></feComponentTransfer>
       <feFlood flood-color="#7C1E35"/>
       <feComposite in2="crushed" operator="in"/>
     </filter>
-    <!-- Stamped logo: inner shadow at top of letters + faint light catch below -->
-    <filter id="deboss" x="-5%" y="-10%" width="110%" height="125%" color-interpolation-filters="sRGB">
-      <feOffset in="SourceAlpha" dy="1" result="down"/>
-      <feGaussianBlur in="down" stdDeviation="0.6" result="downB"/>
-      <feComposite in="SourceAlpha" in2="downB" operator="out" result="topEdge"/>
-      <feFlood flood-color="#000" flood-opacity="0.35"/>
-      <feComposite in2="topEdge" operator="in" result="inner"/>
-      <feOffset in="SourceAlpha" dy="1" result="up"/>
-      <feFlood flood-color="#fff" flood-opacity="0.2"/>
-      <feComposite in2="up" operator="in" result="catch"/>
-      <feMerge><feMergeNode in="catch"/><feMergeNode in="SourceGraphic"/><feMergeNode in="inner"/></feMerge>
+    <!-- headline ink spread for the single-column layout: 15% less bleed (blur 1.2 → 1.02) -->
+    <filter id="ink-h-sm" x="-3%" y="-15%" width="106%" height="130%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.02" result="blur"/>
+      <feComponentTransfer in="blur" result="crushed"><feFuncA type="linear" slope="7.2857" intercept="-2.2857"/></feComponentTransfer>
+      <feFlood flood-color="#7C1E35"/>
+      <feComposite in2="crushed" operator="in"/>
+    </filter>
+    <filter id="ink-stamp" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB">
+      <!-- wear halfway between the first stamp (heavier) and the wordmark (lighter) -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.88" numOctaves="2" seed="9" result="fine"/>
+      <feDisplacementMap in="SourceGraphic" in2="fine" scale="1.9" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feGaussianBlur in="rough" stdDeviation="0.57" result="soft"/>
+      <feComponentTransfer in="soft" result="spread"><feFuncA type="linear" slope="2.5" intercept="-0.42"/></feComponentTransfer>
+      <feTurbulence type="fractalNoise" baseFrequency="0.58" numOctaves="3" seed="17" result="speck"/>
+      <feColorMatrix in="speck" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.7 0 0 0 2.37" result="speckMask"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="5" result="broad"/>
+      <feColorMatrix in="broad" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.85 0 0 0 0.44" result="broadMask"/>
+      <feComposite in="speckMask" in2="broadMask" operator="arithmetic" k1="1" result="mask"/>
+      <feComposite in="spread" in2="mask" operator="in"/>
+    </filter>
+    <filter id="ink-act" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB">
+      <!-- green action stamps: one notch lighter than ink-stamp — softer edges, fewer missing specks -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.88" numOctaves="2" seed="9" result="fine"/>
+      <feDisplacementMap in="SourceGraphic" in2="fine" scale="1.5" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feGaussianBlur in="rough" stdDeviation="0.5" result="soft"/>
+      <feComponentTransfer in="soft" result="spread"><feFuncA type="linear" slope="2.6" intercept="-0.4"/></feComponentTransfer>
+      <feTurbulence type="fractalNoise" baseFrequency="0.58" numOctaves="3" seed="17" result="speck"/>
+      <feColorMatrix in="speck" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.5 0 0 0 2.55" result="speckMask"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="5" result="broad"/>
+      <feColorMatrix in="broad" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.6 0 0 0 0.66" result="broadMask"/>
+      <feComposite in="speckMask" in2="broadMask" operator="arithmetic" k1="1" result="mask"/>
+      <feComposite in="spread" in2="mask" operator="in"/>
+    </filter>
+    <filter id="ink-half" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB">
+      <!-- filled green stamps on hover: half the wear of ink-act -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.88" numOctaves="2" seed="9" result="fine"/>
+      <feDisplacementMap in="SourceGraphic" in2="fine" scale="0.75" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feGaussianBlur in="rough" stdDeviation="0.35" result="soft"/>
+      <feComponentTransfer in="soft" result="spread"><feFuncA type="linear" slope="2.3" intercept="-0.3"/></feComponentTransfer>
+      <feTurbulence type="fractalNoise" baseFrequency="0.58" numOctaves="3" seed="17" result="speck"/>
+      <feColorMatrix in="speck" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.25 0 0 0 1.78" result="speckMask"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="5" result="broad"/>
+      <feColorMatrix in="broad" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.3 0 0 0 0.83" result="broadMask"/>
+      <feComposite in="speckMask" in2="broadMask" operator="arithmetic" k1="1" result="mask"/>
+      <feComposite in="spread" in2="mask" operator="in"/>
     </filter>
   </defs>
 </svg>
 
-<div class="page">
-  <!-- LEFT: the cover -->
-  <header class="card cover">
-    <div class="logo" role="img" aria-label="Arab Community Services"><span class="ll">Arab</span><br><span class="ll" id="logo-wide">Community</span><br><span class="ll">Services</span></div>
-    <p class="arname" lang="ar" dir="rtl">الــمركــز الــعربــي لــلخـــدمـــات<br>الـــقــانــــونـــــية والاجتــــمــاعــــية</p>
-    <p class="tagline">A sister organization of AROC</p>
+<header class="nav" id="nav">
+  <nav class="nav-row" aria-label="Main">
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Menu"><i aria-hidden="true"></i></button>
+    <a class="link" href="#services" data-target="services" data-label="Services"><span>Services</span></a>
+    <a class="link" href="#eligibility" data-target="eligibility" data-label="Eligibility"><span>Eligibility</span></a>
+    <a class="link" href="#process" data-target="process" data-label="Process"><span>Process</span></a>
+    <a class="link" href="#about" data-target="about" data-label="About"><span>About</span></a>
+    <a class="donate" href="https://secure.actblue.com/donate/acslegal" target="_blank" rel="noopener">Donate</a>
+  </nav>
+</header>
 
-    <nav class="contents" aria-label="Sections">
-      <ol>
-        <li><a href="#services" data-target="services"><span class="num" aria-hidden="true"><span class="on">➊</span><span class="off">➀</span></span><span class="label" data-label="Services"><span class="t">Services</span></span></a></li>
-        <li><a href="#eligibility" data-target="eligibility"><span class="num" aria-hidden="true"><span class="on">➋</span><span class="off">➁</span></span><span class="label" data-label="Eligibility"><span class="t">Eligibility</span></span></a></li>
-        <li><a href="#process" data-target="process"><span class="num" aria-hidden="true"><span class="on">➌</span><span class="off">➂</span></span><span class="label" data-label="Process"><span class="t">Process</span></span></a></li>
-        <li><a href="#about" data-target="about"><span class="num" aria-hidden="true"><span class="on">➍</span><span class="off">➃</span></span><span class="label" data-label="About"><span class="t">About</span></span></a></li>
-        <li><a href="#donate" data-target="donate"><span class="num" aria-hidden="true"><span class="on">➎</span><span class="off">➄</span></span><span class="label" data-label="Donate"><span class="t">Donate</span></span></a></li>
-      </ol>
-    </nav>
-
-    <p class="talk" lang="ar" dir="rtl">اتــــــــــصل بنا.</p>
-    <div class="contact">
-      <a href="tel:+14158617444">(415) 861-7444</a>
-      <a href="mailto:info@arabcommunityservices.org">info@arabcommunityservices.org</a>
-    </div>
-    <p class="imprint">522 Valencia St.<span class="sep" aria-hidden="true">✺</span>San Francisco, CA<br>Monday–Friday<span class="sep" aria-hidden="true">✺</span>10 AM–6 PM</p>
-  </header>
-
-  <!-- RIGHT: the pages -->
-  <main class="card pages">
-    <div class="scroller" id="scroller">
-
-      <section class="section landing" id="top" data-nav="" aria-label="Our team">
-        <figure class="print">
-          <img src="assets/team.jpg" width="1600" height="1198" alt="A speaker holding a microphone, gesturing as she talks at a community event.">
-          <span class="pc tl" aria-hidden="true"><i></i></span><span class="pc tr" aria-hidden="true"><i></i></span>
-          <span class="pc bl" aria-hidden="true"><i></i></span><span class="pc br" aria-hidden="true"><i></i></span>
-        </figure>
-        <p class="caption ar-cap" lang="ar" dir="rtl"><span class="ln">محــامـون ومدافعـــــــــــون،</span><br> <span class="ln">معكــــم منذ <span class="n">٢٠٠٧</span>.</span></p>
-        <button class="cue" type="button" aria-label="Scroll to services"><span class="caps30">Scroll</span><span class="arrow" aria-hidden="true">❨</span></button>
-      </section>
-
-      <section class="section" id="services" aria-labelledby="h-services">
-        <p class="eyebrow">Services</p>
-        <h2 class="h2" id="h-services">Immigration.<br class="m"> <span class="nw">Social services.</span><br>Know your rights.</h2>
-        <p class="intro">We offer free, confidential legal and social services in English and Arabic.</p>
-        <div class="rows">
-          <div class="row">
-            <h3>Immigration</h3>
-            <p>Get legal help with family petitions, asylum, and representation if you or a family member is detained by ICE or has a court date.</p>
-          </div>
-          <div class="row">
-            <h3>Social services</h3>
-            <p>Apply for public benefits such as food stamps (CalFresh), health insurance (Medi&#8209;Cal), and cash assistance (CalWORKs).</p>
-          </div>
-          <div class="row">
-            <h3>Know your rights</h3>
-            <p>Learn what to do if immigration agents come to your home, work, or community. Free trainings for families, businesses, and community groups.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="eligibility" aria-labelledby="h-eligibility">
-        <p class="eyebrow">Eligibility</p>
-        <h2 class="h2" id="h-eligibility">Is this for you?</h2>
-        <p class="intro">We serve working-class Arab, Muslim, North African, and Southwest Asian residents of the Bay.</p>
-        <div class="rows">
-          <div class="row">
-            <h3>Requirements</h3>
-            <ul class="bullets">
-              <li><span class="star" aria-hidden="true">✺</span>You or someone in your household is a resident of the Greater SF Bay Area.</li>
-              <li><span class="star" aria-hidden="true">✺</span>Your household income falls within the low-to-moderate income range.</li>
-              <li><span class="star" aria-hidden="true">✺</span>You or someone in your household is Arab, Muslim, North African, or Southwest Asian.</li>
-            </ul>
-          </div>
-          <div class="row">
-            <div aria-hidden="true"></div>
-            <p class="note">Not sure? Call anyway. If we can’t help, we’ll connect you with someone who can.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="process" aria-labelledby="h-process">
-        <p class="eyebrow">Process</p>
-        <h2 class="h2" id="h-process">What to expect</h2>
-        <p class="intro">A three-step intake.</p>
-        <div class="rows">
-          <div class="row">
-            <h3>How it works</h3>
-            <ol class="bullets">
-              <li><span class="star" aria-hidden="true">➊</span>Call us at <a href="tel:+14158617444">(415) 861-7444</a>.</li>
-              <li><span class="star" aria-hidden="true">➋</span>We’ll follow up to schedule a consultation and assess whether we’re the right team for your case.</li>
-              <li><span class="star" aria-hidden="true">➌</span>If we take on your case, we’ll gather your documents and get to work. If we can’t take on your case, we’ll refer you to trusted organizations and attorneys.</li>
-            </ol>
-          </div>
-          <div class="row">
-            <h3>Privacy</h3>
-            <p class="note flush-m">What you share with us stays strictly confidential. <strong class="u">We never share your information with immigration authorities or anyone else without your consent.</strong></p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="about" aria-labelledby="h-about">
-        <p class="eyebrow">About</p>
-        <h2 class="h2" id="h-about">Who we are</h2>
-        <p class="intro">Lawyers and advocates reuniting families and defending people held by ICE since 2007.</p>
-        <div class="rows">
-          <div class="row">
-            <h3>Mission</h3>
-            <p>Arab Community Services protects Arabs and Muslims through free immigration representation, social services, and know-your-rights training.</p>
-          </div>
-          <div class="row">
-            <h3>Team</h3>
-            <p>Our team includes two immigration attorneys, one DOJ-accredited representative, three legal assistants, and one social services coordinator.</p>
-          </div>
-          <div class="row">
-            <h3>History</h3>
-            <p>We began in 2007 as <em>Arab American Legal Services (AALS)</em>, a program of the <em>Arab Resource and Organizing Center (AROC)</em>. In 2026, we became ACS, our own organization.</p>
-          </div>
-          <div class="row has-btn" id="about-aroc">
-            <h3>AROC</h3>
-            <div>
-              <p>Our sister organization, AROC, organizes working-class Arabs and Muslims in the Bay Area against racism, forced migration, and militarism.</p>
-              <a class="btn" href="https://www.araborganizing.org/" target="_blank" rel="noopener"><span>Learn more <span class="arr">➞</span></span></a>
-            </div>
-          </div>
-          <div class="row">
-            <h3>Work with us</h3>
-            <p>If you speak Arabic and believe in immigrant rights, there is a place for you here. We welcome law students and volunteers. Email us to get involved.<br><em><a href="mailto:info@arabcommunityservices.org">info@arabcommunityservices.org</a></em></p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="donate" aria-labelledby="h-donate">
-        <p class="eyebrow">Donate</p>
-        <h2 class="h2" id="h-donate">Fund free legal help<br class="d"> for our community.</h2>
-        <p class="intro">Every service we offer is free. Your gift<br class="d"> makes that possible.</p>
-        <div class="rows">
-          <div class="row has-btn">
-            <h3>Online</h3>
-            <div>
-              <p>Give once, or give monthly and stand with our community all year.</p>
-              <a class="btn" href="https://secure.actblue.com/donate/acslegal" target="_blank" rel="noopener"><span>Donate <span class="arr">➞</span></span></a>
-            </div>
-          </div>
-          <div class="row">
-            <h3>By mail</h3>
-            <p>To donate via check, please email us at <em><a href="mailto:info@arabcommunityservices.org">info@arabcommunityservices.org</a></em> and we will send you the mailing address and payee details.</p>
-          </div>
-        </div>
-        <p class="footnote"><span class="star" aria-hidden="true">✺</span>ACS is a fiscally-sponsored project of a <span style="white-space:nowrap">501(c)(3)</span> nonprofit organization. Your gift may be tax-deductible. We will send you a receipt with the tax details.</p>
-      </section>
-
-      <section class="section closing" id="closing" data-nav="donate" aria-label="Closing">
-        <figure class="plate"><div><img src="assets/walk.jpg" width="576" height="431" alt="A group of women and children walking together along a beach, seen from behind."></div></figure>
-        <p class="ar-line" lang="ar" dir="rtl"><span class="ln">خدماتنا مجانية وســـــــــــرية،</span><br> <span class="ln">وفريقنا يتحدث اللغة العربية.</span></p>
-        <button class="totop" type="button"><span class="arrow" aria-hidden="true">❨</span><span class="caps30">Back to top</span></button>
-        <p class="colophon"><span class="ln">© 2026 Arab Community Services</span><br class="m"><span class="ln"><span class="sep" aria-hidden="true">✺</span>Design by Khalid Khaldi</span></p>
-      </section>
-
-    </div>
-  </main>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Menu">
+  <button class="close" type="button" aria-label="Close menu"><i aria-hidden="true"></i></button>
+  <nav aria-label="Sections">
+    <a href="#services" data-target="services" data-label="Services"><span>Services</span></a>
+    <a href="#eligibility" data-target="eligibility" data-label="Eligibility"><span>Eligibility</span></a>
+    <a href="#process" data-target="process" data-label="Process"><span>Process</span></a>
+    <a href="#about" data-target="about" data-label="About"><span>About</span></a>
+    <a class="donate" href="https://secure.actblue.com/donate/acslegal" target="_blank" rel="noopener">Donate</a>
+  </nav>
+  <a class="call" href="tel:+14158617444"><span class="ar" lang="ar" dir="rtl">اتصل بنا</span><span class="num">(415) 861-7444</span></a>
 </div>
 
+<main>
+  <section class="hero" id="top" aria-label="Arab Community Services">
+    <div class="hero-inner">
+      <h1 class="wordmark"><span>Arab</span><span>Community</span><span>Services</span></h1>
+      <a class="stamp" href="tel:+14158617444" aria-label="Call us: (415) 861-7444">
+        <span class="ink"><span>
+          <span class="ar" lang="ar" dir="rtl">اتــــــــصل بنا</span>
+          <span class="num">(415) 861-7444</span>
+        </span></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section focus" id="services" aria-labelledby="h-services">
+    <p class="label">Services</p>
+    <h2 class="h2" id="h-services">Immigration.<br class="m"> <span class="nw">Social services.</span><br>Know your rights.</h2>
+    <p class="intro">We offer free, confidential legal<br class="d"> and social services in English and Arabic.</p>
+    <div class="ar-stamp" aria-hidden="true"><span lang="ar" dir="rtl">خدماتنا</span></div>
+    <div class="rows">
+      <div class="row first">
+        <h3>Immigration</h3>
+        <p>Get legal help with family petitions, asylum, and representation if you or a family member is detained by ICE or has a court date.</p>
+      </div>
+      <div class="row">
+        <h3>Social services</h3>
+        <p>Apply for public benefits such as food stamps (CalFresh), health insurance (Medi-Cal), and cash assistance (CalWORKs).</p>
+      </div>
+      <div class="row">
+        <h3>Know your rights</h3>
+        <p>Learn what to do if immigration agents come to your home, work, or community. Free trainings for families, businesses, and community groups.</p>
+      </div>
+    </div>
+    <a class="act" href="#eligibility" data-label="See if you qualify &gt;"><span class="ink" aria-hidden="true"></span><span class="fill" aria-hidden="true"></span><span class="t">See if you qualify &gt;</span></a>
+  </section>
+
+  <section class="section focus" id="eligibility" aria-labelledby="h-eligibility">
+    <p class="label">Eligibility</p>
+    <h2 class="h2" id="h-eligibility">Is this for you?</h2>
+    <p class="intro">We serve working-class Arab, Muslim, <span class="nw">North<br class="d"> African</span>, and Southwest Asian residents of the Bay.</p>
+    <div class="ar-stamp" aria-hidden="true"><span lang="ar" dir="rtl">الأهلية</span></div>
+    <div class="rows">
+      <div class="row first">
+        <h3>Requirements</h3>
+        <ul class="bullets">
+          <li>You or someone in your household is<br class="d"> a resident of the Greater SF Bay Area.</li>
+          <li>Your household income falls within<br class="d"> the low-to-moderate income range.</li>
+          <li>You or someone in your household is<br class="d"> Arab, Muslim, North African, or<br class="d"> Southwest Asian.</li>
+        </ul>
+      </div>
+      <div class="row note">
+        <p>Not sure? <a class="tel" href="tel:+14158617444">Call anyway</a>. If we can’t<br class="d"> help, we’ll connect you with<br class="d"> someone who can.</p>
+      </div>
+    </div>
+    <a class="act" href="#process" data-label="See how it works &gt;"><span class="ink" aria-hidden="true"></span><span class="fill" aria-hidden="true"></span><span class="t">See how it works &gt;</span></a>
+  </section>
+
+  <section class="section focus" id="process" aria-labelledby="h-process">
+    <p class="label">Process</p>
+    <h2 class="h2" id="h-process">What to expect</h2>
+    <p class="intro">A three-step intake.</p>
+    <div class="ar-stamp" aria-hidden="true"><span lang="ar" dir="rtl">الخطوات</span></div>
+    <div class="rows">
+      <div class="row first">
+        <h3>How it works</h3>
+        <ol class="bullets steps">
+          <li>Call us at <a class="tel" href="tel:+14158617444">(415) 861-7444</a>.</li>
+          <li>We’ll follow up to schedule a<br class="d"> consultation and assess whether<br class="d"> we’re the right team for your case.</li>
+          <li>If we take on your case, we’ll gather<br class="d"> your documents and get to work. If<br class="d"> we can’t take on your case, we’ll<br class="d"> refer you to trusted organizations<br class="d"> and attorneys.</li>
+        </ol>
+      </div>
+      <div class="row">
+        <h3>Privacy</h3>
+        <p>What you share with us about your<br class="d"> case stays strictly confidential. <strong class="promise">We<br class="d"> never share your case information<br class="d"> with immigration authorities or<br class="d"> anyone else.</strong></p>
+      </div>
+    </div>
+    <a class="act" href="tel:+14158617444" data-label="Talk to our team &gt;"><span class="ink" aria-hidden="true"></span><span class="fill" aria-hidden="true"></span><span class="t">Talk to our team &gt;</span></a>
+  </section>
+
+  <section class="section focus" id="about" aria-labelledby="h-about">
+    <p class="label">About</p>
+    <h2 class="h2" id="h-about">Who we are</h2>
+    <p class="intro">Lawyers and advocates reuniting families and<br class="d"> defending people held by ICE since 2007.</p>
+    <div class="ar-stamp" data-pin="history" data-pin-y="112" aria-hidden="true"><span lang="ar" dir="rtl">من نحن</span></div>
+    <div class="rows">
+      <div class="row first">
+        <h3>Mission</h3>
+        <p>Arab Community Services (ACS) protects Arabs and Muslims through free immigration representation, social services, and <span class="nw">know-your-rights</span> training.</p>
+      </div>
+      <div class="row">
+        <h3>Team</h3>
+        <p>We are an experienced and compassionate team, providing services in Arabic, English, and Dari. Our staff includes two immigration attorneys, one DOJ-accredited representative, three legal assistants, and one social services coordinator.</p>
+      </div>
+      <div class="row" id="history">
+        <h3>History</h3>
+        <p>Founded in 2007 during a crackdown on immigrants, we provided legal, educational, and community services to hundreds of clients each year as <i>Arab American Legal Services,</i> a program of the <i>Arab Resource and Organizing Center (AROC).</i> We are part of the <i>San Francisco Immigrant Legal &amp; Education Network</i>, a multiracial, multilingual coalition serving immigrants across the city. In 2026, we grew into our own organization.</p>
+      </div>
+      <div class="row has-more">
+        <h3>AROC</h3>
+        <p>Our sister organization, AROC, organizes working-class Arabs and Muslims in the Bay Area against racism, forced migration, and militarism.</p>
+        <a class="more" href="https://araborganizing.org" target="_blank" rel="noopener" data-label="Learn more &gt;"><span class="ink" aria-hidden="true"></span><span class="fill" aria-hidden="true"></span><span class="t">Learn more &gt;</span></a>
+      </div>
+      <div class="row">
+        <h3>Work with us</h3>
+        <p>If you speak Arabic and believe in immigrant rights, there is a place for you here. We welcome law students and volunteers. Email us to get involved.<br class="m"> <a class="mail" href="mailto:info@arabcommunityservices.org">info@arabcommunityservices.org</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section focus" id="donate" aria-labelledby="h-donate">
+    <p class="label">Donate</p>
+    <h2 class="h2" id="h-donate">Fund free legal help<br> for our community.</h2>
+    <p class="intro">Every service we offer is free. Your gift<br class="d"> makes that possible.</p>
+    <div class="ar-stamp" aria-hidden="true"><span lang="ar" dir="rtl">تبرع</span></div>
+    <div class="rows">
+      <div class="row first has-more">
+        <h3>Online</h3>
+        <p>Give once, or give monthly and stand with our community all year.</p>
+        <a class="more" href="https://secure.actblue.com/donate/acslegal" target="_blank" rel="noopener" data-label="Donate &gt;"><span class="ink" aria-hidden="true"></span><span class="fill" aria-hidden="true"></span><span class="t">Donate &gt;</span></a>
+      </div>
+      <div class="row">
+        <h3>By mail</h3>
+        <p>Please make checks payable to Center for Empowered Politics Education Fund, and mail to:<br><i>522 Valencia St.<br>San Francisco, CA 94110</i></p>
+      </div>
+    </div>
+    <p class="fine">ACS is a fiscally sponsored project of a <span class="nw">501(c)(3)</span> nonprofit organization. Your gift may be <span class="nw">tax-deductible</span>. We will send you a receipt with the tax details.</p>
+  </section>
+  <section class="closing" aria-label="Closing">
+    <div class="center">
+      <figure class="photo">
+        <img src="assets/closing.jpg" width="576" height="431" loading="lazy" alt="Women and children walking together on a beach, seen from behind.">
+        <span class="frame" aria-hidden="true"></span>
+      </figure>
+      <p class="caption c1" lang="ar" dir="rtl">خدماتنا مجانية وســـــــــــرية</p>
+      <p class="caption c2" lang="ar" dir="rtl">وفريقنا يتحدث اللغة العربية</p>
+    </div>
+    <footer class="foot">
+      <p class="copy">© <span id="yr">2026</span> Arab Community Services</p>
+      <a class="totop" href="#top"><span class="cres" aria-hidden="true">&#x2769;</span><span class="t">Back to top</span></a>
+      <address class="addr">522 Valencia St.<br>San Francisco, CA 94110</address>
+    </footer>
+  </section>
+</main>
 
 <script>
-  // Ink blur scales with the headline size (2px at 96px in the hero = 0.021)
-  const inkBlur = document.querySelector('#ink-h feGaussianBlur');
-  const sizeInk = () => { const h = document.querySelector('.h2'); if (h) inkBlur.setAttribute('stdDeviation', (0.021 * parseFloat(getComputedStyle(h).fontSize)).toFixed(2)); };
-  addEventListener('resize', sizeInk); (document.fonts ? document.fonts.ready : Promise.resolve()).then(sizeInk); sizeInk();
+  const nav = document.getElementById('nav');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Logo: set tracking so COMMUNITY measures 419 of the card's 571 design px, as in the comp
-  const fitLogo = () => {
-    const logo = document.querySelector('.logo'), wide = document.getElementById('logo-wide'), card = document.querySelector('.cover');
-    if (!logo || !wide) return;
-    logo.style.setProperty('--logo-track', '0em');
-    const fs = parseFloat(getComputedStyle(logo).fontSize);
-    const w0 = wide.getBoundingClientRect().width;
-    const target = card.getBoundingClientRect().width * 419 / 571;
-    const track = Math.max(0, (target - w0) / 8);   // 8 gaps between 9 letters
-    logo.style.setProperty('--logo-track', (track / fs).toFixed(4) + 'em');
+  // Nav stays put at all times; the veil fades in once the page scrolls
+  addEventListener('scroll', () => nav.classList.toggle('veil', scrollY > 8), { passive: true });
+
+  // Phone menu
+  const sheet = document.getElementById('sheet');
+  const btn = document.querySelector('.menu-btn');
+  const setMenu = (open) => {
+    sheet.classList.toggle('open', open); btn.setAttribute('aria-expanded', open);
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+    if (open) sheet.querySelector('.close').focus(); else btn.focus();
   };
-  addEventListener('resize', fitLogo); (document.fonts ? document.fonts.ready : Promise.resolve()).then(fitLogo); fitLogo();
+  btn.addEventListener('click', () => setMenu(true));
+  sheet.querySelector('.close').addEventListener('click', () => setMenu(false));
+  sheet.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape' && sheet.classList.contains('open')) setMenu(false); });
 
-
-
-  // Contents: mark the section on screen (works for the inner scroller on desktop, the page on phones)
-  const links = [...document.querySelectorAll('.contents a')];
-  const scroller = document.getElementById('scroller');
-  const stacked = () => getComputedStyle(scroller).overflowY === 'visible';
-  const mark = (id) => links.forEach(a => a.dataset.target === id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
-  const sections = [...document.querySelectorAll('.section')];
-  const navOf = s => (s.dataset.nav !== undefined ? s.dataset.nav : s.id);   // landing: none, closing: donate
-  const update = () => {
-    const box = stacked() ? { top: 0, height: innerHeight } : scroller.getBoundingClientRect();
-    const line = box.top + box.height * 0.3;
-    let current = navOf(sections[0]);
-    for (const s of sections) if (s.getBoundingClientRect().top <= line) current = navOf(s);
-    mark(current);
-    // scroll cue fades once the visitor starts scrolling
-    const y = stacked() ? scrollY : scroller.scrollTop;
-    cue.classList.toggle('gone', y > 40);
-  };
-  const cue = document.querySelector('.cue');
-  const smooth = () => matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
-  const goTo = (el) => {
-    if (stacked()) (el ? el.scrollIntoView({ behavior: smooth() }) : scrollTo({ top: 0, behavior: smooth() }));
-    else scroller.scrollTo({ top: el ? el.offsetTop - scroller.offsetTop : 0, behavior: smooth() });
-  };
-  cue.addEventListener('click', () => goTo(document.getElementById('services')));
-  document.querySelector('.totop').addEventListener('click', () => { goTo(null); history.replaceState(null, '', location.pathname + location.search); });
-  scroller.addEventListener('scroll', update, { passive: true });
-  addEventListener('scroll', update, { passive: true });
-  addEventListener('resize', update);
-  update();
-
-  links.forEach(a => a.addEventListener('click', (e) => {
-    const target = document.getElementById(a.dataset.target);
-    if (!target) return;
-    e.preventDefault();
-    goTo(target);
-    history.replaceState(null, '', '#' + a.dataset.target);
-    mark(a.dataset.target);
-  }));
-
-  // Cover spacing, measured on the letters themselves (not text boxes), so it matches the comp with the real fonts.
-  // Design px, measured on the 1440 x 900 comps (v4):
-  //   card top -> ARAB cap top 54; SERVICES -> Arabic name 37
-  //   Arabic name -> tagline baseline 44; tagline baseline -> box top 37
-  //   box -> "Talk to our team." 37 (minimum; extra window height goes here)
-  //   Talk -> phone 22, phone -> email 12; email -> first imprint baseline 47; imprint leading 18
-  //   last imprint baseline -> card bottom 40
-  const cvs = document.createElement('canvas').getContext('2d');
-  const probe = document.createElement('div');
-  probe.style.cssText = 'position:absolute;visibility:hidden;width:calc(1000 * var(--u));height:0';
-  document.body.appendChild(probe);
-  const baseline = (el, atEnd) => {
-    const m = document.createElement('span'); m.style.cssText = 'display:inline-block;width:0;height:0';
-    if (atEnd) el.appendChild(m); else el.prepend(m);
-    const y = m.getBoundingClientRect().bottom; m.remove(); return y;
-  };
-  // ink top of the first line and ink bottom of the last line
-  const ink = (el, topText, bottomText = topText) => {
-    const cs = getComputedStyle(el);
-    cvs.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
-    cvs.direction = el.dir === 'rtl' ? 'rtl' : 'ltr';
-    return { top: baseline(el, false) - cvs.measureText(topText).actualBoundingBoxAscent,
-             bottom: baseline(el, true) + cvs.measureText(bottomText).actualBoundingBoxDescent };
-  };
-  const q = s => document.querySelector(s);
-  const spaceCover = () => { document.documentElement.classList.add('measuring'); try { spaceCoverInner(); } finally { document.documentElement.classList.remove('measuring'); } };
-  const spaceCoverInner = () => {
-    const u = probe.getBoundingClientRect().width / 1000;
-    const cover = q('.cover'), logo = q('.logo'), arname = q('.arname'), tag = q('.tagline'),
-          box = q('.contents'), talk = q('.talk'), contact = q('.contact'), imprint = q('.imprint');
-    const [phone, email] = contact.querySelectorAll('a');
-    const desk = getComputedStyle(q('#scroller')).overflowY !== 'visible';
-    [logo, arname, tag, box, contact, email, imprint].forEach(e => e.style.marginTop = '0px');
-    talk.style.marginTop = ''; cover.style.paddingBottom = '';
-    const px = v => (v).toFixed(2) + 'px';
-    const arLines = arname.innerText.split('\n').map(t => t.trim()).filter(Boolean);
-    const arInk = () => ink(arname, arLines[0], arLines[arLines.length - 1]);
-    if (desk) logo.style.marginTop = px(54 * u - (ink(logo, 'ARAB').top - cover.getBoundingClientRect().top));
-    arname.style.marginTop = px(37 * u - (arInk().top - ink(logo, 'SERVICES').bottom));
-    tag.style.marginTop = px(44 * u - (baseline(tag, true) - arInk().bottom));
-    box.style.marginTop = px(37 * u - (box.getBoundingClientRect().top - baseline(tag, true)));
-    contact.style.marginTop = px(22 * u - (ink(phone, phone.textContent).top - ink(talk, talk.textContent.trim()).bottom));
-    email.style.marginTop = px(12 * u - (ink(email, email.textContent).top - ink(phone, phone.textContent).bottom));
-    imprint.style.marginTop = px(47 * u - (baseline(imprint, false) - ink(email, email.textContent).bottom));
-    if (desk) cover.style.paddingBottom = px(40 * u - (imprint.getBoundingClientRect().bottom - baseline(imprint, true)));
-    const talkGap = ink(talk, talk.textContent.trim()).top - box.getBoundingClientRect().bottom;
-    if (talkGap < 37 * u) talk.style.marginTop = px(parseFloat(getComputedStyle(talk).marginTop) + 37 * u - talkGap);
-    // If the cover is too short for everything (short windows), take the difference out of the box -> "call us" gap, down to 24
-    if (desk) {
-      const over = imprint.getBoundingClientRect().bottom - (cover.getBoundingClientRect().bottom - parseFloat(getComputedStyle(cover).paddingBottom) + (imprint.getBoundingClientRect().bottom - baseline(imprint, true)));
-      const gapNow = ink(talk, talk.textContent.trim()).top - box.getBoundingClientRect().bottom;
-      if (over > 0.5) talk.style.marginTop = px(parseFloat(getComputedStyle(talk).marginTop) - Math.min(over, Math.max(0, gapNow - 24 * u)));
+  // Current section in bold (ready for the sections to come)
+  const links = [...document.querySelectorAll('[data-target]')];
+  const markCurrent = () => {
+    let current = null;
+    for (const id of ['services','eligibility','process','about','donate']) {   // past About, nothing is bold
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= innerHeight * 0.4) current = id;
     }
-
-    // Landing: print -> Arabic caption 30 (letters)
-    const cap = q('.landing .caption'), pr = q('.print');
-    cap.style.marginTop = '0px';
-    cap.style.marginTop = px(30 * u - (ink(cap, cap.textContent.trim()).top - pr.getBoundingClientRect().bottom));
-    // Closing card: book plate -> Arabic line 30 (letters)
-    const ar = q('.ar-line'), plate = q('.plate');
-    ar.style.marginTop = '0px';
-    ar.style.marginTop = px(30 * u - (ink(ar, ar.textContent.trim()).top - plate.getBoundingClientRect().bottom));
+    links.forEach(a => a.dataset.target === current ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
   };
+  addEventListener('scroll', markCurrent, { passive: true }); markCurrent();
+  document.getElementById('yr').textContent = new Date().getFullYear();
 
-  // Right card: where the baseline sits inside a line depends on the font. Measure it once for Anziano
-  // Regular and Bold so the CSS gaps land baseline-to-baseline as in the comps.
+  // Baseline position of Anziano Regular/Bold, so section gaps land baseline-to-baseline as in the comps
   const measureK = (w) => {
     const d = document.createElement('div');
-    d.style.cssText = `position:absolute;left:-9999px;top:0;visibility:hidden;font-family:${getComputedStyle(document.body).fontFamily};font-weight:${w};font-size:1000px;line-height:1000px;letter-spacing:0`;
+    d.style.cssText = `position:absolute;left:-9999px;top:0;visibility:hidden;font-family:${getComputedStyle(document.body).fontFamily};font-weight:${w};font-size:1000px;line-height:1000px`;
     d.textContent = 'x';
     const m = document.createElement('span'); m.style.cssText = 'display:inline-block;width:0;height:0';
     d.appendChild(m); document.body.appendChild(d);
     const b = m.getBoundingClientRect().bottom - d.getBoundingClientRect().top; d.remove();
     return ((b - 500) / 1000).toFixed(4);
   };
-  const setK = () => {
-    document.documentElement.style.setProperty('--kr', measureK(400));
-    document.documentElement.style.setProperty('--kb', measureK(700));
+  const setK = () => { document.documentElement.style.setProperty('--kr', measureK(400)); document.documentElement.style.setProperty('--kb', measureK(700)); };
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(setK); setK();
+
+  // Arabic stamps pinned to a row (desktop): centre sits data-pin-y below that row's top, as in the comp
+  const pinStamps = () => document.querySelectorAll('.ar-stamp[data-pin]').forEach(st => {
+    if (innerWidth <= 900) { st.style.top = ''; return; }
+    const row = document.getElementById(st.dataset.pin);
+    const u = st.offsetWidth / parseFloat(getComputedStyle(st).getPropertyValue('--sw'));
+    st.style.top = (row.offsetTop + (+st.dataset.pinY) * u - st.offsetHeight / 2) + 'px';
+  });
+  addEventListener('resize', pinStamps); (document.fonts ? document.fonts.ready : Promise.resolve()).then(pinStamps); pinStamps();
+
+  // Reading focus: a row brightens when its top reaches the reading line (40% down the window) and stays bright
+  // (bulleted rows brighten one bullet at a time; at the very bottom of the page, anything still dim brightens)
+  const rows = [...document.querySelectorAll('.focus .row, .focus .bullets li')];
+  const readLine = () => {
+    const line = innerHeight * 0.4;
+    const atEnd = scrollY + innerHeight >= document.documentElement.scrollHeight - 4;
+    rows.forEach(r => { if (atEnd || r.getBoundingClientRect().top <= line) r.classList.add('read'); });
   };
 
-  // Keep the last two words of each paragraph together (all screens)
-  document.querySelectorAll('.pages p:not([lang="ar"]):not(.colophon), .pages li, .pages .h2').forEach(el => {
-    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-    let last = null;
-    while (walker.nextNode()) if (walker.currentNode.textContent.trim()) last = walker.currentNode;
-    if (!last) return;
-    const t = last.textContent, m = t.match(/^([\s\S]*\s)(\S+\s+\S+\s*)$/);
-    if (!m) return;   // last text run is a single word (e.g. a link): leave it
-    const keep = document.createElement('span'); keep.className = 'keep'; keep.textContent = m[2];
-    last.textContent = m[1]; last.after(keep);
-  });
+  // Where the ✺ ink sits above the baseline (fraction of its size), so it centres on the lowercase letters as in the comp
+  const measureBullet = () => {
+    try {
+      const c = document.createElement('canvas').getContext('2d');
+      c.font = '500 1000px "itc-zapf-dingbats-std", "Zapf Dingbats", sans-serif';
+      for (const [ch, v] of [['\u273A', '--bc'], ['\u278A', '--bn']]) {
+        const m = c.measureText(ch);
+        if (m.actualBoundingBoxAscent) document.documentElement.style.setProperty(v, ((m.actualBoundingBoxAscent - m.actualBoundingBoxDescent) / 2000).toFixed(4));
+      }
+    } catch (e) {}
+  };
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(measureBullet); measureBullet();
+  addEventListener('scroll', readLine, { passive: true }); addEventListener('resize', readLine); readLine();
 
-
-  // =================== MOTION ===================
-  // Off with ?nomotion, in the comp check, and when the device asks for reduced motion.
-  const params = new URLSearchParams(location.search);
-  const motionOn = !params.has('nomotion') && !params.has('check') && !matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (motionOn) {
-    document.documentElement.classList.add('motion');
-    // Motion 1: reveal right-card blocks as they scroll into view, once; blocks arriving together are staggered
-    const blocks = document.querySelectorAll('.section:not(.landing) > :is(.eyebrow, .h2, .intro, .footnote, .plate, .ar-line, .totop, .colophon), .rows > .row');
-    blocks.forEach(el => el.classList.add('rv'));
-    const io = new IntersectionObserver(entries => {
-      entries.filter(e => e.isIntersecting).forEach((e, i) => {
-        e.target.style.setProperty('--d', Math.min(i, 5) * 0.07 + 's');
-        e.target.classList.add('in'); io.unobserve(e.target);
-      });
-    }, { rootMargin: '0px 0px -8% 0px' });
-    blocks.forEach(el => io.observe(el));
-  }
-  // ================= END MOTION =================
-
-  const layout = () => { setK(); spaceCover(); sizeInk(); update(); };
-  q('.plate img').addEventListener('load', spaceCover);
-  addEventListener('resize', spaceCover);
-  (document.fonts ? document.fonts.ready : Promise.resolve()).then(layout); layout();
-
-  // Comp check: add ?check to the address. Use a 1440 x 900 window.
-  if (new URLSearchParams(location.search).has('check')) {
-    const comps = { landing: 'check/landing.jpg', services: 'check/services.jpg', eligibility: 'check/eligibility.jpg',
-                    process: 'check/process.jpg', about: 'check/about.jpg', 'about-continued': 'check/about-continued.jpg',
-                    donate: 'check/donate.jpg', closing: 'check/closing.jpg' };
-    const targets = { landing: 'top', 'about-continued': 'about-aroc' };
-    const img = document.createElement('img');
-    img.style.cssText = 'position:fixed;left:0;top:0;width:calc(1440 * var(--u));height:calc(900 * var(--u));opacity:.5;pointer-events:none;z-index:50';
-    const panel = document.createElement('div');
-    panel.style.cssText = 'position:fixed;right:12px;bottom:12px;z-index:60;background:#fff;color:#111;font:13px/1.4 -apple-system,system-ui,sans-serif;padding:10px 12px;border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,.35);display:grid;gap:8px;letter-spacing:0';
-    panel.innerHTML = '<strong>Comp check</strong>' +
-      Object.keys(comps).map(k => `<label><input type="radio" name="comp" value="${k}"> ${(k[0].toUpperCase() + k.slice(1)).replace('-', ', ')}</label>`).join('') +
-      '<label>Opacity <input type="range" min="0" max="1" step="0.05" value="0.5"></label>' +
-      `<span id="winsize"></span>`;
-    document.body.append(img, panel);
-    const show = (k) => {
-      img.src = comps[k];
-      const t = document.getElementById(targets[k] || k);
-      scroller.style.scrollBehavior = 'auto';
-      if (k === 'about-continued') {   // the comp starts with the AROC row's first baseline 109 below the card top
-        const u = probe.getBoundingClientRect().width / 1000;
-        scroller.scrollTop = 0;
-        const p0 = t.querySelector('p'), top0 = scroller.getBoundingClientRect().top;
-        scroller.scrollTop = baseline(p0, false) - top0 - 109 * u;
-      } else scroller.scrollTop = t.offsetTop - scroller.offsetTop;
-      scroller.style.scrollBehavior = '';
-      panel.querySelector(`input[value="${k}"]`).checked = true;
-    };
-    panel.addEventListener('change', e => {
-      if (e.target.name === 'comp') show(e.target.value);
-      if (e.target.type === 'range') img.style.opacity = e.target.value;
-    });
-    panel.querySelector('input[type=range]').addEventListener('input', e => img.style.opacity = e.target.value);
-    const ws = () => panel.querySelector('#winsize').textContent = `Window ${innerWidth} × ${innerHeight}` + (innerWidth === 1440 && innerHeight === 900 ? ' ✓' : ' (set to 1440 × 900)');
-    addEventListener('resize', ws); ws();
-    show('landing');
-  }
 </script>
 </body>
 </html>
