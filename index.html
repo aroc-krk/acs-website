@@ -28,6 +28,16 @@
     background: var(--page) url("assets/paper.webp") 0 0 / 603px 603px repeat;
     font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1;
     -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%;
+    position: relative; isolation: isolate;
+  }
+  /* Tatreez: a continuous column of touching cypresses down the left edge of the whole page, worn like the stamps.
+     15 x 26 stitches per tree; 39 x 67.6 on the 1440 comp, scaling with the page. */
+  body::before {
+    content: ""; position: absolute; top: 0; height: var(--colH, 100%); z-index: -1; pointer-events: none;   /* ends with Donate */
+    left: calc(16 * var(--u)); width: calc(39 * var(--u));
+    background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 15 26%22 width=%22150%22 height=%22260%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%223%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 0 / 100% calc(67.6 * var(--u)) repeat-y;
+    filter: url(#ink-stamp);
+    background-position-y: 100%;   /* anchored at the bottom so the last tree ends exactly on the end line */
   }
   a { color: inherit; text-decoration: none; }
   a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; border-radius: 2px; }
@@ -62,16 +72,19 @@
   .nav-row .link::after { content: attr(data-label); font-weight: 700; opacity: 0; }
   .nav-row .link[aria-current="true"] > span { opacity: 0; }
   .nav-row .link[aria-current="true"]::after { opacity: 1; }
-  .nav-row a:not(.donate):hover > span, .nav-row a:not(.donate):hover::after { text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+  /* hover: a 1px line draws in under the link from left to right (0.5s) and retracts the same way */
+  .nav-row .link { background: linear-gradient(currentColor, currentColor) 0 calc(100% - 2px) / 0 1px no-repeat;
+                   transition: background-size .5s cubic-bezier(.4,.1,.2,1); }
+  .nav-row .link:is(:hover, :focus-visible) { background-size: 100% 1px; }
   .donate {
-    background: var(--ink); color: #FAF6EB; border-radius: 4px;
+    background: var(--green); color: #FAF6EB; border-radius: 4px; filter: url(#ink-half);
     padding: calc(10 * var(--u)) calc(10 * var(--u)) !important;
   }
-  /* Donate: on hover presses 2% (stays sumac), and a paper-coloured line fades in 3px inside its edge (an echo of the stamps' double rule) */
+  /* Donate: stamp green with half-strength wear; on hover presses 2%, and a paper-coloured line fades in 3px inside its edge (an echo of the stamps' double rule) */
   .donate { transition: transform .5s cubic-bezier(.3,.7,.4,1.15), background-color .45s ease, box-shadow .45s ease;
-            box-shadow: inset 0 0 0 3px rgba(124, 30, 53, 0), inset 0 0 0 4px rgba(250, 246, 235, 0); -webkit-tap-highlight-color: transparent; }
+            box-shadow: inset 0 0 0 3px rgba(63, 77, 39, 0), inset 0 0 0 4px rgba(250, 246, 235, 0); -webkit-tap-highlight-color: transparent; }
   .donate:is(:hover, :focus-visible, :active) { transform: scale(.98);
-            box-shadow: inset 0 0 0 3px var(--ink), inset 0 0 0 4px #FAF6EB; }
+            box-shadow: inset 0 0 0 3px var(--green), inset 0 0 0 4px #FAF6EB; }
   .menu-btn { display: none; }
 
   /* =============== HERO ===============
@@ -116,7 +129,7 @@
      last line→green stamp 32. Label column 296. --kr/--kb (where the baseline sits in
      a line for Anziano Regular/Bold) are measured in the browser by the script so the gaps land exactly. */
   :root { --kr: 0.33; --kb: 0.33; --gap: calc(160 * var(--u)); }
-  .section { position: relative; padding: var(--gap) calc(72 * var(--u)) 0; }
+  .section { position: relative; padding: var(--gap) calc(72 * var(--u)) 0 calc(104 * var(--u)); }   /* left 104: clears the cypress column */
   .section:last-of-type { padding-bottom: var(--gap); }
   .label  { font-size: calc(28 * var(--u)); line-height: calc(18 * var(--u)); letter-spacing: .2em;
             font-variant-caps: all-small-caps; text-transform: lowercase; }
@@ -152,18 +165,28 @@
   /* Arabic section stamp: sumac, double rule, +6°, Moshref 144 */
   .ar-stamp {
     --sw: 416; --sh: 230; --sx: 1162.5; --sy: 446.75;   /* size, and centre in comp coordinates (label cap top = 73) */
-    position: absolute; width: calc(var(--sw) * var(--u)); height: calc(var(--sh) * var(--u));
-    left: calc((var(--sx) - var(--sw) / 2) * var(--u)); top: calc(var(--gap) + (var(--sy) - 73 - var(--sh) / 2) * var(--u));
-    transform: rotate(6deg); color: var(--ink); filter: url(#ink-stamp);
+    --W: calc(var(--sw) * .56 * var(--u));                /* the whole framed stamp: 56% of the original stamp */
+    --B: calc(var(--W) * 18.75 / var(--sw));              /* chicken-feet band: 5 stitches deep (15 on the comp) */
+    position: absolute; width: var(--W); height: calc(var(--W) * var(--sh) / var(--sw));
+    left: calc(var(--sx) * var(--u) - var(--W) / 2); top: calc(var(--gap) + (var(--sy) - 73) * var(--u) - var(--W) * var(--sh) / var(--sw) / 2);
+    color: var(--ink); filter: url(#ink-stamp); transform: rotate(2deg);   /* +2°, opposite the green stamps' −2° */
     display: grid; place-items: center;
   }
-  .ar-stamp::before, .ar-stamp::after { content: ""; position: absolute; }
-  .ar-stamp::before { inset: 0; border: max(2px, calc(3 * var(--u))) solid currentColor; }
-  .ar-stamp::after  { inset: calc(7 * var(--u)); border: 1px solid currentColor; }
+  /* frame: top/bottom bands, left/right bands, and the four corner blocks where the base lines meet (feet face out) */
+  .ar-stamp::before, .ar-stamp::after, .ar-stamp .cn { content: ""; position: absolute; pointer-events: none; }
+  .ar-stamp::before { top: 0; bottom: 0; left: var(--B); right: var(--B);
+    background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 5%22 width=%2240%22 height=%2250%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 0 / calc(var(--B) * .8) var(--B), url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 5%22 width=%2240%22 height=%2250%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%220%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 100% / calc(var(--B) * .8) var(--B);
+    background-repeat: round no-repeat; }
+  .ar-stamp::after { left: 0; right: 0; top: var(--B); bottom: var(--B);
+    background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 5 4%22 width=%2250%22 height=%2240%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 0 / var(--B) calc(var(--B) * .8), url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 5 4%22 width=%2250%22 height=%2240%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 100% 0 / var(--B) calc(var(--B) * .8);
+    background-repeat: no-repeat round; }
+  .ar-stamp .cn { inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 5 5%22 width=%2250%22 height=%2250%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 0 / var(--B) var(--B) no-repeat, url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 5 5%22 width=%2250%22 height=%2250%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 100% 0 / var(--B) var(--B) no-repeat,
+                url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 5 5%22 width=%2250%22 height=%2250%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 100% 100% / var(--B) var(--B) no-repeat, url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 5 5%22 width=%2250%22 height=%2250%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 100% / var(--B) var(--B) no-repeat; }
   #process .ar-stamp { --sw: 452; --sh: 236; --sx: 1145.5; --sy: 492; }
   #about .ar-stamp   { --sw: 456; --sh: 236; --sx: 1168.5; --sy: 699; }   /* comp position, moved 24 right to clear the text */
-  .ar-stamp span { font-family: var(--arabic); font-size: calc(144 * var(--u)); line-height: 1; padding-bottom: calc(10 * var(--u)); }
-  #donate .ar-stamp span { padding-bottom: calc(48 * var(--u)); }   /* lift تبرع so the ع's tail clears the inner rule */
+  .ar-stamp span { font-family: var(--arabic); font-size: calc(var(--W) * 112.5 / var(--sw)); line-height: 1; padding-bottom: calc(var(--W) * 7.5 / var(--sw)); }
+  #donate .ar-stamp span { padding-bottom: calc(var(--W) * 37.5 / var(--sw)); }   /* lift تبرع so the ع's tail clears the frame */
 
   /* Reading focus: rows below the reading line wait at 75%; once read they stay full. */
   .focus .row h3, .focus .row p { transition: opacity .4s ease; }
@@ -256,7 +279,7 @@
     padding: calc(64 * var(--u)) calc(72 * var(--u));
   }
   .closing .center { grid-row: 2; }
-  .closing .foot { grid-row: 3; align-self: end; }
+  .closing .foot { grid-row: 3; align-self: end; padding-left: calc(32 * var(--u)); }
   .closing .center { display: grid; justify-items: center; align-content: center; }
   /* Photo frame: outer 1px, 4 gap, inner 3px, 8 to the photo; worn like the stamps */
   .photo { position: relative; margin: 0; width: calc(525 * var(--u) + 32 * var(--u)); padding: calc(16 * var(--u)); }
@@ -283,25 +306,32 @@
   .totop .cres { font-family: "itc-zapf-dingbats-std", "Zapf Dingbats", sans-serif; font-weight: 500; letter-spacing: 0;
                  font-variant-caps: normal; transform: rotate(90deg); transition: transform .2s ease; }
   .totop:hover .cres { transform: rotate(90deg) translateX(-3px); }
-  .totop:hover .t { text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+  .totop .t { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; padding-bottom: .15em;
+              transition: background-size 1s cubic-bezier(.4,.1,.2,1); }   /* underline draws in left to right, twice as slow as the nav */
+  .totop:is(:hover, :focus-visible) .t { background-size: 100% 1px; }
 
   /* ---------- Phones: keep the composition, change only what can't fit ---------- */
   /* Single column up to 900px wide. The column grows with the window up to 560px, then stops and stays centred,
      so in-between widths (small tablets, narrow windows) don't stretch. Everything in the hero scales off the column. */
   @media (max-width: 900px) {
-    :root { --col: min(calc(100vw - 48px), 560px); --u: calc(var(--col) / 640); --side: max(24px, calc((100vw - 560px) / 2)); }
+    /* left margin is 48 (clears the cypress column), right 24; above 632px wide the 560 column centres */
+    :root { --col: min(calc(100vw - 72px), 560px); --u: calc(var(--col) / 640);
+            --padL: max(48px, calc((100vw - var(--col)) / 2)); --padR: calc(100vw - var(--col) - var(--padL)); }
+    body::before { left: 8px; width: 19.2px; background-size: 100% 33.28px; }   /* column 20% smaller on phones */
+    :root { --sideM: max(24px, calc((100vw - 560px) / 2)); }   /* sections: the column is hero-only on phones */
     .nav { padding-top: 18px; }
     br.d { display: none; } br.m { display: inline; }
-    .nav-row { width: var(--col); font-size: 20px; }
+    .nav-row { width: calc(100vw - 2 * var(--sideM)); font-size: 20px; }
     .nav-row .link { display: none; }
     .menu-btn {
       display: inline-flex; align-items: center; gap: 10px;
       background: none; border: 0; color: inherit; font: inherit; font-size: 20px; cursor: pointer; padding: 0; min-width: 44px; min-height: 44px;
+      margin-left: 24px;   /* clears the cypress column; lines up with the wordmark */
     }
     .menu-btn i { display: grid; gap: 5px; }
     .menu-btn i::before, .menu-btn i::after { content: ""; display: block; width: 20px; height: 2px; background: currentColor; }
     .donate { padding: 8px 10px !important; }
-    .hero { padding: 96px 0 72px; align-items: center; }
+    .hero { padding: 96px var(--padR) 72px var(--padL); align-items: center; justify-content: flex-start; }
     .hero-inner { display: block; padding-bottom: calc(180 * var(--u)); }
     .wordmark { font-size: calc(84 * var(--u)); line-height: calc(77.5 * var(--u)); }
     /* Hero stamp: locked to the wordmark (same unit), so it swallows the last two letters of SERVICES at every width */
@@ -318,7 +348,7 @@
 
     /* sections on phones: fixed sizes, label above body, Arabic stamp under the intro.
        Baseline-to-baseline gaps are multiples of 8 (label→headline 56, headline→intro 48, line→rule 32, rule→line 40, line→stamp 40) */
-    .section { padding: 96px var(--side) 0; }
+    .section { padding: 96px var(--sideM) 0; }
     .section:last-of-type { padding-bottom: 96px; }
     .label { font-size: 18px; line-height: 14px; }
     .h2 { font-size: 36px; line-height: 38px; margin-top: 24px; filter: url(#ink-h-sm); }
@@ -331,12 +361,11 @@
     .act { height: 52px; padding: 0 20px; font-size: 21px; margin: 33px 0 0; }
     .act .ink::after { inset: 6px; }
     /* Arabic stamps: centred under the intro, 70% of the column (max 300px), text and box scale together */
-    .ar-stamp { --w: min(calc(var(--col) * .7), 300px);
-      position: relative; left: auto !important; top: auto !important; width: var(--w); height: calc(var(--w) * var(--sh) / var(--sw));
+    .ar-stamp { --W: min(var(--col), clamp(184px, calc(var(--col) * .4704), 201.6px));   /* phones: 184–202px, never wider than the column */
+      position: relative; left: auto !important; top: auto !important; width: var(--W); height: calc(var(--W) * var(--sh) / var(--sw));
       margin: 40px auto 0; display: grid; }
-    .ar-stamp span { font-size: calc(var(--w) * 144 / var(--sw)); padding-bottom: calc(var(--w) * 10 / var(--sw)); }
-    #donate .ar-stamp span { padding-bottom: calc(var(--w) * 48 / var(--sw)); }
-    .closing { padding: 80px var(--side) 48px; }
+    .closing { padding: 80px var(--sideM) 48px; }
+    .closing .foot { padding-left: 0; }
     .photo { width: 100%; padding: 12px; }
     .photo .frame::after { inset: 5px; }
     .closing .center { flex-direction: column; gap: 0; }
@@ -347,7 +376,6 @@
     .foot .totop { order: -1; font-size: 22px; gap: 12px; }
     .foot .addr { justify-self: center; text-align: center; order: 0; }
     .foot .copy { order: 1; }
-    .ar-stamp::after { inset: 6px; }
     .bullets { font-size: 19px; line-height: 26px; padding-left: 32px; }
     .bullets li + li { margin-top: 16px; }
     .bullets li::before { font-size: 19px; width: 32px; margin-left: -32px; padding-right: 12px; top: calc(var(--bc) * 19px - 2.5px); }
@@ -379,11 +407,19 @@
   .sheet nav { margin-top: 64px; display: grid; gap: 18px; }
   .sheet nav a { justify-self: start; font-size: 42px; line-height: 1.1; letter-spacing: .1em; font-variant-caps: all-small-caps; text-transform: lowercase; }
   .sheet nav a[aria-current="true"] { font-weight: 700; }
+  /* menu links: underline draws in left to right (1s) on hover, keyboard focus or tap */
+  .sheet nav a:not(.donate) { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+                              transition: background-size 1s cubic-bezier(.4,.1,.2,1); }
+  .sheet nav a:not(.donate):is(:hover, :focus-visible, :active) { background-size: 100% 1px; }
   .sheet .donate { letter-spacing: 0; font-variant-caps: normal; text-transform: none;   /* matches the Donate button in the nav bar */
                    justify-self: start; font-size: 30px; padding: 10px 14px !important; margin-top: calc(5px + 42px * var(--kr)); }
-  .sheet .call { margin-top: auto; display: grid; gap: 4px; }
-  .sheet .call .ar { font-family: var(--arabic); font-size: 34px; justify-self: start; }
-  .sheet .call .num { font-size: 22px; }
+  .sheet .call { margin-top: auto; display: grid; gap: 0; }   /* baselines: Arabic → number 40, number → address 32 (set by script) */
+  .sheet .call .ar { font-family: var(--arabic); font-size: 37px; justify-self: start; }
+  .sheet .call .num { font-size: 24px; font-weight: 700; }
+  /* address under the phone number: 16 small caps, tracking 100, old-style numerals; shrinks only if the second line wouldn't fit */
+  .sheet .addr { margin-top: 0; font-style: normal; font-size: min(16px, calc((100vw - 48px) / var(--addrK, 15))); line-height: 1.3;
+                 letter-spacing: .1em; font-variant-caps: all-small-caps; text-transform: lowercase;
+                 font-variant-numeric: oldstyle-nums; font-feature-settings: "onum" 1; }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -493,6 +529,7 @@
     <a class="donate" href="https://secure.actblue.com/donate/acslegal" target="_blank" rel="noopener">Donate</a>
   </nav>
   <a class="call" href="tel:+14158617444"><span class="ar" lang="ar" dir="rtl">اتصل بنا</span><span class="num">(415) 861-7444</span></a>
+  <address class="addr">522 Valencia St.<br><span class="l2">San Francisco, CA 94110</span></address>
 </div>
 
 <main>
@@ -512,7 +549,7 @@
     <p class="label">Services</p>
     <h2 class="h2" id="h-services">Immigration.<br class="m"> <span class="nw">Social services.</span><br>Know your rights.</h2>
     <p class="intro">We offer free, confidential legal<br class="d"> and social services in English and Arabic.</p>
-    <div class="ar-stamp" aria-hidden="true"><span lang="ar" dir="rtl">خدماتنا</span></div>
+    <div class="ar-stamp" aria-hidden="true"><i class="cn"></i><span lang="ar" dir="rtl">خدماتنا</span></div>
     <div class="rows">
       <div class="row first">
         <h3>Immigration</h3>
@@ -534,7 +571,7 @@
     <p class="label">Eligibility</p>
     <h2 class="h2" id="h-eligibility">Is this for you?</h2>
     <p class="intro">We serve working-class Arab, Muslim, <span class="nw">North<br class="d"> African</span>, and Southwest Asian residents of the Bay.</p>
-    <div class="ar-stamp" aria-hidden="true"><span lang="ar" dir="rtl">الأهلية</span></div>
+    <div class="ar-stamp" aria-hidden="true"><i class="cn"></i><span lang="ar" dir="rtl">الأهلية</span></div>
     <div class="rows">
       <div class="row first">
         <h3>Requirements</h3>
@@ -555,7 +592,7 @@
     <p class="label">Process</p>
     <h2 class="h2" id="h-process">What to expect</h2>
     <p class="intro">A three-step intake.</p>
-    <div class="ar-stamp" aria-hidden="true"><span lang="ar" dir="rtl">الخطوات</span></div>
+    <div class="ar-stamp" aria-hidden="true"><i class="cn"></i><span lang="ar" dir="rtl">الخطوات</span></div>
     <div class="rows">
       <div class="row first">
         <h3>How it works</h3>
@@ -577,7 +614,7 @@
     <p class="label">About</p>
     <h2 class="h2" id="h-about">Who we are</h2>
     <p class="intro">Lawyers and advocates reuniting families and<br class="d"> defending people held by ICE since 2007.</p>
-    <div class="ar-stamp" data-pin="history" data-pin-y="112" aria-hidden="true"><span lang="ar" dir="rtl">من نحن</span></div>
+    <div class="ar-stamp" aria-hidden="true"><i class="cn"></i><span lang="ar" dir="rtl">من نحن</span></div>
     <div class="rows">
       <div class="row first">
         <h3>Mission</h3>
@@ -607,7 +644,7 @@
     <p class="label">Donate</p>
     <h2 class="h2" id="h-donate">Fund free legal help<br> for our community.</h2>
     <p class="intro">Every service we offer is free. Your gift<br class="d"> makes that possible.</p>
-    <div class="ar-stamp" aria-hidden="true"><span lang="ar" dir="rtl">تبرع</span></div>
+    <div class="ar-stamp" aria-hidden="true"><i class="cn"></i><span lang="ar" dir="rtl">تبرع</span></div>
     <div class="rows">
       <div class="row first has-more">
         <h3>Online</h3>
@@ -684,12 +721,40 @@
   const setK = () => { document.documentElement.style.setProperty('--kr', measureK(400)); document.documentElement.style.setProperty('--kb', measureK(700)); };
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(setK); setK();
 
-  // Arabic stamps pinned to a row (desktop): centre sits data-pin-y below that row's top, as in the comp
-  const pinStamps = () => document.querySelectorAll('.ar-stamp[data-pin]').forEach(st => {
+  // Address in the phone menu: how wide the longer line is per px of font size
+  // Phone menu contact block: baseline-to-baseline spacing, whatever font loads
+  const spaceContact = () => {
+    const ar = document.querySelector('.sheet .call .ar'), num = document.querySelector('.sheet .call .num'), ad = document.querySelector('.sheet .addr');
+    if (!ar || !ad) return;
+    const mark = (el, end) => { const m = document.createElement('span'); m.style.cssText = 'display:inline-block;width:0;height:0';
+      end ? el.append(m) : el.prepend(m); const y = m.getBoundingClientRect().bottom; m.remove(); return y; };
+    num.style.marginTop = ad.style.marginTop = '0px';
+    num.style.marginTop = (40 - (mark(num) - mark(ar, true))) + 'px';
+    ad.style.marginTop  = (32 - (mark(ad) - mark(num, true))) + 'px';
+  };
+  addEventListener('resize', spaceContact); (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { measureAddr(); spaceContact(); }); spaceContact();
+
+  const measureAddr = () => { const l = document.querySelector('.sheet .addr .l2'); if (!l) return;
+    const d = l.cloneNode(true); const st = getComputedStyle(l);
+    d.style.cssText = `position:absolute;visibility:hidden;white-space:nowrap;font:${st.font};font-size:100px;letter-spacing:.1em;font-variant-caps:all-small-caps;text-transform:lowercase`;
+    document.body.appendChild(d); document.documentElement.style.setProperty('--addrK', (d.getBoundingClientRect().width / 100 + .1).toFixed(3)); d.remove(); };
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(measureAddr); measureAddr();
+
+  // Cypress column stops at the end of Donate, on a whole tree
+  const sizeColumn = () => {
+    const bs = getComputedStyle(document.body, '::before').backgroundSize.split(' ');
+    const phone = innerWidth <= 900;
+    const el = phone ? document.querySelector('.hero') : document.querySelector('#donate .fine');
+    const end = el.getBoundingClientRect().bottom + scrollY;      // desktop: last line of the footnote; phones: end of the hero
+    document.body.style.setProperty('--colH', end + 'px');
+  };
+  addEventListener('resize', sizeColumn); (document.fonts ? document.fonts.ready : Promise.resolve()).then(sizeColumn); sizeColumn();
+
+  // Arabic stamps (desktop): beside the header, centred between the top of the headline and the bottom of the intro
+  const pinStamps = () => document.querySelectorAll('.section .ar-stamp').forEach(st => {
     if (innerWidth <= 900) { st.style.top = ''; return; }
-    const row = document.getElementById(st.dataset.pin);
-    const u = st.offsetWidth / parseFloat(getComputedStyle(st).getPropertyValue('--sw'));
-    st.style.top = (row.offsetTop + (+st.dataset.pinY) * u - st.offsetHeight / 2) + 'px';
+    const sec = st.parentElement, h = sec.querySelector('.h2'), i = sec.querySelector('.intro');
+    st.style.top = ((h.offsetTop + i.offsetTop + i.offsetHeight) / 2 - st.offsetHeight / 2) + 'px';
   });
   addEventListener('resize', pinStamps); (document.fonts ? document.fonts.ready : Promise.resolve()).then(pinStamps); pinStamps();
 
