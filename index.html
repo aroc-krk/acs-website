@@ -51,7 +51,8 @@
   .ledger, .chain, .bird { position: absolute; z-index: -1; pointer-events: none; filter: url(#ink-stamp); }
   .ledger { width: 4px; border-left: 1px solid var(--ink); border-right: 1px solid var(--ink); }
   .rule-h { height: 4px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
-  .ledger, .rule-h, .col-r { position: absolute; z-index: -1; pointer-events: none; filter: url(#ink-stamp); }
+  .ledger-r { width: 4px; border-left: 1px solid var(--ink); border-right: 1px solid var(--ink); }
+  .ledger, .ledger-r, .rule-h, .col-r { position: absolute; z-index: -1; pointer-events: none; filter: url(#ink-stamp); }
   .col-r { background: var(--tree) 0 100% / 100% var(--th) repeat-y; }
   .chain { background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 26 15%22 width=%22260%22 height=%22150%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Cg transform=%22translate%280 15%29 rotate%28-90%29%22%3E%3Crect x=%223%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3C/g%3E%3C/svg%3E") 0 0 / var(--tl) 100% repeat-x; }
   .bird { background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 21 17%22 width=%22210%22 height=%22170%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%2218%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2219%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2219%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2219%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2219%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2219%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
@@ -310,7 +311,7 @@
      Equal rows above and below the photo block keep it at the window's exact middle. */
   .closing {
     display: grid; grid-template-rows: auto auto;
-    padding: calc(240 * var(--u)) calc(72 * var(--u)) calc(64 * var(--u));
+    padding: calc(240 * var(--u)) calc(72 * var(--u)) calc((40 + 93.5 + 40) * var(--u));   /* room for the rule and bird under the footer */
   }
   .closing .center { grid-row: 1; }
   .closing .foot { grid-row: 2; align-self: end; padding-left: calc(32 * var(--u)); margin-top: calc(160 * var(--u)); }
@@ -398,7 +399,7 @@
     .ar-stamp {   /* phones: size set by the script */
       position: relative; left: auto !important; top: auto !important; width: var(--W); height: calc(var(--W) * var(--sh) / var(--sw));
       margin: 40px auto 0; display: grid; }
-    .closing { padding: 144px var(--sideM) 48px; }
+    .closing { padding: 144px var(--sideM) calc(32px + 46px + 32px) var(--sideL); }
     .closing .foot { padding-left: 0; margin-top: 120px; }
     .tr { position: relative; right: auto; width: auto; margin-top: 64px; }
     .tr-body { font-size: 23px; line-height: 28px; padding: 0 22px 36.6px; --pg: 14px; }
@@ -408,11 +409,11 @@
     .photo { width: 100%; padding: 12px; }
     .photo .frame::after { inset: 5px; }
     .closing .center { flex-direction: column; gap: 0; }
-    .caption { font-size: 24px; line-height: 40px; white-space: normal; text-align: center; }
+    .caption { font-size: 30px; line-height: 50px; white-space: normal; text-align: center; }
     .caption.c1 { order: 0; margin-top: 24px; }
     .caption.c2 { order: 1; }
-    .foot { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 24px; font-size: 14px; line-height: 20px; margin-top: 72px; }
-    .foot .totop { order: -1; font-size: 22px; gap: 12px; }
+    .foot { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 24px; font-size: 18px; line-height: 25px; margin-top: 72px; }
+    .foot .totop { order: -1; font-size: 28px; gap: 15px; }
     .foot .addr { justify-self: center; text-align: center; order: 0; }
     .foot .copy { order: 1; }
     .bullets { font-size: 19px; line-height: 26px; padding-left: 32px; }
@@ -443,20 +444,26 @@
   .sheet .close i::before, .sheet .close i::after { content: ""; position: absolute; left: 0; top: 9px; width: 20px; height: 2px; background: currentColor; }
   .sheet .close i::before { transform: rotate(45deg); }
   .sheet .close i::after  { transform: rotate(-45deg); }
-  .sheet nav { margin-top: 64px; display: grid; gap: 18px; }
-  .sheet nav a { justify-self: start; font-size: 42px; line-height: 1.1; letter-spacing: .1em; font-variant-caps: all-small-caps; text-transform: lowercase; }
+  .sheet nav { margin-top: 64px; display: grid; gap: 0; }   /* links 48 apart, baseline to baseline */
+  .sheet nav a { justify-self: start; font-size: 42px; line-height: 48px; letter-spacing: .1em; font-variant-caps: all-small-caps; text-transform: lowercase; }
   .sheet nav a[aria-current="true"] { font-weight: 700; }
   /* menu links: underline draws in left to right (1s) on hover, keyboard focus or tap */
   .sheet nav a:not(.donate) { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
                               transition: background-size 1s cubic-bezier(.4,.1,.2,1); }
   .sheet nav a:not(.donate):is(:hover, :focus-visible, :active) { background-size: 100% 1px; }
   .sheet .donate { letter-spacing: 0; font-variant-caps: normal; text-transform: none;   /* matches the Donate button in the nav bar */
-                   justify-self: start; font-size: 30px; padding: 10px 14px !important; margin-top: calc(5px + 42px * var(--kr)); }
-  .sheet .call { margin-top: auto; display: grid; gap: 0; }   /* baselines: Arabic → number 40, number → address 32 (set by script) */
-  .sheet .call .ar { font-family: var(--arabic); font-size: 37px; justify-self: start; }
-  .sheet .call .num { font-size: 24px; font-weight: 700; }
+                   justify-self: start; font-size: 30px; padding: 10px 14px !important; margin-top: var(--dgap, 12px); }   /* set by the script: same visible gap as between the links */
+  /* contact: the hero's green stamp, straight, same wear; address below in sumac */
+  .sheet .call { margin-top: auto; justify-self: start; position: relative; width: 156px; height: 156px;   /* hero stamp, 25% smaller */
+                 display: grid; place-items: center; text-align: center; color: var(--green); }
+  .sheet .call .ink { position: absolute; inset: 0; display: grid; place-items: center; filter: url(#ink-stamp); }
+  .sheet .call .ink::before, .sheet .call .ink::after { content: ""; position: absolute; pointer-events: none; }
+  .sheet .call .ink::before { inset: 0; border: 3px solid currentColor; }
+  .sheet .call .ink::after  { inset: 5px; border: 1px solid currentColor; }
+  .sheet .call .ar  { display: block; font-family: var(--arabic); font-size: 36px; line-height: 1.15; }
+  .sheet .call .num { display: block; font-size: 22.5px; line-height: 1.2; margin-top: 3px; }
   /* address under the phone number: 16 small caps, tracking 100, old-style numerals; shrinks only if the second line wouldn't fit */
-  .sheet .addr { margin-top: 0; font-style: normal; font-size: min(16px, calc((100vw - 48px) / var(--addrK, 15))); line-height: 1.3;
+  .sheet .addr { margin-top: 24px; font-style: normal; font-size: min(16px, calc((100vw - 48px) / var(--addrK, 15))); line-height: 1.3;
                  letter-spacing: .1em; font-variant-caps: all-small-caps; text-transform: lowercase;
                  font-variant-numeric: oldstyle-nums; font-feature-settings: "onum" 1; }
 
@@ -470,6 +477,34 @@
     .stamp, .donate { transition: none; }
     .stamp:is(:hover, :focus-visible, :active) { transform: translateY(calc(-120 * var(--u) + 55 * var(--u))) rotate(-4deg); }
     .donate:is(:hover, :focus-visible, :active) { transform: none; }
+  }
+
+  /* =============== Below desktop: larger English, tighter spacing (multiples of 8, baseline to baseline), calmer Arabic ===============
+     English: headline 45/48, intro 27/34, row label 25/28, row body 24/32 (≈ +25%); eyebrow unchanged.
+     Baselines: eyebrow→headline 40, headline→intro 40, last line→rule 24, rule→next line 32, between bullets 8, last line→button 32. */
+  @media (max-width: 900px) {
+    .h2    { font-size: 45px; line-height: 48px; margin-top: calc(40px - 7px - 24px + 18px * var(--kr) - 45px * var(--kb)); }
+    .intro { font-size: 27px; line-height: 34px; margin-top: calc(40px - 24px - 17px + 45px * var(--kb) - 27px * var(--kr)); }
+    .rows  { margin-top: 32px; }
+    .row   { gap: 8px; padding-bottom: calc(24px - 16px + 24px * var(--kr)); }
+    .row + .row { padding-top: calc(32px - 14px - 25px * var(--kb)); }
+    .row:last-child { padding-bottom: 0; }
+    .row h3 { font-size: 25px; line-height: 28px; }
+    .row p  { font-size: 24px; line-height: 32px; }
+    .bullets { font-size: 24px; line-height: 32px; padding-left: 38px; }
+    .bullets li + li { margin-top: 8px; }
+    .bullets li::before { font-size: 24px; width: 38px; margin-left: -38px; padding-right: 14px; top: calc(var(--bc) * 24px - 3px); }
+    .bullets.steps li::before { top: calc(var(--bn) * 24px - 8px); }
+    .row .more { font-size: 24px; line-height: 28px; }
+    /* Arabic panel: body +20% (28/34, labels 22); title 35% smaller on iPad, spanning the screen on phones (set by the script); green button centred under the mihrab */
+    .tr-body { font-size: 28px; line-height: 34px; }
+    .act { display: flex; width: max-content; margin: 32px auto 0 !important; }
+    .row { grid-template-columns: minmax(0, 1fr); }   /* long words can't push the column wider */
+    .mail { overflow-wrap: anywhere; }
+  }
+  /* iPad and up (single column): the Arabic panel is 70% of the English text width, centred */
+  @media (min-width: 600px) and (max-width: 900px) {
+    .tr { width: 70%; margin-left: auto; margin-right: auto; }
   }
 </style>
 </head>
@@ -567,7 +602,12 @@
     <a href="#about" data-target="about" data-label="About"><span>About</span></a>
     <a class="donate" href="https://secure.actblue.com/donate/acslegal" target="_blank" rel="noopener">Donate</a>
   </nav>
-  <a class="call" href="tel:+14158617444"><span class="ar" lang="ar" dir="rtl">اتصل بنا</span><span class="num">(415) 861-7444</span></a>
+  <a class="call" href="tel:+14158617444" aria-label="Call us: (415) 861-7444">
+    <span class="ink"><span>
+      <span class="ar" lang="ar" dir="rtl">اتــــــــصل بنا</span>
+      <span class="num">(415) 861-7444</span>
+    </span></span>
+  </a>
   <address class="addr">522 Valencia St.<br><span class="l2">San Francisco, CA 94110</span></address>
 </div>
 
@@ -697,7 +737,7 @@
       </div>
       <div class="row" id="history">
         <h3>History</h3>
-        <p>Founded in 2007 during a crackdown on immigrants, we provided legal, educational, and community services to hundreds of clients each year as <i>Arab American Legal Services,</i> a program of the <i>Arab Resource and Organizing Center (AROC).</i> We are part of the <i>San Francisco Immigrant Legal &amp; Education Network</i>, a multiracial, multilingual coalition serving immigrants across the city. In 2026, we grew into our own organization.</p>
+        <p>Founded in 2007 during a period of heightened repression against immigrants, we have provided legal, educational, and community services to hundreds of clients each year as <i>Arab American Legal Services,</i> a program of the <i>Arab Resource and Organizing Center (AROC).</i> Today, we are part of several multiracial, multilingual coalitions serving immigrants across the Bay Area, including the <i>San Francisco Immigrant Legal &amp; Education Network (SFILEN)</i> and <i>Alameda County United in Defense of Immigrant Rights (ACUDIR).</i> In 2026, we grew into our own organization, <i>Arab Community Services (ACS).</i></p>
       </div>
       <div class="row has-more">
         <h3>AROC</h3>
@@ -706,14 +746,14 @@
       </div>
       <div class="row">
         <h3>Work with us</h3>
-        <p>If you speak Arabic and believe in immigrant rights, there is a place for you here. We welcome law students and volunteers. Email us to get involved.<br class="m"> <a class="mail" href="mailto:info@arabcommunityservices.org">info@arabcommunityservices.org</a></p>
+        <p>If you speak Arabic and believe in immigrant rights, there is a place for you here. We welcome law students and volunteers. Email us to get involved.<br class="m"> <a class="mail" href="mailto:info@arabcommunityservices.org">info@<wbr>arabcommunityservices.org</a></p>
       </div>
     </div>
   </section>
 
   <section class="section focus" id="donate" aria-labelledby="h-donate">
     <p class="label">Donate</p>
-    <h2 class="h2" id="h-donate">Fund free legal help<br> for our community.</h2>
+    <h2 class="h2" id="h-donate">Fund free legal help<br class="d"> for our community.</h2>
     <p class="intro">Every service we offer is free. Your gift<br class="d"> makes that possible.</p>
     <div class="rows">
       <div class="row first has-more">
@@ -793,16 +833,17 @@
 
   // Address in the phone menu: how wide the longer line is per px of font size
   // Phone menu contact block: baseline-to-baseline spacing, whatever font loads
-  const spaceContact = () => {
-    const ar = document.querySelector('.sheet .call .ar'), num = document.querySelector('.sheet .call .num'), ad = document.querySelector('.sheet .addr');
-    if (!ar || !ad) return;
-    const mark = (el, end) => { const m = document.createElement('span'); m.style.cssText = 'display:inline-block;width:0;height:0';
-      end ? el.append(m) : el.prepend(m); const y = m.getBoundingClientRect().bottom; m.remove(); return y; };
-    num.style.marginTop = ad.style.marginTop = '0px';
-    num.style.marginTop = (40 - (mark(num) - mark(ar, true))) + 'px';
-    ad.style.marginTop  = (32 - (mark(ad) - mark(num, true))) + 'px';
-  };
-  addEventListener('resize', spaceContact); (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { measureAddr(); spaceContact(); }); spaceContact();
+  // Donate in the menu: the visible gap above it matches the visible gap between the links (ink to ink)
+  const gapDonate = () => { const links = [...document.querySelectorAll('.sheet nav a:not(.donate)')], d = document.querySelector('.sheet .donate'); if (links.length < 2 || !d) return;
+    const ink = el => { const c = document.createElement('canvas').getContext('2d'), st = getComputedStyle(el); c.font = `${st.fontSize} ${st.fontFamily}`;
+      const m = c.measureText('x'), r = el.getBoundingClientRect(), lh = parseFloat(st.lineHeight), half = (lh - m.fontBoundingBoxAscent - m.fontBoundingBoxDescent) / 2;
+      const base = r.top + half + m.fontBoundingBoxAscent; return { top: base - m.actualBoundingBoxAscent, base }; };
+    if (!document.querySelector('.sheet').classList.contains('open')) return;
+    d.style.setProperty('--dgap', '0px');
+    const a = ink(links[0]), b = ink(links[1]), last = ink(links[links.length - 1]), gap = b.top - a.base;
+    d.style.setProperty('--dgap', gap - (d.getBoundingClientRect().top - last.base) + 'px'); };
+  btn.addEventListener('click', () => requestAnimationFrame(gapDonate));
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => measureAddr());
 
   const measureAddr = () => { const l = document.querySelector('.sheet .addr .l2'); if (!l) return;
     const d = l.cloneNode(true); const st = getComputedStyle(l);
@@ -837,13 +878,25 @@
     document.querySelectorAll('.tr').forEach(box => {
       const sec = box.closest('.section'), svg = box.querySelector('svg.mh'), body = box.querySelector('.tr-body'), word = svg.dataset.title;
       sec.style.paddingBottom = '';
-      const W = box.clientWidth; let F = phone ? W * .5 : 192 * u;
+      const W = box.clientWidth; let F = phone ? box.parentElement.querySelector('.rows').clientWidth * .325 : 192 * u;   // phones/tablets: title 35% smaller, sized to the text column
       const D = W * .5, k = D / .40, Ct = D + .22 * F;
       let bb = measure(svg, word, F);
       // never off the page: a small overhang on the right, the rest spills left; shrink only if even that won't fit
-      const overR = phone ? 10 : 24 * u, roomL = box.getBoundingClientRect().left - (phone ? 10 : 24 * u);
+      const overR = phone ? 10 : 8 * u, roomL = box.getBoundingClientRect().left - (phone ? 10 : 24 * u);   // right overhang 8: keeps clear of the right-hand ledger
       if (bb.width - W - overR > roomL) { F *= (W + overR + roomL) / bb.width; bb = measure(svg, word, F); }
-      const over = (bb.width - W) / 2, dx = over > overR ? -(over - overR) : 0;
+      let over = (bb.width - W) / 2, dx = over > overR ? -(over - overR) : 0;
+      if (innerWidth < 600) {   // phones: the title spans the screen, from just right of the ledger line to 8px from the right edge
+        const led = document.querySelector('body > .ledger'), L0 = (led ? led.getBoundingClientRect().right : 0) + 8, R0 = innerWidth - 8;
+        // fit the letters' ink (not the font box) between L0 and R0
+        const c0 = inkCtx(); c0.direction = 'ltr'; c0.font = `100px "Moshref Naskh"`;
+        const m0 = c0.measureText(word), inkW = (m0.actualBoundingBoxLeft + m0.actualBoundingBoxRight) / 100;
+        const inkMid = (m0.actualBoundingBoxRight - m0.actualBoundingBoxLeft) / 2 / 100;   // ink centre relative to the text's anchor, per px of size
+        const adv = m0.width / 100;
+        F = (R0 - L0) / inkW; bb = measure(svg, word, F);
+        const bl = box.getBoundingClientRect().left;
+        // text-anchor middle puts the advance centre at tx; shift so the ink centre lands mid-way between L0 and R0
+        dx = (L0 + R0) / 2 - (bl + W / 2) - (inkMid - adv / 2) * F;
+      }
       // Measure the ink, not the font's box: Moshref's box has a deep empty band under the letters
       const cx = inkCtx(); cx.direction = 'rtl'; cx.font = `${F}px "Moshref Naskh"`;
       const m = cx.measureText(word), asc = m.actualBoundingBoxAscent, desc = m.actualBoundingBoxDescent;
@@ -910,18 +963,15 @@
     const axis = cl + cw / 2, heroEnd = B(document.querySelector('.hero'));
     document.body.style.setProperty('--colH', heroEnd + 'px');
     const right = phone ? innerWidth - parseFloat(getComputedStyle(document.querySelector('.section')).paddingRight) : innerWidth - 72 * s;
-    const corner = (B(document.querySelector('#donate .fine')) + Y(document.querySelector('.photo'))) / 2;
+    const bhC = phone ? 46 : 93.5 * s, below = phone ? 32 : 40 * s;
+    const corner = B(document.querySelector('.closing')) - below - bhC / 2;   // the turn and the bird sit at the very bottom of the page (inside the closing's bottom padding)
     const get = c => document.querySelector('body > .' + c) || document.body.appendChild(Object.assign(document.createElement('div'), { className: c, ariaHidden: 'true' }));
     const ledger = get('ledger'), rule = get('rule-h'), bird = get('bird'), colR = get('col-r');
     Object.assign(ledger.style, { left: axis - 2 + 'px', top: heroEnd + 'px', height: corner - heroEnd + 2 + 'px' });
     const bh = phone ? 46 : 93.5 * s, bw = bh * 21 / 17, gap = phone ? 8 : 8 * s, bx = right - bw;
     Object.assign(rule.style, { left: axis - 2 + 'px', top: corner - 2 + 'px', width: bx - gap - (axis - 2) + 'px' });
     Object.assign(bird.style, { left: bx + 'px', top: corner - bh / 2 + 'px', width: bw + 'px', height: bh + 'px' });
-    if (phone) { colR.style.display = 'none'; return; }
-    const top = Y(document.querySelector('#donate .label')), bottom = corner - bh / 2 - 24 * s;   // 24 above the bird
-    const n = Math.max(1, Math.floor((bottom - top) / tree));
-    colR.style.setProperty('--tree', colS.backgroundImage); colR.style.setProperty('--th', tree + 'px');
-    Object.assign(colR.style, { display: '', left: right - cw + 'px', width: cw + 'px', top: bottom - n * tree + 'px', height: n * tree + 'px' });
+    colR.style.display = 'none';
   };
 
   const relayout = () => { layoutPanels(); layoutStamps(); pinStamps(); placeSnaps(); sizeColumn(); };
