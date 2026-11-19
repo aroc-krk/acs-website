@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="https://use.typekit.net/dnn1lvq.css">
 <style>
   @font-face { font-family: "Moshref Naskh"; src: url("assets/moshref-naskh.woff2") format("woff2"); font-display: swap; }
+  /* Arabic body: KFGQPC KSA Regular; bold labels: KFGQPC KSA Extra (both free to distribute, served unmodified) */
+  @font-face { font-family: "KSA Regular"; src: url("assets/ksa-regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "KSA Extra"; src: url("assets/ksa-extra.ttf") format("truetype"); font-weight: 800; font-display: swap; }
 
   :root {
     --page: #F8F8F6;          /* paper base, under the texture */
@@ -18,6 +21,7 @@
     --green: #3F4D27;         /* stamp ink */
     --serif: "anziano", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
     --arabic: "Moshref Naskh", "Geeza Pro", "Noto Naskh Arabic", serif;
+    --ar-body: "KSA Regular", "Moshref Naskh", "Geeza Pro", serif;
     /* 1 design px on the 1440 x 892 comp, scaled to the window (capped so huge screens don't balloon) */
     --u: min(calc(100vw / 1440), calc(100svh / 892), 1.35px);
   }
@@ -33,7 +37,7 @@
   /* Tatreez: a continuous column of touching cypresses down the left edge of the whole page, worn like the stamps.
      15 x 26 stitches per tree; 39 x 67.6 on the 1440 comp, scaling with the page. */
   body::before {
-    content: ""; position: absolute; top: 0; height: var(--colH, 100%); z-index: -1; pointer-events: none;   /* ends with Donate */
+    content: ""; position: absolute; top: 0; height: var(--colH, 100vh); z-index: -1; pointer-events: none;   /* cypress column: the hero only */
     left: calc(16 * var(--u)); width: calc(39 * var(--u));
     background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 15 26%22 width=%22150%22 height=%22260%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%223%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 0 / 100% calc(67.6 * var(--u)) repeat-y;
     filter: url(#ink-stamp);
@@ -41,6 +45,16 @@
   }
   a { color: inherit; text-decoration: none; }
   a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; border-radius: 2px; }
+
+  /* Tatreez border: cypress column down the hero, then a ledger line on the same axis down to the end of Donate,
+     turning a corner into a chain of cypresses lying on their side, ending with a bird. Positioned by the script. */
+  .ledger, .chain, .bird { position: absolute; z-index: -1; pointer-events: none; filter: url(#ink-stamp); }
+  .ledger { width: 4px; border-left: 1px solid var(--ink); border-right: 1px solid var(--ink); }
+  .rule-h { height: 4px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+  .ledger, .rule-h, .col-r { position: absolute; z-index: -1; pointer-events: none; filter: url(#ink-stamp); }
+  .col-r { background: var(--tree) 0 100% / 100% var(--th) repeat-y; }
+  .chain { background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 26 15%22 width=%22260%22 height=%22150%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Cg transform=%22translate%280 15%29 rotate%28-90%29%22%3E%3Crect x=%223%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3C/g%3E%3C/svg%3E") 0 0 / var(--tl) 100% repeat-x; }
+  .bird { background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 21 17%22 width=%22210%22 height=%22170%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%2218%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2219%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2219%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2219%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2219%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2219%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
 
   /* =============== NAV ===============
      Links printed on the page, centred; the left edge of the row is the left edge of the wordmark.
@@ -185,8 +199,28 @@
                 url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 5 5%22 width=%2250%22 height=%2250%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 100% 100% / var(--B) var(--B) no-repeat, url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 5 5%22 width=%2250%22 height=%2250%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 100% / var(--B) var(--B) no-repeat; }
   #process .ar-stamp { --sw: 452; --sh: 236; --sx: 1145.5; --sy: 492; }
   #about .ar-stamp   { --sw: 456; --sh: 236; --sx: 1168.5; --sy: 699; }   /* comp position, moved 24 right to clear the text */
-  .ar-stamp span { font-family: var(--arabic); font-size: calc(var(--W) * 112.5 / var(--sw)); line-height: 1; padding-bottom: calc(var(--W) * 7.5 / var(--sw)); }
-  #donate .ar-stamp span { padding-bottom: calc(var(--W) * 37.5 / var(--sw)); }   /* lift تبرع so the ع's tail clears the frame */
+  .ar-stamp span, .ar-stamp::before, .ar-stamp::after, .ar-stamp .cn { display: none; }   /* the mihrab and word are drawn by the script */
+  .ar-stamp svg, .tr svg.mh { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+
+  /* Arabic translation (Services, Eligibility, Process): a tall mihrab in the right column; big Moshref title breaks its rules */
+  .tr { position: absolute; z-index: 1; right: calc(72 * var(--u)); width: calc(360 * var(--u)); color: var(--ink); }
+  .tr-body { position: relative; font-family: var(--ar-body); font-size: calc(30 * var(--u)); line-height: calc(36 * var(--u));
+             text-align: right; padding: 0 calc(30 * var(--u)) calc(37.6 * var(--u));   /* 24 clear of the inner rule */ --pg: calc(16 * var(--u)); }
+  .tr-body p { margin: 0; text-wrap: pretty; } .tr-body p + p { margin-top: var(--pg); }
+  .tr-body b { font-family: "KSA Extra", var(--ar-body); font-weight: 800; font-size: .8em; }   /* 24 against the 30 body */
+  .tr-body u { font-family: "KSA Extra", var(--ar-body); font-weight: 800; font-size: .8em; text-decoration-thickness: 1px; text-underline-offset: .45em; text-decoration-skip-ink: none; }
+  .tr-body .tel { color: inherit; text-decoration: none; }
+  .trs { list-style: none; margin: 0; padding: 0; } .trs li { display: flex; gap: .55em; } .trs li + li { margin-top: var(--pg); }
+  .trs i { font-style: normal; font-family: "itc-zapf-dingbats-std", "Zapf Dingbats", sans-serif; font-weight: 500; font-size: .85em; }
+  .tr-body hr { border: 0; border-top: 1px solid rgba(124, 30, 53, .6); margin: var(--pg) calc(-12 * var(--u)); }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* About photos: prints with a cream border and soft shadow, laid at slight angles */
+  .snaps { position: absolute; }
+  .snap { margin: 0; width: 86%; background: #FBF7EE; padding: calc(12 * var(--u)) calc(12 * var(--u)) calc(14 * var(--u));
+          box-shadow: 0 1px 2px rgba(60, 30, 25, .18), 0 8px 22px rgba(60, 30, 25, .16); }
+  .snap img { display: block; width: 100%; height: auto; }
+  .snap.s1 { transform: rotate(-2.5deg); } .snap.s2 { transform: rotate(1.8deg); margin: calc(24 * var(--u)) 0 0 auto; }
 
   /* Reading focus: rows below the reading line wait at 75%; once read they stay full. */
   .focus .row h3, .focus .row p { transition: opacity .4s ease; }
@@ -275,11 +309,11 @@
      Fills the window like the hero: photo + caption centred in the window, footer along the bottom (64 up).
      Equal rows above and below the photo block keep it at the window's exact middle. */
   .closing {
-    min-height: 100vh; min-height: 100svh; display: grid; grid-template-rows: 1fr auto 1fr;
-    padding: calc(64 * var(--u)) calc(72 * var(--u));
+    display: grid; grid-template-rows: auto auto;
+    padding: calc(240 * var(--u)) calc(72 * var(--u)) calc(64 * var(--u));
   }
-  .closing .center { grid-row: 2; }
-  .closing .foot { grid-row: 3; align-self: end; padding-left: calc(32 * var(--u)); }
+  .closing .center { grid-row: 1; }
+  .closing .foot { grid-row: 2; align-self: end; padding-left: calc(32 * var(--u)); margin-top: calc(160 * var(--u)); }
   .closing .center { display: grid; justify-items: center; align-content: center; }
   /* Photo frame: outer 1px, 4 gap, inner 3px, 8 to the photo; worn like the stamps */
   .photo { position: relative; margin: 0; width: calc(525 * var(--u) + 32 * var(--u)); padding: calc(16 * var(--u)); }
@@ -318,7 +352,7 @@
     :root { --col: min(calc(100vw - 72px), 560px); --u: calc(var(--col) / 640);
             --padL: max(48px, calc((100vw - var(--col)) / 2)); --padR: calc(100vw - var(--col) - var(--padL)); }
     body::before { left: 8px; width: 19.2px; background-size: 100% 33.28px; }   /* column 20% smaller on phones */
-    :root { --sideM: max(24px, calc((100vw - 560px) / 2)); }   /* sections: the column is hero-only on phones */
+    :root { --sideM: max(24px, calc((100vw - 560px) / 2)); --sideL: max(48px, calc((100vw - 560px) / 2)); }   /* sections clear the ledger */
     .nav { padding-top: 18px; }
     br.d { display: none; } br.m { display: inline; }
     .nav-row { width: calc(100vw - 2 * var(--sideM)); font-size: 20px; }
@@ -348,7 +382,7 @@
 
     /* sections on phones: fixed sizes, label above body, Arabic stamp under the intro.
        Baseline-to-baseline gaps are multiples of 8 (label→headline 56, headline→intro 48, line→rule 32, rule→line 40, line→stamp 40) */
-    .section { padding: 96px var(--sideM) 0; }
+    .section { padding: 96px var(--sideM) 0 var(--sideL); }
     .section:last-of-type { padding-bottom: 96px; }
     .label { font-size: 18px; line-height: 14px; }
     .h2 { font-size: 36px; line-height: 38px; margin-top: 24px; filter: url(#ink-h-sm); }
@@ -361,11 +395,16 @@
     .act { height: 52px; padding: 0 20px; font-size: 21px; margin: 33px 0 0; }
     .act .ink::after { inset: 6px; }
     /* Arabic stamps: centred under the intro, 70% of the column (max 300px), text and box scale together */
-    .ar-stamp { --W: min(var(--col), clamp(184px, calc(var(--col) * .4704), 201.6px));   /* phones: 184–202px, never wider than the column */
+    .ar-stamp {   /* phones: size set by the script */
       position: relative; left: auto !important; top: auto !important; width: var(--W); height: calc(var(--W) * var(--sh) / var(--sw));
       margin: 40px auto 0; display: grid; }
-    .closing { padding: 80px var(--sideM) 48px; }
-    .closing .foot { padding-left: 0; }
+    .closing { padding: 144px var(--sideM) 48px; }
+    .closing .foot { padding-left: 0; margin-top: 120px; }
+    .tr { position: relative; right: auto; width: auto; margin-top: 64px; }
+    .tr-body { font-size: 23px; line-height: 28px; padding: 0 22px 36.6px; --pg: 14px; }
+    .tr-body hr { margin: 14px -10px; }
+    .snaps { position: relative; margin: 40px 0 0; }
+    .snap { width: 78%; padding: 10px 10px 12px; } .snap.s2 { margin: -28px 0 0 auto; }
     .photo { width: 100%; padding: 12px; }
     .photo .frame::after { inset: 5px; }
     .closing .center { flex-direction: column; gap: 0; }
@@ -549,7 +588,6 @@
     <p class="label">Services</p>
     <h2 class="h2" id="h-services">Immigration.<br class="m"> <span class="nw">Social services.</span><br>Know your rights.</h2>
     <p class="intro">We offer free, confidential legal<br class="d"> and social services in English and Arabic.</p>
-    <div class="ar-stamp" aria-hidden="true"><i class="cn"></i><span lang="ar" dir="rtl">خدماتنا</span></div>
     <div class="rows">
       <div class="row first">
         <h3>Immigration</h3>
@@ -564,6 +602,15 @@
         <p>Learn what to do if immigration agents come to your home, work, or community. Free trainings for families, businesses, and community groups.</p>
       </div>
     </div>
+    <aside class="tr" lang="ar" dir="rtl" aria-labelledby="tr-services">
+      <h3 class="sr" id="tr-services">خدماتنا</h3>
+      <svg class="mh" aria-hidden="true" focusable="false" data-title="خدماتنا"></svg>
+      <div class="tr-body">
+        <p><b>الهجرة</b>: نساعدك قانونياً في لمّ شمل العائلة واللجوء، ونمثّلك إذا احتُجزت أنت أو قريب لك لدى سلطات الهجرة أو لديك موعد محكمة.</p>
+        <p><b>الخدمات الاجتماعية</b>: قدّم على المساعدات الحكومية مثل قسائم الطعام، والتأمين الصحي، والمساعدات النقدية.</p>
+        <p><b>اعرف حقوقك</b>: تعلّم كيف تتصرّف إذا جاء موظفو الهجرة لمنزلك أو عملك أو منطقتك. تدريبات مجانية للعائلات وأصحاب الأعمال والمجتمع.</p>
+      </div>
+    </aside>
     <a class="act" href="#eligibility" data-label="See if you qualify &gt;"><span class="ink" aria-hidden="true"></span><span class="fill" aria-hidden="true"></span><span class="t">See if you qualify &gt;</span></a>
   </section>
 
@@ -571,7 +618,6 @@
     <p class="label">Eligibility</p>
     <h2 class="h2" id="h-eligibility">Is this for you?</h2>
     <p class="intro">We serve working-class Arab, Muslim, <span class="nw">North<br class="d"> African</span>, and Southwest Asian residents of the Bay.</p>
-    <div class="ar-stamp" aria-hidden="true"><i class="cn"></i><span lang="ar" dir="rtl">الأهلية</span></div>
     <div class="rows">
       <div class="row first">
         <h3>Requirements</h3>
@@ -585,6 +631,16 @@
         <p>Not sure? <a class="tel" href="tel:+14158617444">Call anyway</a>. If we can’t<br class="d"> help, we’ll connect you with<br class="d"> someone who can.</p>
       </div>
     </div>
+    <aside class="tr" lang="ar" dir="rtl" aria-labelledby="tr-eligibility">
+      <h3 class="sr" id="tr-eligibility">الأهلية</h3>
+      <svg class="mh" aria-hidden="true" focusable="false" data-title="الأهلية"></svg>
+      <div class="tr-body">
+        <p><b>الإقامة</b>: تسكن أنت أو أحد أفراد أسرتك في منطقة خليج سان فرانسيسكو.</p>
+        <p><b>الدخل</b>: دخل أسرتك منخفض أو متوسط.</p>
+        <p><b>الهوية الثقافية</b>: أنت أو أحد أفراد أسرتك عربي أو مسلم، أو من شمال أفريقيا أو جنوب غرب آسيا.</p>
+        <p>غير متأكد؟ <a class="tel" href="tel:+14158617444">اتصل بنا</a>.</p>
+      </div>
+    </aside>
     <a class="act" href="#process" data-label="See how it works &gt;"><span class="ink" aria-hidden="true"></span><span class="fill" aria-hidden="true"></span><span class="t">See how it works &gt;</span></a>
   </section>
 
@@ -592,7 +648,6 @@
     <p class="label">Process</p>
     <h2 class="h2" id="h-process">What to expect</h2>
     <p class="intro">A three-step intake.</p>
-    <div class="ar-stamp" aria-hidden="true"><i class="cn"></i><span lang="ar" dir="rtl">الخطوات</span></div>
     <div class="rows">
       <div class="row first">
         <h3>How it works</h3>
@@ -607,6 +662,19 @@
         <p>What you share with us about your<br class="d"> case stays strictly confidential. <strong class="promise">We<br class="d"> never share your case information<br class="d"> with immigration authorities or<br class="d"> anyone else.</strong></p>
       </div>
     </div>
+    <aside class="tr" lang="ar" dir="rtl" aria-labelledby="tr-process">
+      <h3 class="sr" id="tr-process">الخطوات</h3>
+      <svg class="mh" aria-hidden="true" focusable="false" data-title="الخطوات"></svg>
+      <div class="tr-body">
+        <ol class="trs">
+          <li><i aria-hidden="true">&#x278A;</i><span><a class="tel" href="tel:+14158617444">اتصل بنا</a>.</span></li>
+          <li><i aria-hidden="true">&#x278B;</i><span>سنتواصل معك لتحديد موعد استشارة، ونقيّم إن كنّا الفريق المناسب لقضيتك.</span></li>
+          <li><i aria-hidden="true">&#x278C;</i><span>إذا استلمنا قضيتك، سنجمع أوراقك ونبدأ العمل. وإذا لم نستطع، سنوصلك بمنظمات ومحامين موثوقين.</span></li>
+        </ol>
+        <hr>
+        <p><b>الخصوصية</b>: كل ما تشاركه معنا بخصوص قضيتك يبقى سرّياً. <u>نحن لا نشارك معلومات قضيتك مع سلطات الهجرة أو أي جهة أخرى.</u></p>
+      </div>
+    </aside>
     <a class="act" href="tel:+14158617444" data-label="Talk to our team &gt;"><span class="ink" aria-hidden="true"></span><span class="fill" aria-hidden="true"></span><span class="t">Talk to our team &gt;</span></a>
   </section>
 
@@ -614,7 +682,10 @@
     <p class="label">About</p>
     <h2 class="h2" id="h-about">Who we are</h2>
     <p class="intro">Lawyers and advocates reuniting families and<br class="d"> defending people held by ICE since 2007.</p>
-    <div class="ar-stamp" aria-hidden="true"><i class="cn"></i><span lang="ar" dir="rtl">من نحن</span></div>
+    <div class="snaps">
+      <figure class="snap s1"><img src="assets/about-1.jpg" width="525" height="393" loading="lazy" alt="Four women smiling together at a community event."></figure>
+      <figure class="snap s2"><img src="assets/about-2.jpg" width="1200" height="792" loading="lazy" alt="Young people writing and drawing together at a long table."></figure>
+    </div>
     <div class="rows">
       <div class="row first">
         <h3>Mission</h3>
@@ -644,7 +715,6 @@
     <p class="label">Donate</p>
     <h2 class="h2" id="h-donate">Fund free legal help<br> for our community.</h2>
     <p class="intro">Every service we offer is free. Your gift<br class="d"> makes that possible.</p>
-    <div class="ar-stamp" aria-hidden="true"><i class="cn"></i><span lang="ar" dir="rtl">تبرع</span></div>
     <div class="rows">
       <div class="row first has-more">
         <h3>Online</h3>
@@ -741,14 +811,78 @@
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(measureAddr); measureAddr();
 
   // Cypress column stops at the end of Donate, on a whole tree
-  const sizeColumn = () => {
-    const bs = getComputedStyle(document.body, '::before').backgroundSize.split(' ');
-    const phone = innerWidth <= 900;
-    const el = phone ? document.querySelector('.hero') : document.querySelector('#donate .fine');
-    const end = el.getBoundingClientRect().bottom + scrollY;      // desktop: last line of the footnote; phones: end of the hero
-    document.body.style.setProperty('--colH', end + 'px');
+  // ---------- Mihrab: a double-ruled arch; a word drawn over it cuts the rules wherever the letters cross ----------
+  const NS = 'http://www.w3.org/2000/svg';
+  const archPath = (W, H, d, k) => { const x0 = d, x1 = W - d, yb = H - d, y0 = d * 1.3, W2 = x1 - x0, cx = W / 2, kk = k * W2 / W, ys = y0 + kk * .40;
+    return `M${x0} ${yb} L${x0} ${ys} C${x0} ${y0+kk*.22} ${cx-W2*.30} ${y0+kk*.15} ${cx-W2*.13} ${y0+kk*.09} C${cx-W2*.05} ${y0+kk*.06} ${cx-W2*.02} ${y0+kk*.03} ${cx} ${y0} ` +
+           `C${cx+W2*.02} ${y0+kk*.03} ${cx+W2*.05} ${y0+kk*.06} ${cx+W2*.13} ${y0+kk*.09} C${cx+W2*.30} ${y0+kk*.15} ${x1} ${y0+kk*.22} ${x1} ${ys} L${x1} ${yb} Z`; };
+  let maskN = 0;
+  let _cx; const inkCtx = () => _cx || (_cx = document.createElement('canvas').getContext('2d'));
+  const measure = (svg, word, F) => { svg.innerHTML = `<text font-family="Moshref Naskh" font-size="${F}" direction="rtl">${word}</text>`; return svg.firstChild.getBBox(); };
+  const drawMihrab = (svg, o) => {   // o: W H k word F tx ty outer inner gap cut frameFilter titleFilter
+    const id = 'mh' + (++maskN), M = 3 * Math.max(o.W, o.H);
+    const t = (extra) => `<text x="${o.tx}" y="${o.ty}" text-anchor="middle" font-family="Moshref Naskh" font-size="${o.F}" direction="rtl" ${extra}>${o.word}</text>`;
+    svg.setAttribute('width', o.W); svg.setAttribute('height', o.H); svg.setAttribute('viewBox', `0 0 ${o.W} ${o.H}`);
+    svg.innerHTML = `<defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${-M}" y="${-M}" width="${3*M}" height="${3*M}">
+        <rect x="${-M}" y="${-M}" width="${3*M}" height="${3*M}" fill="#fff"/>${t(`fill="#000" stroke="#000" stroke-width="${2*o.cut}" stroke-linejoin="round"`)}</mask></defs>
+      <g mask="url(#${id})"><g ${o.frameFilter ? `filter="url(#${o.frameFilter})"` : ''} fill="none" stroke="currentColor">
+        <path d="${archPath(o.W, o.H, o.outer/2, o.k)}" stroke-width="${o.outer}"/><path d="${archPath(o.W, o.H, o.outer + o.gap + o.inner/2, o.k)}" stroke-width="${o.inner}"/></g></g>
+      <g ${o.titleFilter ? `filter="url(#${o.titleFilter})"` : ''}>${t('fill="currentColor"')}</g>`;
   };
-  addEventListener('resize', sizeColumn); (document.fonts ? document.fonts.ready : Promise.resolve()).then(sizeColumn); sizeColumn();
+  const unit = () => innerWidth > 900 ? parseFloat(getComputedStyle(document.body, '::before').width) / 39 : 1;
+
+  // Translation panels
+  const layoutPanels = () => {
+    const phone = innerWidth <= 900, u = unit();
+    document.querySelectorAll('.tr').forEach(box => {
+      const sec = box.closest('.section'), svg = box.querySelector('svg.mh'), body = box.querySelector('.tr-body'), word = svg.dataset.title;
+      sec.style.paddingBottom = '';
+      const W = box.clientWidth; let F = phone ? W * .5 : 192 * u;
+      const D = W * .5, k = D / .40, Ct = D + .22 * F;
+      let bb = measure(svg, word, F);
+      // never off the page: a small overhang on the right, the rest spills left; shrink only if even that won't fit
+      const overR = phone ? 10 : 24 * u, roomL = box.getBoundingClientRect().left - (phone ? 10 : 24 * u);
+      if (bb.width - W - overR > roomL) { F *= (W + overR + roomL) / bb.width; bb = measure(svg, word, F); }
+      const over = (bb.width - W) / 2, dx = over > overR ? -(over - overR) : 0;
+      // Measure the ink, not the font's box: Moshref's box has a deep empty band under the letters
+      const cx = inkCtx(); cx.direction = 'rtl'; cx.font = `${F}px "Moshref Naskh"`;
+      const m = cx.measureText(word), asc = m.actualBoundingBoxAscent, desc = m.actualBoundingBoxDescent;
+      const ty = Ct + (asc - desc) / 2;                     // baseline that centres the letters' ink on Ct
+      const inkBottom = ty + desc;
+      // and the first body line's ink top, so the 24 is ink to ink
+      const first = body.querySelector('p, li span'), fs = getComputedStyle(first);
+      cx.direction = 'rtl'; cx.font = `${fs.fontSize} ${fs.fontFamily}`;
+      const words = first.textContent.trim().split(/\s+/).slice(0, 5).join(' ');
+      const fm = cx.measureText(words);
+      let top = fm.actualBoundingBoxAscent;
+      const lbl = first.querySelector('b');                 // the bold label is a different font and size
+      if (lbl) { const bs = getComputedStyle(lbl); cx.font = `${bs.fontWeight} ${bs.fontSize} ${bs.fontFamily}`; top = Math.max(top, cx.measureText(lbl.textContent).actualBoundingBoxAscent); }
+      const lh = parseFloat(fs.lineHeight), half = (lh - (fm.fontBoundingBoxAscent + fm.fontBoundingBoxDescent)) / 2;
+      const inkTopInLine = half + fm.fontBoundingBoxAscent - top;
+      body.style.paddingTop = (inkBottom + (phone ? 24 : 24 * u) - inkTopInLine) + 'px';   // 24 from the title's ink to the text's ink
+      if (!phone) box.style.top = (parseFloat(getComputedStyle(sec).paddingTop) - 8 * u) + 'px'; else box.style.top = '';
+      const H = box.offsetHeight;
+      drawMihrab(svg, { W, H, k, word, F, tx: W / 2 + dx, ty, outer: Math.max(1, 1.2 * u), inner: Math.max(2, 3.4 * u), gap: 4 * u,
+                        cut: phone ? 6 : 9 * u, frameFilter: 'ink-stamp', titleFilter: 'ink-stamp' });   // title worn like the stamps
+      if (!phone) { const need = box.offsetTop + H + 48 * u - sec.offsetHeight;
+        if (need > 0) sec.style.paddingBottom = (parseFloat(getComputedStyle(sec).paddingBottom) + need) + 'px'; }
+    });
+  };
+
+  // Small mihrab stamps (About, Donate): the word, centred and larger than the arch, breaks its rules
+  const layoutStamps = () => {
+    const phone = innerWidth <= 900, u = unit();
+    document.querySelectorAll('.section .ar-stamp').forEach(st => {
+      const word = st.querySelector('span').textContent;
+      const col = st.parentElement.querySelector('.intro').getBoundingClientRect().width;
+      const W = phone ? Math.min(col * .62, 230) : 208 * u, H = W * .90, F = W / 3.3 * 1.6;
+      st.style.setProperty('--W', W + 'px'); st.style.width = W + 'px'; st.style.height = H + 'px';
+      const svg = st.querySelector('svg') || st.appendChild(document.createElementNS(NS, 'svg'));
+      const bb = measure(svg, word, F), ty = H * .56 - (bb.y + bb.height / 2);
+      drawMihrab(svg, { W, H, k: W * 1.08, word, F, tx: W / 2, ty, outer: Math.max(2, W / 208 * 4), inner: Math.max(1, W / 208 * 1.3),
+                        gap: W / 208 * 5, cut: W / 208 * 5 });
+    });
+  };
 
   // Arabic stamps (desktop): beside the header, centred between the top of the headline and the bottom of the intro
   const pinStamps = () => document.querySelectorAll('.section .ar-stamp').forEach(st => {
@@ -756,7 +890,43 @@
     const sec = st.parentElement, h = sec.querySelector('.h2'), i = sec.querySelector('.intro');
     st.style.top = ((h.offsetTop + i.offsetTop + i.offsetHeight) / 2 - st.offsetHeight / 2) + 'px';
   });
-  addEventListener('resize', pinStamps); (document.fonts ? document.fonts.ready : Promise.resolve()).then(pinStamps); pinStamps();
+
+  // About photos (desktop): right column, beside the rows
+  const placeSnaps = () => {
+    const sn = document.querySelector('.snaps'); if (!sn) return;
+    if (innerWidth <= 900) { Object.assign(sn.style, { left: '', top: '', width: '' }); return; }
+    const u = unit(), sec = sn.parentElement, rows = sec.querySelector('.rows');
+    const left = rows.offsetLeft + rows.offsetWidth + 48 * u, right = sec.clientWidth - 72 * u;
+    const st = sec.querySelector('.ar-stamp'), below = st ? st.offsetTop + st.offsetHeight + 40 * u : 0;   // clear of the stamp
+    Object.assign(sn.style, { left: left + 'px', width: (right - left) + 'px', top: Math.max(rows.offsetTop + 8 * u, below) + 'px' });
+  };
+
+  // ---------- Border: cypress column down the hero; ledger down the left to the end of Donate; it turns right to the bird;
+  //            a second cypress column rises from 8px above the bird to the top of Donate (desktop) ----------
+  const sizeColumn = () => {
+    const Y = el => el.getBoundingClientRect().top + scrollY, B = el => el.getBoundingClientRect().bottom + scrollY;
+    const phone = innerWidth <= 900, colS = getComputedStyle(document.body, '::before');
+    const cw = parseFloat(colS.width), cl = parseFloat(colS.left), tree = parseFloat(colS.backgroundSize.split(' ')[1]), s = phone ? 1 : cw / 39;
+    const axis = cl + cw / 2, heroEnd = B(document.querySelector('.hero'));
+    document.body.style.setProperty('--colH', heroEnd + 'px');
+    const right = phone ? innerWidth - parseFloat(getComputedStyle(document.querySelector('.section')).paddingRight) : innerWidth - 72 * s;
+    const corner = (B(document.querySelector('#donate .fine')) + Y(document.querySelector('.photo'))) / 2;
+    const get = c => document.querySelector('body > .' + c) || document.body.appendChild(Object.assign(document.createElement('div'), { className: c, ariaHidden: 'true' }));
+    const ledger = get('ledger'), rule = get('rule-h'), bird = get('bird'), colR = get('col-r');
+    Object.assign(ledger.style, { left: axis - 2 + 'px', top: heroEnd + 'px', height: corner - heroEnd + 2 + 'px' });
+    const bh = phone ? 46 : 93.5 * s, bw = bh * 21 / 17, gap = phone ? 8 : 8 * s, bx = right - bw;
+    Object.assign(rule.style, { left: axis - 2 + 'px', top: corner - 2 + 'px', width: bx - gap - (axis - 2) + 'px' });
+    Object.assign(bird.style, { left: bx + 'px', top: corner - bh / 2 + 'px', width: bw + 'px', height: bh + 'px' });
+    if (phone) { colR.style.display = 'none'; return; }
+    const top = Y(document.querySelector('#donate .label')), bottom = corner - bh / 2 - 24 * s;   // 24 above the bird
+    const n = Math.max(1, Math.floor((bottom - top) / tree));
+    colR.style.setProperty('--tree', colS.backgroundImage); colR.style.setProperty('--th', tree + 'px');
+    Object.assign(colR.style, { display: '', left: right - cw + 'px', width: cw + 'px', top: bottom - n * tree + 'px', height: n * tree + 'px' });
+  };
+
+  const relayout = () => { layoutPanels(); layoutStamps(); pinStamps(); placeSnaps(); sizeColumn(); };
+  addEventListener('resize', relayout); addEventListener('load', relayout);
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(relayout); relayout();
 
   // Reading focus: a row brightens when its top reaches the reading line (40% down the window) and stays bright
   // (bulleted rows brighten one bullet at a time; at the very bottom of the page, anything still dim brightens)
