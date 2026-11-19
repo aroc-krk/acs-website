@@ -1,0 +1,1006 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arab Community Services</title>
+<meta name="description" content="Free legal and social services for Arabs and Muslims in the San Francisco Bay Area. A sister organization of AROC.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="https://use.typekit.net/dnn1lvq.css">
+<style>
+  @font-face { font-family: "Moshref Naskh"; src: url("assets/moshref-naskh.woff2") format("woff2"); font-display: swap; }
+  /* Arabic body: KFGQPC KSA Regular; bold labels: KFGQPC KSA Extra (both free to distribute, served unmodified) */
+  @font-face { font-family: "KSA Regular"; src: url("assets/ksa-regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "KSA Extra"; src: url("assets/ksa-extra.ttf") format("truetype"); font-weight: 800; font-display: swap; }
+
+  :root {
+    --page: #F8F8F6;          /* paper base, under the texture */
+    --ink: #7C1E35;           /* sumac: all type */
+    --green: #3F4D27;         /* stamp ink */
+    --serif: "anziano", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --arabic: "Moshref Naskh", "Geeza Pro", "Noto Naskh Arabic", serif;
+    --ar-body: "KSA Regular", "Moshref Naskh", "Geeza Pro", serif;
+    /* 1 design px on the 1440 x 892 comp, scaled to the window (capped so huge screens don't balloon) */
+    --u: min(calc(100vw / 1440), calc(100svh / 892), 1.35px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--page); scroll-behavior: smooth; }
+  body {
+    font-family: var(--serif); color: var(--ink);
+    background: var(--page) url("assets/paper.webp") 0 0 / 603px 603px repeat;
+    font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1;
+    -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%;
+    position: relative; isolation: isolate;
+  }
+  /* Tatreez: a continuous column of touching cypresses down the left edge of the whole page, worn like the stamps.
+     15 x 26 stitches per tree; 39 x 67.6 on the 1440 comp, scaling with the page. */
+  body::before {
+    content: ""; position: absolute; top: 0; height: var(--colH, 100vh); z-index: -1; pointer-events: none;   /* cypress column: the hero only */
+    left: calc(16 * var(--u)); width: calc(39 * var(--u));
+    background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 15 26%22 width=%22150%22 height=%22260%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%223%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 0 / 100% calc(67.6 * var(--u)) repeat-y;
+    filter: url(#ink-stamp);
+    background-position-y: 100%;   /* anchored at the bottom so the last tree ends exactly on the end line */
+  }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; border-radius: 2px; }
+
+  /* Tatreez border: cypress column down the hero, then a ledger line on the same axis down to the end of Donate,
+     turning a corner into a chain of cypresses lying on their side, ending with a bird. Positioned by the script. */
+  .ledger, .chain, .bird { position: absolute; z-index: -1; pointer-events: none; filter: url(#ink-stamp); }
+  .ledger { width: 4px; border-left: 1px solid var(--ink); border-right: 1px solid var(--ink); }
+  .rule-h { height: 4px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+  .ledger-r { width: 4px; border-left: 1px solid var(--ink); border-right: 1px solid var(--ink); }
+  .ledger, .ledger-r, .rule-h, .col-r { position: absolute; z-index: -1; pointer-events: none; filter: url(#ink-stamp); }
+  .col-r { background: var(--tree) 0 100% / 100% var(--th) repeat-y; }
+  .chain { background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 26 15%22 width=%22260%22 height=%22150%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Cg transform=%22translate%280 15%29 rotate%28-90%29%22%3E%3Crect x=%223%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2217%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2218%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2219%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2225%22 width=%221.02%22 height=%221.02%22/%3E%3C/g%3E%3C/svg%3E") 0 0 / var(--tl) 100% repeat-x; }
+  .bird { background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 21 17%22 width=%22210%22 height=%22170%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%2218%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2219%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2219%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%225%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%226%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2219%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%227%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2219%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%228%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2219%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%229%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2212%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2210%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2211%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2212%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2211%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%2213%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2210%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%2214%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2217%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2214%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%229%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%2215%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2218%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2216%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2215%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%2213%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%228%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%227%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%226%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%225%22 y=%2216%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
+
+  /* =============== NAV ===============
+     Links printed on the page, centred; the left edge of the row is the left edge of the wordmark.
+     On scroll a soft veil of paper fades in behind it (no container, rule or shadow).
+     Hides while scrolling down, returns on scroll up. */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+    display: flex; justify-content: center;
+    padding-top: calc(41 * var(--u));
+    transition: transform .35s ease;
+  }
+  .nav.hide { transform: translateY(-100%); }
+  .nav::before {           /* the veil: page colour + grain, fading downward */
+    content: ""; position: absolute; inset: 0 0 calc(-60 * var(--u)) 0; z-index: -1;
+    background: var(--page) url("assets/paper.webp") 0 0 / 603px 603px repeat;
+    -webkit-mask-image: linear-gradient(#000 55%, transparent);
+            mask-image: linear-gradient(#000 55%, transparent);
+    opacity: 0; transition: opacity .3s ease;
+  }
+  .nav.veil::before { opacity: 1; }
+  .nav-row {
+    width: var(--col); display: flex; justify-content: space-between; align-items: center;
+    font-size: calc(26 * var(--u)); letter-spacing: 0; line-height: 1;
+  }
+  .nav-row a { padding: calc(6 * var(--u)) 0; }
+  /* Current section in bold: the regular and bold words are stacked and crossfade (0.4s), so there's no snap or shift */
+  .nav-row .link { display: inline-grid; justify-items: center; }
+  .nav-row .link > span, .nav-row .link::after { grid-area: 1 / 1; transition: opacity .4s ease; }
+  .nav-row .link::after { content: attr(data-label); font-weight: 700; opacity: 0; }
+  .nav-row .link[aria-current="true"] > span { opacity: 0; }
+  .nav-row .link[aria-current="true"]::after { opacity: 1; }
+  /* hover: a 1px line draws in under the link from left to right (0.5s) and retracts the same way */
+  .nav-row .link { background: linear-gradient(currentColor, currentColor) 0 calc(100% - 2px) / 0 1px no-repeat;
+                   transition: background-size .5s cubic-bezier(.4,.1,.2,1); }
+  .nav-row .link:is(:hover, :focus-visible) { background-size: 100% 1px; }
+  .donate {
+    background: var(--green); color: #FAF6EB; border-radius: 4px; filter: url(#ink-half);
+    padding: calc(10 * var(--u)) calc(10 * var(--u)) !important;
+  }
+  /* Donate: stamp green with half-strength wear; on hover presses 2%, and a paper-coloured line fades in 3px inside its edge (an echo of the stamps' double rule) */
+  .donate { transition: transform .5s cubic-bezier(.3,.7,.4,1.15), background-color .45s ease, box-shadow .45s ease;
+            box-shadow: inset 0 0 0 3px rgba(63, 77, 39, 0), inset 0 0 0 4px rgba(250, 246, 235, 0); -webkit-tap-highlight-color: transparent; }
+  .donate:is(:hover, :focus-visible, :active) { transform: scale(.98);
+            box-shadow: inset 0 0 0 3px var(--green), inset 0 0 0 4px #FAF6EB; }
+  .menu-btn { display: none; }
+
+  /* =============== HERO ===============
+     Measured on the comp: wordmark left edge = nav left edge; wordmark centred in the window;
+     stamp starts 547 to the right of the wordmark, its centre 55 below the wordmark's centre. */
+  :root { --col: calc(578 * var(--u)); }   /* width of the nav row = the hero's left column */
+  .hero {
+    min-height: 100vh; min-height: 100svh;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-inner { position: relative; width: var(--col); }
+  .wordmark {
+    font-size: calc(84 * var(--u)); line-height: calc(77.5 * var(--u));
+    letter-spacing: 0.2em; font-weight: 400;
+    font-variant-caps: all-small-caps; text-transform: lowercase;
+    margin-left: calc(-4 * var(--u));       /* the A overhangs slightly so the stems line up */
+    white-space: nowrap;
+    filter: url(#ink-word);
+  }
+  .wordmark span { display: block; }
+
+  /* The stamp: double rule in green ink, tilted, laid over the end of COMMUNITY */
+  .stamp {
+    position: absolute; left: calc(547 * var(--u)); top: 50%;
+    width: calc(240 * var(--u)); height: calc(240 * var(--u));
+    transform: translateY(calc(-120 * var(--u) + 55 * var(--u))) rotate(-4deg);
+    display: grid; place-items: center; text-align: center;
+    color: var(--green);
+  }
+  .stamp .ink { position: absolute; inset: 0; display: grid; place-items: center; filter: url(#ink-stamp); }
+  .stamp .ink::before, .stamp .ink::after { content: ""; position: absolute; pointer-events: none; }
+  .stamp .ink::before { inset: 0; border: max(2px, calc(3 * var(--u))) solid currentColor; }
+  .stamp .ink::after  { inset: calc(7 * var(--u)); border: 1px solid currentColor; }
+  .stamp .ar  { display: block; font-family: var(--arabic); font-size: calc(55 * var(--u)); line-height: 1.15; letter-spacing: 0; }
+  .stamp .num { display: block; font-size: calc(34.5 * var(--u)); line-height: 1.2; letter-spacing: 0; margin-top: calc(4 * var(--u)); }
+
+
+  /* =============== SECTIONS (shared) ===============
+     Paragraph styles, straight from Photoshop: pt = px, leading = line height, tracking/1000 = em.
+     Vertical gaps are baseline-to-baseline distances, all multiples of 8: section 160, label→headline 72,
+     headline→intro 48, intro→first row 80, last line→rule 32, rule→next line 40, between bullets 32,
+     last line→green stamp 32. Label column 296. --kr/--kb (where the baseline sits in
+     a line for Anziano Regular/Bold) are measured in the browser by the script so the gaps land exactly. */
+  :root { --kr: 0.33; --kb: 0.33; --gap: calc(160 * var(--u)); }
+  .section { position: relative; padding: var(--gap) calc(72 * var(--u)) 0 calc(104 * var(--u)); }   /* left 104: clears the cypress column */
+  .section:last-of-type { padding-bottom: var(--gap); }
+  .label  { font-size: calc(28 * var(--u)); line-height: calc(18 * var(--u)); letter-spacing: .2em;
+            font-variant-caps: all-small-caps; text-transform: lowercase; }
+  .h2     { font-weight: 700; font-size: calc(60 * var(--u)); line-height: calc(60 * var(--u)); letter-spacing: -.05em;
+            margin-top: calc((33 + 28 * var(--kr) - 60 * var(--kb)) * var(--u)); filter: url(#ink-h); }
+  .intro  { font-size: calc(37 * var(--u)); line-height: calc(42 * var(--u)); letter-spacing: -.025em;
+            margin-top: calc((-3 + 60 * var(--kb) - 37 * var(--kr)) * var(--u)); }
+  .rows   { width: calc(855 * var(--u)); margin-top: calc((42.5 + 7 * var(--kr)) * var(--u)); }
+  .row    { display: grid; grid-template-columns: calc(296 * var(--u)) 1fr;
+            padding-bottom: calc((15.5 + 30 * var(--kr)) * var(--u)); }
+  .row + .row { border-top: 1px solid rgba(124, 30, 53, .6); padding-top: calc((22.5 - 30 * var(--kr)) * var(--u)); }   /* +1px rule */
+  .row:last-child { padding-bottom: 0; }
+  .row h3 { font-weight: 700; font-size: calc(30 * var(--u)); line-height: calc(28 * var(--u)); letter-spacing: -.025em;
+            margin-top: calc((2.5 + 30 * var(--kr) - 30 * var(--kb)) * var(--u)); }
+  br.m { display: none; } .nw { white-space: nowrap; }
+  .section p { text-wrap: pretty; }
+  .row p  { font-size: calc(30 * var(--u)); line-height: calc(33 * var(--u)); letter-spacing: -.025em; }
+
+  /* Green action stamp (tilted, worn): 64 tall, text Anziano 30 */
+  .act {
+    display: inline-flex; align-items: center; position: relative;
+    height: calc(64 * var(--u)); padding: 0 calc(28 * var(--u));
+    margin-top: calc((15.5 + 30 * var(--kr)) * var(--u)); margin-left: calc(296 * var(--u));
+    color: var(--green); font-size: calc(30 * var(--u)); letter-spacing: -.025em; line-height: 1;
+    transform: rotate(-2deg);
+  }
+  .act .ink { position: absolute; inset: 0; filter: url(#ink-act); }
+  .act .ink::before, .act .ink::after { content: ""; position: absolute; }
+  .act .ink::before { inset: 0; border: max(2px, calc(3 * var(--u))) solid currentColor; }
+  .act .ink::after  { inset: calc(7 * var(--u)); border: 1px solid currentColor; }
+  .act .t { filter: url(#ink-act); white-space: nowrap; }
+
+  /* Arabic section stamp: sumac, double rule, +6°, Moshref 144 */
+  .ar-stamp {
+    --sw: 416; --sh: 230; --sx: 1162.5; --sy: 446.75;   /* size, and centre in comp coordinates (label cap top = 73) */
+    --W: calc(var(--sw) * .56 * var(--u));                /* the whole framed stamp: 56% of the original stamp */
+    --B: calc(var(--W) * 18.75 / var(--sw));              /* chicken-feet band: 5 stitches deep (15 on the comp) */
+    position: absolute; width: var(--W); height: calc(var(--W) * var(--sh) / var(--sw));
+    left: calc(var(--sx) * var(--u) - var(--W) / 2); top: calc(var(--gap) + (var(--sy) - 73) * var(--u) - var(--W) * var(--sh) / var(--sw) / 2);
+    color: var(--ink); filter: url(#ink-stamp); transform: rotate(2deg);   /* +2°, opposite the green stamps' −2° */
+    display: grid; place-items: center;
+  }
+  /* frame: top/bottom bands, left/right bands, and the four corner blocks where the base lines meet (feet face out) */
+  .ar-stamp::before, .ar-stamp::after, .ar-stamp .cn { content: ""; position: absolute; pointer-events: none; }
+  .ar-stamp::before { top: 0; bottom: 0; left: var(--B); right: var(--B);
+    background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 5%22 width=%2240%22 height=%2250%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 0 / calc(var(--B) * .8) var(--B), url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 5%22 width=%2240%22 height=%2250%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%220%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 100% / calc(var(--B) * .8) var(--B);
+    background-repeat: round no-repeat; }
+  .ar-stamp::after { left: 0; right: 0; top: var(--B); bottom: var(--B);
+    background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 5 4%22 width=%2250%22 height=%2240%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 0 / var(--B) calc(var(--B) * .8), url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 5 4%22 width=%2250%22 height=%2240%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 100% 0 / var(--B) calc(var(--B) * .8);
+    background-repeat: no-repeat round; }
+  .ar-stamp .cn { inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 5 5%22 width=%2250%22 height=%2250%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 0 / var(--B) var(--B) no-repeat, url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 5 5%22 width=%2250%22 height=%2250%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 100% 0 / var(--B) var(--B) no-repeat,
+                url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 5 5%22 width=%2250%22 height=%2250%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 100% 100% / var(--B) var(--B) no-repeat, url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 5 5%22 width=%2250%22 height=%2250%22 shape-rendering=%22crispEdges%22 fill=%22%237C1E35%22%3E%3Crect x=%220%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%220%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%221%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%222%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%223%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%220%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%221%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%222%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%223%22 width=%221.02%22 height=%221.02%22/%3E%3Crect x=%224%22 y=%224%22 width=%221.02%22 height=%221.02%22/%3E%3C/svg%3E") 0 100% / var(--B) var(--B) no-repeat; }
+  #process .ar-stamp { --sw: 452; --sh: 236; --sx: 1145.5; --sy: 492; }
+  #about .ar-stamp   { --sw: 456; --sh: 236; --sx: 1168.5; --sy: 699; }   /* comp position, moved 24 right to clear the text */
+  .ar-stamp span, .ar-stamp::before, .ar-stamp::after, .ar-stamp .cn { display: none; }   /* the mihrab and word are drawn by the script */
+  .ar-stamp svg, .tr svg.mh { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+
+  /* Arabic translation (Services, Eligibility, Process): a tall mihrab in the right column; big Moshref title breaks its rules */
+  .tr { position: absolute; z-index: 1; right: calc(72 * var(--u)); width: calc(360 * var(--u)); color: var(--ink); }
+  .tr-body { position: relative; font-family: var(--ar-body); font-size: calc(30 * var(--u)); line-height: calc(36 * var(--u));
+             text-align: right; padding: 0 calc(30 * var(--u)) calc(37.6 * var(--u));   /* 24 clear of the inner rule */ --pg: calc(16 * var(--u)); }
+  .tr-body p { margin: 0; text-wrap: pretty; } .tr-body p + p { margin-top: var(--pg); }
+  .tr-body b { font-family: "KSA Extra", var(--ar-body); font-weight: 800; font-size: .8em; }   /* 24 against the 30 body */
+  .tr-body u { font-family: "KSA Extra", var(--ar-body); font-weight: 800; font-size: .8em; text-decoration-thickness: 1px; text-underline-offset: .45em; text-decoration-skip-ink: none; }
+  .tr-body .tel { color: inherit; text-decoration: none; }
+  .trs { list-style: none; margin: 0; padding: 0; } .trs li { display: flex; gap: .55em; } .trs li + li { margin-top: var(--pg); }
+  .trs i { font-style: normal; font-family: "itc-zapf-dingbats-std", "Zapf Dingbats", sans-serif; font-weight: 500; font-size: .85em; }
+  .tr-body hr { border: 0; border-top: 1px solid rgba(124, 30, 53, .6); margin: var(--pg) calc(-12 * var(--u)); }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* About photos: prints with a cream border and soft shadow, laid at slight angles */
+  .snaps { position: absolute; }
+  .snap { margin: 0; width: 86%; background: #FBF7EE; padding: calc(12 * var(--u)) calc(12 * var(--u)) calc(14 * var(--u));
+          box-shadow: 0 1px 2px rgba(60, 30, 25, .18), 0 8px 22px rgba(60, 30, 25, .16); }
+  .snap img { display: block; width: 100%; height: auto; }
+  .snap.s1 { transform: rotate(-2.5deg); } .snap.s2 { transform: rotate(1.8deg); margin: calc(24 * var(--u)) 0 0 auto; }
+
+  /* Reading focus: rows below the reading line wait at 75%; once read they stay full. */
+  .focus .row h3, .focus .row p { transition: opacity .4s ease; }
+  .focus .row:not(.read) p, .focus .row:not(.read):not(.first) h3 { opacity: .75; }
+  @media (hover: hover) { .focus .row:hover h3, .focus .row:hover p { opacity: 1; } }
+
+  /* Bulleted rows: Zapf Dingbats 30 (✺, or ❶ ❷ ❸ for steps), hung so the glyph ends 24 before the text; 32 between items.
+     ✺ centres on the lowercase letters (4 above the baseline); the numbers centre on the capitals (10 above). */
+  .bullets { list-style: none; margin: 0; padding: 0; font-size: calc(30 * var(--u)); line-height: calc(33 * var(--u)); letter-spacing: -.025em; }
+  .bullets li + li { margin-top: calc(32 * var(--u)); }
+  .bullets li::before {
+    content: "\273A"; display: inline-block; width: calc(64 * var(--u)); margin-left: calc(-64 * var(--u));
+    padding-right: calc(24 * var(--u)); box-sizing: border-box; text-align: right;
+    font-family: "itc-zapf-dingbats-std", "Zapf Dingbats", sans-serif; font-weight: 500; font-size: calc(30 * var(--u));
+    line-height: 0; letter-spacing: 0; position: relative; top: calc((var(--bc) * 30 - 4) * var(--u));
+  }
+  .bullets.steps li::before { top: calc((var(--bn) * 30 - 10) * var(--u)); }
+  .bullets.steps li:nth-child(1)::before { content: "\278A"; }
+  .bullets.steps li:nth-child(2)::before { content: "\278B"; }
+  .bullets.steps li:nth-child(3)::before { content: "\278C"; }
+  :root { --bc: .33; --bn: .35; }  /* where each glyph's ink centre sits above the baseline, measured by the script */
+  .focus .bullets li { transition: opacity .4s ease; }
+  .focus .bullets li:not(.read) { opacity: .75; }
+  @media (hover: hover) { .focus .bullets li:hover { opacity: 1; } }
+  .row.note p { grid-column: 2; }
+  .tel { color: inherit; text-decoration: none; }
+  .tel:hover { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
+  .promise { font-weight: 700; text-decoration: underline; text-underline-offset: .16em; text-decoration-thickness: max(1px, calc(2 * var(--u))); text-decoration-skip-ink: none; }
+  #process .rows { width: calc(728 * var(--u)); }
+
+  /* Untilted green stamp button inside a row (About → AROC, Donate → ActBlue): Regular 30/28, same ink and double rule
+     as the green stamps, 16 inside, Anziano ">" */
+  .row .more {
+    grid-column: 2; justify-self: start; display: inline-flex; align-items: center; position: relative;
+    margin-top: calc((7.5 + 30 * var(--kr)) * var(--u));   /* last line's baseline → top of box: 24 */
+    padding: calc(16 * var(--u)); color: var(--green);
+    font-size: calc(30 * var(--u)); line-height: calc(28 * var(--u)); letter-spacing: -.025em;
+  }
+  .row .more .ink { position: absolute; inset: 0; filter: url(#ink-act); }
+  .row .more .ink::before, .row .more .ink::after { content: ""; position: absolute; }
+  .row .more .ink::before { inset: 0; border: max(2px, calc(3 * var(--u))) solid currentColor; }
+  .row .more .ink::after  { inset: calc(7 * var(--u)); border: 1px solid currentColor; }
+  .row .more .t { filter: url(#ink-act); white-space: nowrap; }
+
+  /* Hover (all green stamp buttons): straightens, presses down 2%, and fills solid green. The worn ink fades out as a
+     solid fill, inner rule and paper-coloured text fade in with half the wear (ink-half). Twice as slow as the hero/nav.
+     Keyboard focus and a tap on phones do the same. */
+  .act, .row .more { transition: transform 1s cubic-bezier(.3,.7,.4,1.15); -webkit-tap-highlight-color: transparent; }
+  .act .ink, .row .more .ink, .act .t, .row .more .t { transition: opacity .9s ease; }
+  .act .t, .row .more .t { position: relative; }
+  .act .fill, .row .more .fill { position: absolute; inset: 0; background: var(--green); opacity: 0; transition: opacity .9s ease;
+                                filter: url(#ink-half); }
+  .act .fill::after, .row .more .fill::after { content: ""; position: absolute; inset: calc(7 * var(--u)); border: 1px solid var(--page); }
+  .act::after, .row .more::after {
+    content: attr(data-label); position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    color: var(--page); white-space: nowrap; opacity: 0; transition: opacity .9s ease; filter: url(#ink-half);
+  }
+  .act:is(:hover, :focus-visible, :active), .row .more:is(:hover, :focus-visible, :active) { transform: rotate(0deg) scale(.98); }
+  .act:is(:hover, :focus-visible, :active) :is(.ink, .t), .row .more:is(:hover, :focus-visible, :active) :is(.ink, .t) { opacity: 0; }
+  .act:is(:hover, :focus-visible, :active) .fill, .row .more:is(:hover, :focus-visible, :active) .fill,
+  .act:is(:hover, :focus-visible, :active)::after, .row .more:is(:hover, :focus-visible, :active)::after { opacity: 1; }
+
+  /* Hero stamp: straightens and presses on hover (no fill) */
+  .stamp { transition: transform .5s cubic-bezier(.3,.7,.4,1.15); -webkit-tap-highlight-color: transparent; }
+  .stamp:is(:hover, :focus-visible, :active) { transform: translateY(calc(-120 * var(--u) + 55 * var(--u))) rotate(0deg) scale(.98); }
+
+  .row.has-more { padding-bottom: calc(32 * var(--u)) !important; }   /* box → rule: 32 */
+  .row p i, .row p em { font-style: italic; }
+  #donate .ar-stamp { --sw: 452; --sh: 236; --sx: 1169.5; --sy: 492; }   /* comp position, moved 24 right to clear the full-width rule */
+  /* Footnote: Anziano 20/23, tracking 25, in the body column; ✺ 20 hung 16 to the left; 48 below the last line */
+  .fine {
+    position: relative; margin: calc((20 + 10 * var(--kr)) * var(--u)) 0 0 calc(296 * var(--u));
+    width: calc(559 * var(--u)); font-size: calc(20 * var(--u)); line-height: calc(23 * var(--u)); letter-spacing: .025em;
+  }
+  .fine::before {
+    content: "\273A"; display: inline-block; width: calc(40 * var(--u)); margin-left: calc(-40 * var(--u));
+    padding-right: calc(16 * var(--u)); box-sizing: border-box; text-align: right;
+    font-family: "itc-zapf-dingbats-std", "Zapf Dingbats", sans-serif; font-weight: 500; font-size: calc(20 * var(--u));
+    line-height: 0; letter-spacing: 0; position: relative; top: calc((var(--bc) * 20 - 3) * var(--u));
+  }
+  .mail { color: inherit; text-decoration: none; font-style: italic; }
+  .mail:hover { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
+  #eligibility .rows { width: calc(760 * var(--u)); }   /* rule width follows the content */
+
+  /* =============== CLOSING ===============
+     Fills the window like the hero: photo + caption centred in the window, footer along the bottom (64 up).
+     Equal rows above and below the photo block keep it at the window's exact middle. */
+  .closing {
+    display: grid; grid-template-rows: auto auto;
+    padding: calc(240 * var(--u)) calc(72 * var(--u)) calc((40 + 93.5 + 40) * var(--u));   /* room for the rule and bird under the footer */
+  }
+  .closing .center { grid-row: 1; }
+  .closing .foot { grid-row: 2; align-self: end; padding-left: calc(32 * var(--u)); margin-top: calc(160 * var(--u)); }
+  .closing .center { display: grid; justify-items: center; align-content: center; }
+  /* Photo frame: outer 1px, 4 gap, inner 3px, 8 to the photo; worn like the stamps */
+  .photo { position: relative; margin: 0; width: calc(525 * var(--u) + 32 * var(--u)); padding: calc(16 * var(--u)); }
+  .photo img { display: block; width: 100%; height: auto; aspect-ratio: 576 / 431; }
+  .photo .frame { position: absolute; inset: 0; color: var(--ink); filter: url(#ink-stamp); pointer-events: none; }
+  .photo .frame::before, .photo .frame::after { content: ""; position: absolute; }
+  .photo .frame::before { inset: 0; border: 1px solid currentColor; }
+  .photo .frame::after  { inset: calc(1px + 4 * var(--u)); border: max(2px, calc(3 * var(--u))) solid currentColor; }
+  /* Caption: Moshref 32, line 1 to the right of the photo and line 2 to the left (read right to left), 40 from the frame;
+     photo and caption together sit in the middle of the window */
+  .closing .center { display: flex; flex-direction: row; justify-content: center; align-items: center; gap: calc(40 * var(--u)); }
+  .caption { margin: 0; font-family: var(--arabic); font-size: calc(32 * var(--u)); line-height: 1.5; white-space: nowrap; }
+  .caption.c2 { order: -1; }
+  .caption.c1 { order: 1; }
+  .foot {
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: last baseline;
+    font-size: calc(20 * var(--u)); line-height: calc(24 * var(--u)); letter-spacing: .1em; font-variant-caps: all-small-caps; text-transform: lowercase;
+    font-variant-numeric: oldstyle-nums; font-feature-settings: "onum" 1;
+  }
+  .foot .addr { justify-self: end; text-align: right; font-style: normal; }
+  .totop { display: grid; justify-items: center; gap: calc(16 * var(--u)); text-transform: none;
+           font-size: calc(30 * var(--u)); line-height: 1; letter-spacing: .2em; font-variant-caps: all-small-caps; }
+  .totop .t { text-transform: lowercase; margin-right: -.2em; }   /* trailing tracking would push it off-centre */
+  .totop .cres { font-family: "itc-zapf-dingbats-std", "Zapf Dingbats", sans-serif; font-weight: 500; letter-spacing: 0;
+                 font-variant-caps: normal; transform: rotate(90deg); transition: transform .2s ease; }
+  .totop:hover .cres { transform: rotate(90deg) translateX(-3px); }
+  .totop .t { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; padding-bottom: .15em;
+              transition: background-size 1s cubic-bezier(.4,.1,.2,1); }   /* underline draws in left to right, twice as slow as the nav */
+  .totop:is(:hover, :focus-visible) .t { background-size: 100% 1px; }
+
+  /* ---------- Phones: keep the composition, change only what can't fit ---------- */
+  /* Single column up to 900px wide. The column grows with the window up to 560px, then stops and stays centred,
+     so in-between widths (small tablets, narrow windows) don't stretch. Everything in the hero scales off the column. */
+  @media (max-width: 900px) {
+    /* left margin is 48 (clears the cypress column), right 24; above 632px wide the 560 column centres */
+    :root { --col: min(calc(100vw - 72px), 560px); --u: calc(var(--col) / 640);
+            --padL: max(48px, calc((100vw - var(--col)) / 2)); --padR: calc(100vw - var(--col) - var(--padL)); }
+    body::before { left: 8px; width: 19.2px; background-size: 100% 33.28px; }   /* column 20% smaller on phones */
+    :root { --sideM: max(24px, calc((100vw - 560px) / 2)); --sideL: max(48px, calc((100vw - 560px) / 2)); }   /* sections clear the ledger */
+    .nav { padding-top: 18px; }
+    br.d { display: none; } br.m { display: inline; }
+    .nav-row { width: calc(100vw - 2 * var(--sideM)); font-size: 20px; }
+    .nav-row .link { display: none; }
+    .menu-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: none; border: 0; color: inherit; font: inherit; font-size: 20px; cursor: pointer; padding: 0; min-width: 44px; min-height: 44px;
+      margin-left: 24px;   /* clears the cypress column; lines up with the wordmark */
+    }
+    .menu-btn i { display: grid; gap: 5px; }
+    .menu-btn i::before, .menu-btn i::after { content: ""; display: block; width: 20px; height: 2px; background: currentColor; }
+    .donate { padding: 8px 10px !important; }
+    .hero { padding: 96px var(--padR) 72px var(--padL); align-items: center; justify-content: flex-start; }
+    .hero-inner { display: block; padding-bottom: calc(180 * var(--u)); }
+    .wordmark { font-size: calc(84 * var(--u)); line-height: calc(77.5 * var(--u)); }
+    /* Hero stamp: locked to the wordmark (same unit), so it swallows the last two letters of SERVICES at every width */
+    .stamp {
+      position: absolute; left: calc(328 * var(--u)); top: calc(142 * var(--u));
+      width: calc(264 * var(--u)); height: calc(264 * var(--u));
+      transform: rotate(-4deg);
+    }
+    .stamp:is(:hover, :focus-visible, :active) { transform: rotate(0deg) scale(.98); }
+    .act .fill::after, .row .more .fill::after { inset: 6px; }
+    .stamp .ar { font-size: calc(60 * var(--u)); }
+    .stamp .num { font-size: calc(38 * var(--u)); }
+    .stamp .ink::after { inset: calc(8 * var(--u)); }
+
+    /* sections on phones: fixed sizes, label above body, Arabic stamp under the intro.
+       Baseline-to-baseline gaps are multiples of 8 (label→headline 56, headline→intro 48, line→rule 32, rule→line 40, line→stamp 40) */
+    .section { padding: 96px var(--sideM) 0 var(--sideL); }
+    .section:last-of-type { padding-bottom: 96px; }
+    .label { font-size: 18px; line-height: 14px; }
+    .h2 { font-size: 36px; line-height: 38px; margin-top: 24px; filter: url(#ink-h-sm); }
+    .intro { font-size: 22px; line-height: 28px; margin-top: 20px; }
+    .rows { width: auto; margin-top: 40px; }
+    .row { grid-template-columns: 1fr; gap: 8px; padding-bottom: 25px; }
+    .row + .row { padding-top: 21px; }
+    .row h3 { font-size: 20px; line-height: 22px; margin-top: 0; }
+    .row p { font-size: 19px; line-height: 26px; }
+    .act { height: 52px; padding: 0 20px; font-size: 21px; margin: 33px 0 0; }
+    .act .ink::after { inset: 6px; }
+    /* Arabic stamps: centred under the intro, 70% of the column (max 300px), text and box scale together */
+    .ar-stamp {   /* phones: size set by the script */
+      position: relative; left: auto !important; top: auto !important; width: var(--W); height: calc(var(--W) * var(--sh) / var(--sw));
+      margin: 40px auto 0; display: grid; }
+    .closing { padding: 144px var(--sideM) calc(32px + 46px + 32px) var(--sideL); }
+    .closing .foot { padding-left: 0; margin-top: 120px; }
+    .tr { position: relative; right: auto; width: auto; margin-top: 64px; }
+    .tr-body { font-size: 23px; line-height: 28px; padding: 0 22px 36.6px; --pg: 14px; }
+    .tr-body hr { margin: 14px -10px; }
+    .snaps { position: relative; margin: 40px 0 0; }
+    .snap { width: 78%; padding: 10px 10px 12px; } .snap.s2 { margin: -28px 0 0 auto; }
+    .photo { width: 100%; padding: 12px; }
+    .photo .frame::after { inset: 5px; }
+    .closing .center { flex-direction: column; gap: 0; }
+    .caption { font-size: 30px; line-height: 50px; white-space: normal; text-align: center; }
+    .caption.c1 { order: 0; margin-top: 24px; }
+    .caption.c2 { order: 1; }
+    .foot { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 24px; font-size: 18px; line-height: 25px; margin-top: 72px; }
+    .foot .totop { order: -1; font-size: 28px; gap: 15px; }
+    .foot .addr { justify-self: center; text-align: center; order: 0; }
+    .foot .copy { order: 1; }
+    .bullets { font-size: 19px; line-height: 26px; padding-left: 32px; }
+    .bullets li + li { margin-top: 16px; }
+    .bullets li::before { font-size: 19px; width: 32px; margin-left: -32px; padding-right: 12px; top: calc(var(--bc) * 19px - 2.5px); }
+    .bullets.steps li::before { top: calc(var(--bn) * 19px - 6.5px); }
+    #process .rows { width: auto; }
+    .row .more { grid-column: auto; margin-top: 8px; padding: 16px; font-size: 21px; line-height: 22px; }
+    .row .more .ink::after { inset: 6px; }
+    .fine { margin: 32px 0 0; padding-left: 28px; width: auto; font-size: 15px; line-height: 20px; }
+    .fine::before { font-size: 15px; width: 28px; margin-left: -28px; padding-right: 12px; top: calc(var(--bc) * 15px - 2px); }
+    .row.has-more { padding-bottom: 32px !important; }
+    #eligibility .rows { width: auto; }
+    .row.note p { grid-column: auto; }
+  }
+
+  /* Full-screen menu (phones) */
+  .sheet {
+    position: fixed; inset: 0; z-index: 30;
+    background: var(--page) url("assets/paper.webp") 0 0 / 603px 603px repeat;
+    padding: 18px 24px 40px; display: flex; flex-direction: column;
+    opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility 0s .25s;
+  }
+  .sheet.open { opacity: 1; visibility: visible; transition: opacity .25s ease; }
+  .sheet .close { align-self: flex-start; display: grid; place-items: center start; width: 44px; height: 44px; margin: -6px 0;
+                  background: none; border: 0; color: var(--ink); cursor: pointer; }
+  .sheet .close i { position: relative; display: block; width: 20px; height: 20px; }
+  .sheet .close i::before, .sheet .close i::after { content: ""; position: absolute; left: 0; top: 9px; width: 20px; height: 2px; background: currentColor; }
+  .sheet .close i::before { transform: rotate(45deg); }
+  .sheet .close i::after  { transform: rotate(-45deg); }
+  .sheet nav { margin-top: 64px; display: grid; gap: 0; }   /* links 48 apart, baseline to baseline */
+  .sheet nav a { justify-self: start; font-size: 42px; line-height: 48px; letter-spacing: .1em; font-variant-caps: all-small-caps; text-transform: lowercase; }
+  .sheet nav a[aria-current="true"] { font-weight: 700; }
+  /* menu links: underline draws in left to right (1s) on hover, keyboard focus or tap */
+  .sheet nav a:not(.donate) { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+                              transition: background-size 1s cubic-bezier(.4,.1,.2,1); }
+  .sheet nav a:not(.donate):is(:hover, :focus-visible, :active) { background-size: 100% 1px; }
+  .sheet .donate { letter-spacing: 0; font-variant-caps: normal; text-transform: none;   /* matches the Donate button in the nav bar */
+                   justify-self: start; font-size: 30px; padding: 10px 14px !important; margin-top: var(--dgap, 12px); }   /* set by the script: same visible gap as between the links */
+  /* contact: the hero's green stamp, straight, same wear; address below in sumac */
+  .sheet .call { margin-top: auto; justify-self: start; position: relative; width: 156px; height: 156px;   /* hero stamp, 25% smaller */
+                 display: grid; place-items: center; text-align: center; color: var(--green); }
+  .sheet .call .ink { position: absolute; inset: 0; display: grid; place-items: center; filter: url(#ink-stamp); }
+  .sheet .call .ink::before, .sheet .call .ink::after { content: ""; position: absolute; pointer-events: none; }
+  .sheet .call .ink::before { inset: 0; border: 3px solid currentColor; }
+  .sheet .call .ink::after  { inset: 5px; border: 1px solid currentColor; }
+  .sheet .call .ar  { display: block; font-family: var(--arabic); font-size: 36px; line-height: 1.15; }
+  .sheet .call .num { display: block; font-size: 22.5px; line-height: 1.2; margin-top: 3px; }
+  /* address under the phone number: 16 small caps, tracking 100, old-style numerals; shrinks only if the second line wouldn't fit */
+  .sheet .addr { margin-top: 24px; font-style: normal; font-size: min(16px, calc((100vw - 48px) / var(--addrK, 15))); line-height: 1.3;
+                 letter-spacing: .1em; font-variant-caps: all-small-caps; text-transform: lowercase;
+                 font-variant-numeric: oldstyle-nums; font-feature-settings: "onum" 1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .nav, .nav::before, .sheet { transition: none; }
+    .focus .row h3, .focus .row p, .focus .bullets li { opacity: 1 !important; transition: none; }
+    .act, .row .more { transition: none; }
+    .act:is(:hover, :focus-visible, :active) { transform: rotate(-2deg); }
+    .row .more:is(:hover, :focus-visible, :active) { transform: none; }
+    .stamp, .donate { transition: none; }
+    .stamp:is(:hover, :focus-visible, :active) { transform: translateY(calc(-120 * var(--u) + 55 * var(--u))) rotate(-4deg); }
+    .donate:is(:hover, :focus-visible, :active) { transform: none; }
+  }
+
+  /* =============== Below desktop: larger English, tighter spacing (multiples of 8, baseline to baseline), calmer Arabic ===============
+     English: headline 45/48, intro 27/34, row label 25/28, row body 24/32 (≈ +25%); eyebrow unchanged.
+     Baselines: eyebrow→headline 40, headline→intro 40, last line→rule 24, rule→next line 32, between bullets 8, last line→button 32. */
+  @media (max-width: 900px) {
+    .h2    { font-size: 45px; line-height: 48px; margin-top: calc(40px - 7px - 24px + 18px * var(--kr) - 45px * var(--kb)); }
+    .intro { font-size: 27px; line-height: 34px; margin-top: calc(40px - 24px - 17px + 45px * var(--kb) - 27px * var(--kr)); }
+    .rows  { margin-top: 32px; }
+    .row   { gap: 8px; padding-bottom: calc(24px - 16px + 24px * var(--kr)); }
+    .row + .row { padding-top: calc(32px - 14px - 25px * var(--kb)); }
+    .row:last-child { padding-bottom: 0; }
+    .row h3 { font-size: 25px; line-height: 28px; }
+    .row p  { font-size: 24px; line-height: 32px; }
+    .bullets { font-size: 24px; line-height: 32px; padding-left: 38px; }
+    .bullets li + li { margin-top: 8px; }
+    .bullets li::before { font-size: 24px; width: 38px; margin-left: -38px; padding-right: 14px; top: calc(var(--bc) * 24px - 3px); }
+    .bullets.steps li::before { top: calc(var(--bn) * 24px - 8px); }
+    .row .more { font-size: 24px; line-height: 28px; }
+    /* Arabic panel: body +20% (28/34, labels 22); title 35% smaller on iPad, spanning the screen on phones (set by the script); green button centred under the mihrab */
+    .tr-body { font-size: 28px; line-height: 34px; }
+    .act { display: flex; width: max-content; margin: 32px auto 0 !important; }
+    .row { grid-template-columns: minmax(0, 1fr); }   /* long words can't push the column wider */
+    .mail { overflow-wrap: anywhere; }
+  }
+  /* iPad and up (single column): the Arabic panel is 70% of the English text width, centred */
+  @media (min-width: 600px) and (max-width: 900px) {
+    .tr { width: 70%; margin-left: auto; margin-right: auto; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Ink on cotton paper. Three parts: rough edges (displacement), slight spread (blur + threshold),
+         and uneven inking (fine specks knocked out + broad patches of lighter ink). -->
+    <filter id="ink-word" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" result="fine"/>
+      <feDisplacementMap in="SourceGraphic" in2="fine" scale="1.6" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feGaussianBlur in="rough" stdDeviation="0.55" result="soft"/>
+      <feComponentTransfer in="soft" result="spread"><feFuncA type="linear" slope="2.6" intercept="-0.45"/></feComponentTransfer>
+      <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" seed="11" result="speck"/>
+      <feColorMatrix in="speck" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.4 0 0 0 2.4" result="speckMask"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="2" result="broad"/>
+      <feColorMatrix in="broad" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.6 0 0 0 0.68" result="broadMask"/>
+      <feComposite in="speckMask" in2="broadMask" operator="arithmetic" k1="1" result="mask"/>
+      <feComposite in="spread" in2="mask" operator="in"/>
+    </filter>
+    <!-- Ink spread on section headlines: blur the letter shapes, crush back (Levels 80/115), fill sumac -->
+    <filter id="ink-h" x="-3%" y="-15%" width="106%" height="130%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.2" result="blur"/>
+      <feComponentTransfer in="blur" result="crushed"><feFuncA type="linear" slope="7.2857" intercept="-2.2857"/></feComponentTransfer>
+      <feFlood flood-color="#7C1E35"/>
+      <feComposite in2="crushed" operator="in"/>
+    </filter>
+    <!-- headline ink spread for the single-column layout: 15% less bleed (blur 1.2 → 1.02) -->
+    <filter id="ink-h-sm" x="-3%" y="-15%" width="106%" height="130%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.02" result="blur"/>
+      <feComponentTransfer in="blur" result="crushed"><feFuncA type="linear" slope="7.2857" intercept="-2.2857"/></feComponentTransfer>
+      <feFlood flood-color="#7C1E35"/>
+      <feComposite in2="crushed" operator="in"/>
+    </filter>
+    <filter id="ink-stamp" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB">
+      <!-- wear halfway between the first stamp (heavier) and the wordmark (lighter) -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.88" numOctaves="2" seed="9" result="fine"/>
+      <feDisplacementMap in="SourceGraphic" in2="fine" scale="1.9" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feGaussianBlur in="rough" stdDeviation="0.57" result="soft"/>
+      <feComponentTransfer in="soft" result="spread"><feFuncA type="linear" slope="2.5" intercept="-0.42"/></feComponentTransfer>
+      <feTurbulence type="fractalNoise" baseFrequency="0.58" numOctaves="3" seed="17" result="speck"/>
+      <feColorMatrix in="speck" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.7 0 0 0 2.37" result="speckMask"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="5" result="broad"/>
+      <feColorMatrix in="broad" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.85 0 0 0 0.44" result="broadMask"/>
+      <feComposite in="speckMask" in2="broadMask" operator="arithmetic" k1="1" result="mask"/>
+      <feComposite in="spread" in2="mask" operator="in"/>
+    </filter>
+    <filter id="ink-act" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB">
+      <!-- green action stamps: one notch lighter than ink-stamp — softer edges, fewer missing specks -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.88" numOctaves="2" seed="9" result="fine"/>
+      <feDisplacementMap in="SourceGraphic" in2="fine" scale="1.5" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feGaussianBlur in="rough" stdDeviation="0.5" result="soft"/>
+      <feComponentTransfer in="soft" result="spread"><feFuncA type="linear" slope="2.6" intercept="-0.4"/></feComponentTransfer>
+      <feTurbulence type="fractalNoise" baseFrequency="0.58" numOctaves="3" seed="17" result="speck"/>
+      <feColorMatrix in="speck" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.5 0 0 0 2.55" result="speckMask"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="5" result="broad"/>
+      <feColorMatrix in="broad" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.6 0 0 0 0.66" result="broadMask"/>
+      <feComposite in="speckMask" in2="broadMask" operator="arithmetic" k1="1" result="mask"/>
+      <feComposite in="spread" in2="mask" operator="in"/>
+    </filter>
+    <filter id="ink-half" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB">
+      <!-- filled green stamps on hover: half the wear of ink-act -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.88" numOctaves="2" seed="9" result="fine"/>
+      <feDisplacementMap in="SourceGraphic" in2="fine" scale="0.75" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feGaussianBlur in="rough" stdDeviation="0.35" result="soft"/>
+      <feComponentTransfer in="soft" result="spread"><feFuncA type="linear" slope="2.3" intercept="-0.3"/></feComponentTransfer>
+      <feTurbulence type="fractalNoise" baseFrequency="0.58" numOctaves="3" seed="17" result="speck"/>
+      <feColorMatrix in="speck" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.25 0 0 0 1.78" result="speckMask"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="5" result="broad"/>
+      <feColorMatrix in="broad" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.3 0 0 0 0.83" result="broadMask"/>
+      <feComposite in="speckMask" in2="broadMask" operator="arithmetic" k1="1" result="mask"/>
+      <feComposite in="spread" in2="mask" operator="in"/>
+    </filter>
+  </defs>
+</svg>
+
+<header class="nav" id="nav">
+  <nav class="nav-row" aria-label="Main">
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Menu"><i aria-hidden="true"></i></button>
+    <a class="link" href="#services" data-target="services" data-label="Services"><span>Services</span></a>
+    <a class="link" href="#eligibility" data-target="eligibility" data-label="Eligibility"><span>Eligibility</span></a>
+    <a class="link" href="#process" data-target="process" data-label="Process"><span>Process</span></a>
+    <a class="link" href="#about" data-target="about" data-label="About"><span>About</span></a>
+    <a class="donate" href="https://secure.actblue.com/donate/acslegal" target="_blank" rel="noopener">Donate</a>
+  </nav>
+</header>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Menu">
+  <button class="close" type="button" aria-label="Close menu"><i aria-hidden="true"></i></button>
+  <nav aria-label="Sections">
+    <a href="#services" data-target="services" data-label="Services"><span>Services</span></a>
+    <a href="#eligibility" data-target="eligibility" data-label="Eligibility"><span>Eligibility</span></a>
+    <a href="#process" data-target="process" data-label="Process"><span>Process</span></a>
+    <a href="#about" data-target="about" data-label="About"><span>About</span></a>
+    <a class="donate" href="https://secure.actblue.com/donate/acslegal" target="_blank" rel="noopener">Donate</a>
+  </nav>
+  <a class="call" href="tel:+14158617444" aria-label="Call us: (415) 861-7444">
+    <span class="ink"><span>
+      <span class="ar" lang="ar" dir="rtl">اتــــــــصل بنا</span>
+      <span class="num">(415) 861-7444</span>
+    </span></span>
+  </a>
+  <address class="addr">522 Valencia St.<br><span class="l2">San Francisco, CA 94110</span></address>
+</div>
+
+<main>
+  <section class="hero" id="top" aria-label="Arab Community Services">
+    <div class="hero-inner">
+      <h1 class="wordmark"><span>Arab</span><span>Community</span><span>Services</span></h1>
+      <a class="stamp" href="tel:+14158617444" aria-label="Call us: (415) 861-7444">
+        <span class="ink"><span>
+          <span class="ar" lang="ar" dir="rtl">اتــــــــصل بنا</span>
+          <span class="num">(415) 861-7444</span>
+        </span></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section focus" id="services" aria-labelledby="h-services">
+    <p class="label">Services</p>
+    <h2 class="h2" id="h-services">Immigration.<br class="m"> <span class="nw">Social services.</span><br>Know your rights.</h2>
+    <p class="intro">We offer free, confidential legal<br class="d"> and social services in English and Arabic.</p>
+    <div class="rows">
+      <div class="row first">
+        <h3>Immigration</h3>
+        <p>Get legal help with family petitions, asylum, and representation if you or a family member is detained by ICE or has a court date.</p>
+      </div>
+      <div class="row">
+        <h3>Social services</h3>
+        <p>Apply for public benefits such as food stamps (CalFresh), health insurance (Medi-Cal), and cash assistance (CalWORKs).</p>
+      </div>
+      <div class="row">
+        <h3>Know your rights</h3>
+        <p>Learn what to do if immigration agents come to your home, work, or community. Free trainings for families, businesses, and community groups.</p>
+      </div>
+    </div>
+    <aside class="tr" lang="ar" dir="rtl" aria-labelledby="tr-services">
+      <h3 class="sr" id="tr-services">خدماتنا</h3>
+      <svg class="mh" aria-hidden="true" focusable="false" data-title="خدماتنا"></svg>
+      <div class="tr-body">
+        <p><b>الهجرة</b>: نساعدك قانونياً في لمّ شمل العائلة واللجوء، ونمثّلك إذا احتُجزت أنت أو قريب لك لدى سلطات الهجرة أو لديك موعد محكمة.</p>
+        <p><b>الخدمات الاجتماعية</b>: قدّم على المساعدات الحكومية مثل قسائم الطعام، والتأمين الصحي، والمساعدات النقدية.</p>
+        <p><b>اعرف حقوقك</b>: تعلّم كيف تتصرّف إذا جاء موظفو الهجرة لمنزلك أو عملك أو منطقتك. تدريبات مجانية للعائلات وأصحاب الأعمال والمجتمع.</p>
+      </div>
+    </aside>
+    <a class="act" href="#eligibility" data-label="See if you qualify &gt;"><span class="ink" aria-hidden="true"></span><span class="fill" aria-hidden="true"></span><span class="t">See if you qualify &gt;</span></a>
+  </section>
+
+  <section class="section focus" id="eligibility" aria-labelledby="h-eligibility">
+    <p class="label">Eligibility</p>
+    <h2 class="h2" id="h-eligibility">Is this for you?</h2>
+    <p class="intro">We serve working-class Arab, Muslim, <span class="nw">North<br class="d"> African</span>, and Southwest Asian residents of the Bay.</p>
+    <div class="rows">
+      <div class="row first">
+        <h3>Requirements</h3>
+        <ul class="bullets">
+          <li>You or someone in your household is<br class="d"> a resident of the Greater SF Bay Area.</li>
+          <li>Your household income falls within<br class="d"> the low-to-moderate income range.</li>
+          <li>You or someone in your household is<br class="d"> Arab, Muslim, North African, or<br class="d"> Southwest Asian.</li>
+        </ul>
+      </div>
+      <div class="row note">
+        <p>Not sure? <a class="tel" href="tel:+14158617444">Call anyway</a>. If we can’t<br class="d"> help, we’ll connect you with<br class="d"> someone who can.</p>
+      </div>
+    </div>
+    <aside class="tr" lang="ar" dir="rtl" aria-labelledby="tr-eligibility">
+      <h3 class="sr" id="tr-eligibility">الأهلية</h3>
+      <svg class="mh" aria-hidden="true" focusable="false" data-title="الأهلية"></svg>
+      <div class="tr-body">
+        <p><b>الإقامة</b>: تسكن أنت أو أحد أفراد أسرتك في منطقة خليج سان فرانسيسكو.</p>
+        <p><b>الدخل</b>: دخل أسرتك منخفض أو متوسط.</p>
+        <p><b>الهوية الثقافية</b>: أنت أو أحد أفراد أسرتك عربي أو مسلم، أو من شمال أفريقيا أو جنوب غرب آسيا.</p>
+        <p>غير متأكد؟ <a class="tel" href="tel:+14158617444">اتصل بنا</a>.</p>
+      </div>
+    </aside>
+    <a class="act" href="#process" data-label="See how it works &gt;"><span class="ink" aria-hidden="true"></span><span class="fill" aria-hidden="true"></span><span class="t">See how it works &gt;</span></a>
+  </section>
+
+  <section class="section focus" id="process" aria-labelledby="h-process">
+    <p class="label">Process</p>
+    <h2 class="h2" id="h-process">What to expect</h2>
+    <p class="intro">A three-step intake.</p>
+    <div class="rows">
+      <div class="row first">
+        <h3>How it works</h3>
+        <ol class="bullets steps">
+          <li>Call us at <a class="tel" href="tel:+14158617444">(415) 861-7444</a>.</li>
+          <li>We’ll follow up to schedule a<br class="d"> consultation and assess whether<br class="d"> we’re the right team for your case.</li>
+          <li>If we take on your case, we’ll gather<br class="d"> your documents and get to work. If<br class="d"> we can’t take on your case, we’ll<br class="d"> refer you to trusted organizations<br class="d"> and attorneys.</li>
+        </ol>
+      </div>
+      <div class="row">
+        <h3>Privacy</h3>
+        <p>What you share with us about your<br class="d"> case stays strictly confidential. <strong class="promise">We<br class="d"> never share your case information<br class="d"> with immigration authorities or<br class="d"> anyone else.</strong></p>
+      </div>
+    </div>
+    <aside class="tr" lang="ar" dir="rtl" aria-labelledby="tr-process">
+      <h3 class="sr" id="tr-process">الخطوات</h3>
+      <svg class="mh" aria-hidden="true" focusable="false" data-title="الخطوات"></svg>
+      <div class="tr-body">
+        <ol class="trs">
+          <li><i aria-hidden="true">&#x278A;</i><span><a class="tel" href="tel:+14158617444">اتصل بنا</a>.</span></li>
+          <li><i aria-hidden="true">&#x278B;</i><span>سنتواصل معك لتحديد موعد استشارة، ونقيّم إن كنّا الفريق المناسب لقضيتك.</span></li>
+          <li><i aria-hidden="true">&#x278C;</i><span>إذا استلمنا قضيتك، سنجمع أوراقك ونبدأ العمل. وإذا لم نستطع، سنوصلك بمنظمات ومحامين موثوقين.</span></li>
+        </ol>
+        <hr>
+        <p><b>الخصوصية</b>: كل ما تشاركه معنا بخصوص قضيتك يبقى سرّياً. <u>نحن لا نشارك معلومات قضيتك مع سلطات الهجرة أو أي جهة أخرى.</u></p>
+      </div>
+    </aside>
+    <a class="act" href="tel:+14158617444" data-label="Talk to our team &gt;"><span class="ink" aria-hidden="true"></span><span class="fill" aria-hidden="true"></span><span class="t">Talk to our team &gt;</span></a>
+  </section>
+
+  <section class="section focus" id="about" aria-labelledby="h-about">
+    <p class="label">About</p>
+    <h2 class="h2" id="h-about">Who we are</h2>
+    <p class="intro">Lawyers and advocates reuniting families and<br class="d"> defending people held by ICE since 2007.</p>
+    <div class="snaps">
+      <figure class="snap s1"><img src="assets/about-1.jpg" width="525" height="393" loading="lazy" alt="Four women smiling together at a community event."></figure>
+      <figure class="snap s2"><img src="assets/about-2.jpg" width="1200" height="792" loading="lazy" alt="Young people writing and drawing together at a long table."></figure>
+    </div>
+    <div class="rows">
+      <div class="row first">
+        <h3>Mission</h3>
+        <p>Arab Community Services (ACS) protects Arabs and Muslims through free immigration representation, social services, and <span class="nw">know-your-rights</span> training.</p>
+      </div>
+      <div class="row">
+        <h3>Team</h3>
+        <p>We are an experienced and compassionate team, providing services in Arabic, English, and Dari. Our staff includes two immigration attorneys, one DOJ-accredited representative, three legal assistants, and one social services coordinator.</p>
+      </div>
+      <div class="row" id="history">
+        <h3>History</h3>
+        <p>Founded in 2007 during a period of heightened repression against immigrants, we have provided legal, educational, and community services to hundreds of clients each year as <i>Arab American Legal Services,</i> a program of the <i>Arab Resource and Organizing Center (AROC).</i> Today, we are part of several multiracial, multilingual coalitions serving immigrants across the Bay Area, including the <i>San Francisco Immigrant Legal &amp; Education Network (SFILEN)</i> and <i>Alameda County United in Defense of Immigrant Rights (ACUDIR).</i> In 2026, we grew into our own organization, <i>Arab Community Services (ACS).</i></p>
+      </div>
+      <div class="row has-more">
+        <h3>AROC</h3>
+        <p>Our sister organization, AROC, organizes working-class Arabs and Muslims in the Bay Area against racism, forced migration, and militarism.</p>
+        <a class="more" href="https://araborganizing.org" target="_blank" rel="noopener" data-label="Learn more &gt;"><span class="ink" aria-hidden="true"></span><span class="fill" aria-hidden="true"></span><span class="t">Learn more &gt;</span></a>
+      </div>
+      <div class="row">
+        <h3>Work with us</h3>
+        <p>If you speak Arabic and believe in immigrant rights, there is a place for you here. We welcome law students and volunteers. Email us to get involved.<br class="m"> <a class="mail" href="mailto:info@arabcommunityservices.org">info@<wbr>arabcommunityservices.org</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section focus" id="donate" aria-labelledby="h-donate">
+    <p class="label">Donate</p>
+    <h2 class="h2" id="h-donate">Fund free legal help<br class="d"> for our community.</h2>
+    <p class="intro">Every service we offer is free. Your gift<br class="d"> makes that possible.</p>
+    <div class="rows">
+      <div class="row first has-more">
+        <h3>Online</h3>
+        <p>Give once, or give monthly and stand with our community all year.</p>
+        <a class="more" href="https://secure.actblue.com/donate/acslegal" target="_blank" rel="noopener" data-label="Donate &gt;"><span class="ink" aria-hidden="true"></span><span class="fill" aria-hidden="true"></span><span class="t">Donate &gt;</span></a>
+      </div>
+      <div class="row">
+        <h3>By mail</h3>
+        <p>Please make checks payable to Center for Empowered Politics Education Fund, and mail to:<br><i>522 Valencia St.<br>San Francisco, CA 94110</i></p>
+      </div>
+    </div>
+    <p class="fine">ACS is a fiscally sponsored project of a <span class="nw">501(c)(3)</span> nonprofit organization. Your gift may be <span class="nw">tax-deductible</span>. We will send you a receipt with the tax details.</p>
+  </section>
+  <section class="closing" aria-label="Closing">
+    <div class="center">
+      <figure class="photo">
+        <img src="assets/closing.jpg" width="576" height="431" loading="lazy" alt="Women and children walking together on a beach, seen from behind.">
+        <span class="frame" aria-hidden="true"></span>
+      </figure>
+      <p class="caption c1" lang="ar" dir="rtl">خدماتنا مجانية وســـــــــــرية</p>
+      <p class="caption c2" lang="ar" dir="rtl">وفريقنا يتحدث اللغة العربية</p>
+    </div>
+    <footer class="foot">
+      <p class="copy">© <span id="yr">2026</span> Arab Community Services</p>
+      <a class="totop" href="#top"><span class="cres" aria-hidden="true">&#x2769;</span><span class="t">Back to top</span></a>
+      <address class="addr">522 Valencia St.<br>San Francisco, CA 94110</address>
+    </footer>
+  </section>
+</main>
+
+<script>
+  const nav = document.getElementById('nav');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Nav stays put at all times; the veil fades in once the page scrolls
+  addEventListener('scroll', () => nav.classList.toggle('veil', scrollY > 8), { passive: true });
+
+  // Phone menu
+  const sheet = document.getElementById('sheet');
+  const btn = document.querySelector('.menu-btn');
+  const setMenu = (open) => {
+    sheet.classList.toggle('open', open); btn.setAttribute('aria-expanded', open);
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+    if (open) sheet.querySelector('.close').focus(); else btn.focus();
+  };
+  btn.addEventListener('click', () => setMenu(true));
+  sheet.querySelector('.close').addEventListener('click', () => setMenu(false));
+  sheet.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape' && sheet.classList.contains('open')) setMenu(false); });
+
+  // Current section in bold (ready for the sections to come)
+  const links = [...document.querySelectorAll('[data-target]')];
+  const markCurrent = () => {
+    let current = null;
+    for (const id of ['services','eligibility','process','about','donate']) {   // past About, nothing is bold
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= innerHeight * 0.4) current = id;
+    }
+    links.forEach(a => a.dataset.target === current ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+  };
+  addEventListener('scroll', markCurrent, { passive: true }); markCurrent();
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Baseline position of Anziano Regular/Bold, so section gaps land baseline-to-baseline as in the comps
+  const measureK = (w) => {
+    const d = document.createElement('div');
+    d.style.cssText = `position:absolute;left:-9999px;top:0;visibility:hidden;font-family:${getComputedStyle(document.body).fontFamily};font-weight:${w};font-size:1000px;line-height:1000px`;
+    d.textContent = 'x';
+    const m = document.createElement('span'); m.style.cssText = 'display:inline-block;width:0;height:0';
+    d.appendChild(m); document.body.appendChild(d);
+    const b = m.getBoundingClientRect().bottom - d.getBoundingClientRect().top; d.remove();
+    return ((b - 500) / 1000).toFixed(4);
+  };
+  const setK = () => { document.documentElement.style.setProperty('--kr', measureK(400)); document.documentElement.style.setProperty('--kb', measureK(700)); };
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(setK); setK();
+
+  // Address in the phone menu: how wide the longer line is per px of font size
+  // Phone menu contact block: baseline-to-baseline spacing, whatever font loads
+  // Donate in the menu: the visible gap above it matches the visible gap between the links (ink to ink)
+  const gapDonate = () => { const links = [...document.querySelectorAll('.sheet nav a:not(.donate)')], d = document.querySelector('.sheet .donate'); if (links.length < 2 || !d) return;
+    const ink = el => { const c = document.createElement('canvas').getContext('2d'), st = getComputedStyle(el); c.font = `${st.fontSize} ${st.fontFamily}`;
+      const m = c.measureText('x'), r = el.getBoundingClientRect(), lh = parseFloat(st.lineHeight), half = (lh - m.fontBoundingBoxAscent - m.fontBoundingBoxDescent) / 2;
+      const base = r.top + half + m.fontBoundingBoxAscent; return { top: base - m.actualBoundingBoxAscent, base }; };
+    if (!document.querySelector('.sheet').classList.contains('open')) return;
+    d.style.setProperty('--dgap', '0px');
+    const a = ink(links[0]), b = ink(links[1]), last = ink(links[links.length - 1]), gap = b.top - a.base;
+    d.style.setProperty('--dgap', gap - (d.getBoundingClientRect().top - last.base) + 'px'); };
+  btn.addEventListener('click', () => requestAnimationFrame(gapDonate));
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => measureAddr());
+
+  const measureAddr = () => { const l = document.querySelector('.sheet .addr .l2'); if (!l) return;
+    const d = l.cloneNode(true); const st = getComputedStyle(l);
+    d.style.cssText = `position:absolute;visibility:hidden;white-space:nowrap;font:${st.font};font-size:100px;letter-spacing:.1em;font-variant-caps:all-small-caps;text-transform:lowercase`;
+    document.body.appendChild(d); document.documentElement.style.setProperty('--addrK', (d.getBoundingClientRect().width / 100 + .1).toFixed(3)); d.remove(); };
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(measureAddr); measureAddr();
+
+  // Cypress column stops at the end of Donate, on a whole tree
+  // ---------- Mihrab: a double-ruled arch; a word drawn over it cuts the rules wherever the letters cross ----------
+  const NS = 'http://www.w3.org/2000/svg';
+  const archPath = (W, H, d, k) => { const x0 = d, x1 = W - d, yb = H - d, y0 = d * 1.3, W2 = x1 - x0, cx = W / 2, kk = k * W2 / W, ys = y0 + kk * .40;
+    return `M${x0} ${yb} L${x0} ${ys} C${x0} ${y0+kk*.22} ${cx-W2*.30} ${y0+kk*.15} ${cx-W2*.13} ${y0+kk*.09} C${cx-W2*.05} ${y0+kk*.06} ${cx-W2*.02} ${y0+kk*.03} ${cx} ${y0} ` +
+           `C${cx+W2*.02} ${y0+kk*.03} ${cx+W2*.05} ${y0+kk*.06} ${cx+W2*.13} ${y0+kk*.09} C${cx+W2*.30} ${y0+kk*.15} ${x1} ${y0+kk*.22} ${x1} ${ys} L${x1} ${yb} Z`; };
+  let maskN = 0;
+  let _cx; const inkCtx = () => _cx || (_cx = document.createElement('canvas').getContext('2d'));
+  const measure = (svg, word, F) => { svg.innerHTML = `<text font-family="Moshref Naskh" font-size="${F}" direction="rtl">${word}</text>`; return svg.firstChild.getBBox(); };
+  const drawMihrab = (svg, o) => {   // o: W H k word F tx ty outer inner gap cut frameFilter titleFilter
+    const id = 'mh' + (++maskN), M = 3 * Math.max(o.W, o.H);
+    const t = (extra) => `<text x="${o.tx}" y="${o.ty}" text-anchor="middle" font-family="Moshref Naskh" font-size="${o.F}" direction="rtl" ${extra}>${o.word}</text>`;
+    svg.setAttribute('width', o.W); svg.setAttribute('height', o.H); svg.setAttribute('viewBox', `0 0 ${o.W} ${o.H}`);
+    svg.innerHTML = `<defs><mask id="${id}" maskUnits="userSpaceOnUse" x="${-M}" y="${-M}" width="${3*M}" height="${3*M}">
+        <rect x="${-M}" y="${-M}" width="${3*M}" height="${3*M}" fill="#fff"/>${t(`fill="#000" stroke="#000" stroke-width="${2*o.cut}" stroke-linejoin="round"`)}</mask></defs>
+      <g mask="url(#${id})"><g ${o.frameFilter ? `filter="url(#${o.frameFilter})"` : ''} fill="none" stroke="currentColor">
+        <path d="${archPath(o.W, o.H, o.outer/2, o.k)}" stroke-width="${o.outer}"/><path d="${archPath(o.W, o.H, o.outer + o.gap + o.inner/2, o.k)}" stroke-width="${o.inner}"/></g></g>
+      <g ${o.titleFilter ? `filter="url(#${o.titleFilter})"` : ''}>${t('fill="currentColor"')}</g>`;
+  };
+  const unit = () => innerWidth > 900 ? parseFloat(getComputedStyle(document.body, '::before').width) / 39 : 1;
+
+  // Translation panels
+  const layoutPanels = () => {
+    const phone = innerWidth <= 900, u = unit();
+    document.querySelectorAll('.tr').forEach(box => {
+      const sec = box.closest('.section'), svg = box.querySelector('svg.mh'), body = box.querySelector('.tr-body'), word = svg.dataset.title;
+      sec.style.paddingBottom = '';
+      const W = box.clientWidth; let F = phone ? box.parentElement.querySelector('.rows').clientWidth * .325 : 192 * u;   // phones/tablets: title 35% smaller, sized to the text column
+      const D = W * .5, k = D / .40, Ct = D + .22 * F;
+      let bb = measure(svg, word, F);
+      // never off the page: a small overhang on the right, the rest spills left; shrink only if even that won't fit
+      const overR = phone ? 10 : 8 * u, roomL = box.getBoundingClientRect().left - (phone ? 10 : 24 * u);   // right overhang 8: keeps clear of the right-hand ledger
+      if (bb.width - W - overR > roomL) { F *= (W + overR + roomL) / bb.width; bb = measure(svg, word, F); }
+      let over = (bb.width - W) / 2, dx = over > overR ? -(over - overR) : 0;
+      if (innerWidth < 600) {   // phones: the title spans the screen, from just right of the ledger line to 8px from the right edge
+        const led = document.querySelector('body > .ledger'), L0 = (led ? led.getBoundingClientRect().right : 0) + 8, R0 = innerWidth - 8;
+        // fit the letters' ink (not the font box) between L0 and R0
+        const c0 = inkCtx(); c0.direction = 'ltr'; c0.font = `100px "Moshref Naskh"`;
+        const m0 = c0.measureText(word), inkW = (m0.actualBoundingBoxLeft + m0.actualBoundingBoxRight) / 100;
+        const inkMid = (m0.actualBoundingBoxRight - m0.actualBoundingBoxLeft) / 2 / 100;   // ink centre relative to the text's anchor, per px of size
+        const adv = m0.width / 100;
+        F = (R0 - L0) / inkW; bb = measure(svg, word, F);
+        const bl = box.getBoundingClientRect().left;
+        // text-anchor middle puts the advance centre at tx; shift so the ink centre lands mid-way between L0 and R0
+        dx = (L0 + R0) / 2 - (bl + W / 2) - (inkMid - adv / 2) * F;
+      }
+      // Measure the ink, not the font's box: Moshref's box has a deep empty band under the letters
+      const cx = inkCtx(); cx.direction = 'rtl'; cx.font = `${F}px "Moshref Naskh"`;
+      const m = cx.measureText(word), asc = m.actualBoundingBoxAscent, desc = m.actualBoundingBoxDescent;
+      const ty = Ct + (asc - desc) / 2;                     // baseline that centres the letters' ink on Ct
+      const inkBottom = ty + desc;
+      // and the first body line's ink top, so the 24 is ink to ink
+      const first = body.querySelector('p, li span'), fs = getComputedStyle(first);
+      cx.direction = 'rtl'; cx.font = `${fs.fontSize} ${fs.fontFamily}`;
+      const words = first.textContent.trim().split(/\s+/).slice(0, 5).join(' ');
+      const fm = cx.measureText(words);
+      let top = fm.actualBoundingBoxAscent;
+      const lbl = first.querySelector('b');                 // the bold label is a different font and size
+      if (lbl) { const bs = getComputedStyle(lbl); cx.font = `${bs.fontWeight} ${bs.fontSize} ${bs.fontFamily}`; top = Math.max(top, cx.measureText(lbl.textContent).actualBoundingBoxAscent); }
+      const lh = parseFloat(fs.lineHeight), half = (lh - (fm.fontBoundingBoxAscent + fm.fontBoundingBoxDescent)) / 2;
+      const inkTopInLine = half + fm.fontBoundingBoxAscent - top;
+      body.style.paddingTop = (inkBottom + (phone ? 24 : 24 * u) - inkTopInLine) + 'px';   // 24 from the title's ink to the text's ink
+      if (!phone) box.style.top = (parseFloat(getComputedStyle(sec).paddingTop) - 8 * u) + 'px'; else box.style.top = '';
+      const H = box.offsetHeight;
+      drawMihrab(svg, { W, H, k, word, F, tx: W / 2 + dx, ty, outer: Math.max(1, 1.2 * u), inner: Math.max(2, 3.4 * u), gap: 4 * u,
+                        cut: phone ? 6 : 9 * u, frameFilter: 'ink-stamp', titleFilter: 'ink-stamp' });   // title worn like the stamps
+      if (!phone) { const need = box.offsetTop + H + 48 * u - sec.offsetHeight;
+        if (need > 0) sec.style.paddingBottom = (parseFloat(getComputedStyle(sec).paddingBottom) + need) + 'px'; }
+    });
+  };
+
+  // Small mihrab stamps (About, Donate): the word, centred and larger than the arch, breaks its rules
+  const layoutStamps = () => {
+    const phone = innerWidth <= 900, u = unit();
+    document.querySelectorAll('.section .ar-stamp').forEach(st => {
+      const word = st.querySelector('span').textContent;
+      const col = st.parentElement.querySelector('.intro').getBoundingClientRect().width;
+      const W = phone ? Math.min(col * .62, 230) : 208 * u, H = W * .90, F = W / 3.3 * 1.6;
+      st.style.setProperty('--W', W + 'px'); st.style.width = W + 'px'; st.style.height = H + 'px';
+      const svg = st.querySelector('svg') || st.appendChild(document.createElementNS(NS, 'svg'));
+      const bb = measure(svg, word, F), ty = H * .56 - (bb.y + bb.height / 2);
+      drawMihrab(svg, { W, H, k: W * 1.08, word, F, tx: W / 2, ty, outer: Math.max(2, W / 208 * 4), inner: Math.max(1, W / 208 * 1.3),
+                        gap: W / 208 * 5, cut: W / 208 * 5 });
+    });
+  };
+
+  // Arabic stamps (desktop): beside the header, centred between the top of the headline and the bottom of the intro
+  const pinStamps = () => document.querySelectorAll('.section .ar-stamp').forEach(st => {
+    if (innerWidth <= 900) { st.style.top = ''; return; }
+    const sec = st.parentElement, h = sec.querySelector('.h2'), i = sec.querySelector('.intro');
+    st.style.top = ((h.offsetTop + i.offsetTop + i.offsetHeight) / 2 - st.offsetHeight / 2) + 'px';
+  });
+
+  // About photos (desktop): right column, beside the rows
+  const placeSnaps = () => {
+    const sn = document.querySelector('.snaps'); if (!sn) return;
+    if (innerWidth <= 900) { Object.assign(sn.style, { left: '', top: '', width: '' }); return; }
+    const u = unit(), sec = sn.parentElement, rows = sec.querySelector('.rows');
+    const left = rows.offsetLeft + rows.offsetWidth + 48 * u, right = sec.clientWidth - 72 * u;
+    const st = sec.querySelector('.ar-stamp'), below = st ? st.offsetTop + st.offsetHeight + 40 * u : 0;   // clear of the stamp
+    Object.assign(sn.style, { left: left + 'px', width: (right - left) + 'px', top: Math.max(rows.offsetTop + 8 * u, below) + 'px' });
+  };
+
+  // ---------- Border: cypress column down the hero; ledger down the left to the end of Donate; it turns right to the bird;
+  //            a second cypress column rises from 8px above the bird to the top of Donate (desktop) ----------
+  const sizeColumn = () => {
+    const Y = el => el.getBoundingClientRect().top + scrollY, B = el => el.getBoundingClientRect().bottom + scrollY;
+    const phone = innerWidth <= 900, colS = getComputedStyle(document.body, '::before');
+    const cw = parseFloat(colS.width), cl = parseFloat(colS.left), tree = parseFloat(colS.backgroundSize.split(' ')[1]), s = phone ? 1 : cw / 39;
+    const axis = cl + cw / 2, heroEnd = B(document.querySelector('.hero'));
+    document.body.style.setProperty('--colH', heroEnd + 'px');
+    const right = phone ? innerWidth - parseFloat(getComputedStyle(document.querySelector('.section')).paddingRight) : innerWidth - 72 * s;
+    const bhC = phone ? 46 : 93.5 * s, below = phone ? 32 : 40 * s;
+    const corner = B(document.querySelector('.closing')) - below - bhC / 2;   // the turn and the bird sit at the very bottom of the page (inside the closing's bottom padding)
+    const get = c => document.querySelector('body > .' + c) || document.body.appendChild(Object.assign(document.createElement('div'), { className: c, ariaHidden: 'true' }));
+    const ledger = get('ledger'), rule = get('rule-h'), bird = get('bird'), colR = get('col-r');
+    Object.assign(ledger.style, { left: axis - 2 + 'px', top: heroEnd + 'px', height: corner - heroEnd + 2 + 'px' });
+    const bh = phone ? 46 : 93.5 * s, bw = bh * 21 / 17, gap = phone ? 8 : 8 * s, bx = right - bw;
+    Object.assign(rule.style, { left: axis - 2 + 'px', top: corner - 2 + 'px', width: bx - gap - (axis - 2) + 'px' });
+    Object.assign(bird.style, { left: bx + 'px', top: corner - bh / 2 + 'px', width: bw + 'px', height: bh + 'px' });
+    colR.style.display = 'none';
+  };
+
+  const relayout = () => { layoutPanels(); layoutStamps(); pinStamps(); placeSnaps(); sizeColumn(); };
+  addEventListener('resize', relayout); addEventListener('load', relayout);
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(relayout); relayout();
+
+  // Reading focus: a row brightens when its top reaches the reading line (40% down the window) and stays bright
+  // (bulleted rows brighten one bullet at a time; at the very bottom of the page, anything still dim brightens)
+  const rows = [...document.querySelectorAll('.focus .row, .focus .bullets li')];
+  const readLine = () => {
+    const line = innerHeight * 0.4;
+    const atEnd = scrollY + innerHeight >= document.documentElement.scrollHeight - 4;
+    rows.forEach(r => { if (atEnd || r.getBoundingClientRect().top <= line) r.classList.add('read'); });
+  };
+
+  // Where the ✺ ink sits above the baseline (fraction of its size), so it centres on the lowercase letters as in the comp
+  const measureBullet = () => {
+    try {
+      const c = document.createElement('canvas').getContext('2d');
+      c.font = '500 1000px "itc-zapf-dingbats-std", "Zapf Dingbats", sans-serif';
+      for (const [ch, v] of [['\u273A', '--bc'], ['\u278A', '--bn']]) {
+        const m = c.measureText(ch);
+        if (m.actualBoundingBoxAscent) document.documentElement.style.setProperty(v, ((m.actualBoundingBoxAscent - m.actualBoundingBoxDescent) / 2000).toFixed(4));
+      }
+    } catch (e) {}
+  };
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(measureBullet); measureBullet();
+  addEventListener('scroll', readLine, { passive: true }); addEventListener('resize', readLine); readLine();
+
+</script>
+</body>
+</html>
